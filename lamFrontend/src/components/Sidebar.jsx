@@ -1,16 +1,25 @@
 import { NavLink } from 'react-router-dom';
 import { User, Key, RefreshCcw, CheckCircle } from 'lucide-react';
+import idlclogo from '../assets/idlclogo.jpg'
 
 const Sidebar = () => {
     const linkClass =
-        'flex items-center gap-3 px-4 py-2 rounded-md hover:bg-indigo-100 hover:text-indigo-700 transition-all';
+        'flex items-center gap-3 px-4 py-2 rounded-md text-gray-700 hover:bg-blue-100 hover:text-black transition-all';
 
-    const activeClass = 'bg-white text-indigo-700 shadow-sm';
+    const activeClass =
+        'bg-blue-100 text-black shadow-sm font-bold';
+
 
     return (
-        <aside className="bg-indigo-100 text-black w-72 min-h-screen p-5 hidden md:block shadow-sm">
-            <h2 className="text-2xl font-semibold mb-8 text-indigo-800">📊 Dashboard</h2>
-            <nav className="space-y-3">
+        <aside className="bg-white text-black w-96 min-h-screen p-5 hidden md:block shadow-sm">
+            <div className="flex items-center gap-2 text-center py-4 border-b-1 border-gray-400">
+                <img src={idlclogo} alt="IDLC Logo" className="w-8 h-auto" />
+                <h2 className="text-xl font-semibold text-blue-700">
+                    Logical Access Management
+                </h2>
+            </div>
+
+            <nav className="space-y-3 py-5">
                 <NavLink to="/" end className={({ isActive }) => `${linkClass} ${isActive ? activeClass : ''}`}>
                     <User size={20} /> Account Creation
                 </NavLink>

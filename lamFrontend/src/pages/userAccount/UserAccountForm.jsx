@@ -1,16 +1,9 @@
 import { useState } from "react";
 
 const SectionTitle = ({ children }) => (
-    <h2 className="text-lg font-semibold text-cyan-700 mb-4 mt-6 px-2 border-b border-cyan-300">
+    <h2 className="text-lg font-semibold text-gray-700 mb-4 mt-8 py-4 border-b px-4 border-b-cyan-500 rounded border-gray-200 pb-1">
         {children}
     </h2>
-);
-
-const InputWrapper = ({ label, children }) => (
-    <div className="flex flex-col">
-        <label className="text-sm font-medium text-gray-700 mb-1">{label}</label>
-        {children}
-    </div>
 );
 
 const UserAccountForm = () => {
@@ -27,88 +20,106 @@ const UserAccountForm = () => {
     };
 
     return (
-        <div className="bg-gradient-to-br from-gray-50 to-white min-h-screen px-6 py-10 text-gray-900 font-sans">
-            <div className="max-w-6xl mx-auto bg-white rounded-2xl shadow-md p-8 border border-gray-200">
-                <h1 className="text-2xl font-bold text-center text-indigo-600 mb-8">
-                    📝 New User Account Opening Form
-                </h1>
+        <div className="bg-white w-full min-h-screen py-8 px-10 text-gray-900">
+            <h1 className="text-xl font-semibold text-blue-600 mb-6 text-center font-mono">
+                📝 New User Account Opening
+            </h1>
 
-                <form onSubmit={handleSubmit} className="space-y-10">
-                    {/* Section: Basic Information */}
+            <form onSubmit={handleSubmit} className="space-y-6 px-4">
+                {/* Section: Basic Info */}
+                <SectionTitle>Basic Information</SectionTitle>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                     <div>
-                        <SectionTitle>Basic Information</SectionTitle>
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                            <InputWrapper label="CIF/NID">
-                                <input
-                                    type="text"
-                                    value={cif}
-                                    onChange={(e) => setCif(e.target.value)}
-                                    placeholder="Enter CIF/NID"
-                                    required
-                                    className="input"
-                                />
-                            </InputWrapper>
-
-                            <InputWrapper label="Name">
-                                <input
-                                    type="text"
-                                    value={name}
-                                    readOnly
-                                    className="input bg-gray-100 cursor-not-allowed"
-                                />
-                            </InputWrapper>
-
-                            <InputWrapper label="Mobile">
-                                <input
-                                    type="text"
-                                    value={mobile}
-                                    readOnly
-                                    className="input bg-gray-100 cursor-not-allowed"
-                                />
-                            </InputWrapper>
-                        </div>
+                        <label className="block text-sm font-medium mb-1">CIF/NID</label>
+                        <input
+                            type="text"
+                            value={cif}
+                            onChange={(e) => setCif(e.target.value)}
+                            placeholder="Enter CIF/NID"
+                            required
+                            className="input"
+                        />
                     </div>
 
-                    {/* Section: Verification */}
                     <div>
-                        <SectionTitle>Verification</SectionTitle>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            <InputWrapper label="Biometric Verified">
-                                <select
-                                    value={biometric}
-                                    onChange={(e) => setBiometric(e.target.value)}
-                                    required
-                                    className="input"
-                                >
-                                    <option value="">Select</option>
-                                    <option value="Yes">Yes</option>
-                                    <option value="No">No</option>
-                                </select>
-                            </InputWrapper>
-                        </div>
+                        <label className="block text-sm font-medium mb-1">Name</label>
+                        <input
+                            type="text"
+                            value={name}
+                            readOnly
+                            className="input bg-gray-100 cursor-not-allowed"
+                        />
                     </div>
 
-                    {/* Section: Employment Information */}
                     <div>
+                        <label className="block text-sm font-medium mb-1">Mobile</label>
+                        <input
+                            type="text"
+                            value={mobile}
+                            readOnly
+                            className="input bg-gray-100 cursor-not-allowed"
+                        />
+                    </div>
+                </div>
+
+                {/* Section: Verification */}
+                <SectionTitle>Verification</SectionTitle>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label className="block text-sm font-medium mb-1">
+                            Biometric Verified
+                        </label>
+                        <select
+                            value={biometric}
+                            onChange={(e) => setBiometric(e.target.value)}
+                            required
+                            className="input"
+                        >
+                            <option value="">Select</option>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                        {biometric === "No" && (
+                            <p className="text-sm text-red-500 mt-1 font-medium">
+                                Access Restricted
+                            </p>
+                        )}
+                    </div>
+                </div>
+
+                {/* Section: Employment Info */}
+                {biometric === "Yes" && (
+                    <>
                         <SectionTitle>Employment Information</SectionTitle>
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                            <InputWrapper label="Joining Date">
+                            <div>
+                                <label className="block text-sm font-medium mb-1">
+                                    Joining Date
+                                </label>
                                 <input type="date" required className="input" />
-                            </InputWrapper>
+                            </div>
 
-                            <InputWrapper label="Department">
+                            <div>
+                                <label className="block text-sm font-medium mb-1">
+                                    Department
+                                </label>
                                 <input type="text" required placeholder="e.g. IT" className="input" />
-                            </InputWrapper>
+                            </div>
 
-                            <InputWrapper label="Branch">
+                            <div>
+                                <label className="block text-sm font-medium mb-1">Branch</label>
                                 <input type="text" required className="input" />
-                            </InputWrapper>
+                            </div>
 
-                            <InputWrapper label="Role">
+                            <div>
+                                <label className="block text-sm font-medium mb-1">Role</label>
                                 <input type="text" required className="input" />
-                            </InputWrapper>
+                            </div>
 
-                            <InputWrapper label="Employment Status">
+                            <div>
+                                <label className="block text-sm font-medium mb-1">
+                                    Employment Status
+                                </label>
                                 <select
                                     value={employmentStatus}
                                     onChange={(e) => setEmploymentStatus(e.target.value)}
@@ -119,85 +130,99 @@ const UserAccountForm = () => {
                                     <option value="Permanent">Permanent</option>
                                     <option value="Contractual">Contractual</option>
                                 </select>
-                            </InputWrapper>
+                            </div>
 
                             {employmentStatus === "Contractual" && (
-                                <InputWrapper label="Contract Expiry">
+                                <div>
+                                    <label className="block text-sm font-medium mb-1">
+                                        Contract Expiry
+                                    </label>
                                     <input
                                         type="date"
                                         value={contractExpiry}
                                         onChange={(e) => setContractExpiry(e.target.value)}
                                         className="input"
                                     />
-                                </InputWrapper>
+                                </div>
                             )}
                         </div>
-                    </div>
 
-                    {/* Section: System Access */}
-                    <div>
+                        {/* Section: Access */}
                         <SectionTitle>System Access</SectionTitle>
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                            <InputWrapper label="Line Manager">
+                            <div>
+                                <label className="block text-sm font-medium mb-1">
+                                    Line Manager
+                                </label>
                                 <input
                                     type="text"
                                     value="Auto-filled from CIF"
                                     readOnly
                                     className="input bg-gray-100 cursor-not-allowed"
                                 />
-                            </InputWrapper>
+                            </div>
 
-                            <InputWrapper label="Requested Access">
+                            <div>
+                                <label className="block text-sm font-medium mb-1">
+                                    Requested Access
+                                </label>
                                 <input
                                     type="text"
                                     placeholder="Auto-suggested"
                                     className="input"
                                 />
-                            </InputWrapper>
+                            </div>
 
-                            <InputWrapper label="Access Type">
+                            <div>
+                                <label className="block text-sm font-medium mb-1">
+                                    Access Type
+                                </label>
                                 <select required className="input">
                                     <option value="">Select</option>
                                     <option value="Viewer">Viewer</option>
                                     <option value="Editor">Editor</option>
                                     <option value="Admin">Admin</option>
                                 </select>
-                            </InputWrapper>
+                            </div>
                         </div>
-                    </div>
 
-                    {/* Section: Justification */}
-                    <div>
+                        {/* Section: Justification */}
                         <SectionTitle>Additional Info</SectionTitle>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            <InputWrapper label="Justification">
+                        <div className="space-y-6">
+                            <div>
+                                <label className="block text-sm font-medium mb-1">
+                                    Justification
+                                </label>
                                 <textarea
-                                    rows={4}
+                                    rows={3}
                                     placeholder="Why is access required?"
                                     required
                                     className="input resize-none"
                                 ></textarea>
-                            </InputWrapper>
+                            </div>
 
-                            <InputWrapper label="Upload Supporting Document">
+                            <div>
+                                <label className="block text-sm font-medium mb-1">
+                                    Upload Supporting Document
+                                </label>
                                 <input
                                     type="file"
                                     className="block w-full text-sm text-gray-700"
                                 />
-                            </InputWrapper>
+                            </div>
                         </div>
-                    </div>
 
-                    <div className="text-right mt-8">
-                        <button
-                            type="submit"
-                            className="bg-indigo-600 text-white px-8 py-2 rounded-md font-semibold hover:bg-indigo-700 transition"
-                        >
-                            Submit Request
-                        </button>
-                    </div>
-                </form>
-            </div>
+                        <div className="text-right mt-6">
+                            <button
+                                type="submit"
+                                className="bg-indigo-600 text-white font-semibold px-6 py-2 rounded hover:bg-indigo-700 transition"
+                            >
+                                Submit Request
+                            </button>
+                        </div>
+                    </>
+                )}
+            </form>
         </div>
     );
 };

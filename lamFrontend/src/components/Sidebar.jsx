@@ -11,10 +11,10 @@ const Sidebar = () => {
 
 
     return (
-        <aside className="bg-white text-black w-96 min-h-screen hidden md:block shadow-sm px-2">
-            <div className="flex items-center gap-2 text-center py-4 border-b-1 border-gray-400">
+        <aside className="bg-white text-black w-96 hidden md:block shadow-lg px-2">
+            <div className="flex items-center justify-center gap-2 text-center py-4 border-b border-gray-400">
                 <img src={idlclogo} alt="IDLC Logo" className="w-8 h-auto" />
-                <h2 className="text-xl font-semibold text-blue-700">
+                <h2 className="text-xl font-semibold text-blue-800 font-sans">
                     Logical Access Management
                 </h2>
             </div>

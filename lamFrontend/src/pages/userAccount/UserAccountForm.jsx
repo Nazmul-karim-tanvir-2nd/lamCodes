@@ -1,214 +1,255 @@
-import { useState } from "react";
+import useUserFormStore from '../../store/useUserFormStore';
+import { useState, useEffect } from 'react';
+import dummyUsers from '../../data/dummyUser';
+
+const Input = ({ label, name, type = 'text', value, onChange, disabled = false }) => (
+    <div className="flex flex-col">
+        <label className="text-sm font-medium text-gray-700 mb-1">{label}</label>
+        <input
+            type={type}
+            name={name}
+            value={value}
+            onChange={onChange}
+            disabled={disabled}
+            className="p-2 border rounded bg-white shadow-sm outline-none focus:ring-2 focus:ring-purple-400"
+        />
+    </div>
+);
 
 const SectionTitle = ({ children }) => (
-    <h2 className="text-lg font-semibold text-gray-700 mb-4 mt-10 px-4 py-2 bg-gray-50 border-l-4 border-cyan-600 rounded">
+    <h2 className="text-xl font-semibold text-gray-800 border-l-4 border-indigo-500 pl-3 my-6">
         {children}
     </h2>
 );
 
-const inputStyle =
-    "w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-cyan-500 bg-white text-sm";
-
 const UserAccountForm = () => {
-    const [cif, setCif] = useState("");
-    const [name, setName] = useState("John Doe");
-    const [mobile, setMobile] = useState("01XXXXXXXXX");
-    const [biometric, setBiometric] = useState("");
-    const [employmentStatus, setEmploymentStatus] = useState("");
-    const [contractExpiry, setContractExpiry] = useState("");
+    const { formData, updateField } = useUserFormStore();
+
+    const handleChange = (e) => {
+        const { name, value, files } = e.target;
+        if (e.target.type === 'file') {
+            updateField(name, files[0]);
+        } else {
+            updateField(name, value);
+        }
+    };
+
+    useEffect(() => {
+        const today = new Date().toISOString().split("T")[0];
+        updateField("requestDate", today);
+    }, [updateField]);
+
+    const handleCIFSearch = () => {
+        const match = dummyUsers.find((u) => u.cif === formData.cif);
+        if (match) {
+            updateField("name", match.name);
+            updateField("mobile", match.mobile);
+            updateField("gender", match.gender);
+            updateField("bloodGroup", match.bloodGroup);
+            updateField("emergencyContact", match.emergencyContact);
+            updateField("biometricStatus", match.biometricStatus);
+        } else {
+            alert("No user found with this CIF");
+        }
+    };
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        alert("Form submitted!");
+        console.log("Submitted Data:", formData);
+        alert("Form submitted! Check console for full data.");
     };
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white p-6 md:p-10">
-            <div className="max-w-7xl mx-auto bg-white p-8 rounded-2xl shadow-md border border-gray-200">
-                <h1 className="text-2xl font-bold text-indigo-700 text-center mb-10 font-sans tracking-wide">
-                    📝 New User Account Opening
-                </h1>
+        <form onSubmit={handleSubmit} className="w-full p-10">
+            <h1 className="text-2xl font-bold text-center text-blue-800 mb-10">
+                New User Account Opening Request
+            </h1>
 
-                <form onSubmit={handleSubmit} className="space-y-8">
-                    {/* Section: Basic Info */}
-                    <SectionTitle>Basic Information</SectionTitle>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 px-4">
-                        <div>
-                            <label className="block text-sm font-medium mb-1">CIF/NID</label>
-                            <input
-                                type="text"
-                                value={cif}
-                                onChange={(e) => setCif(e.target.value)}
-                                placeholder="Enter CIF/NID"
-                                required
-                                className={inputStyle}
-                            />
-                        </div>
-
-                        <div>
-                            <label className="block text-sm font-medium mb-1">Name</label>
-                            <input
-                                type="text"
-                                value={name}
-                                readOnly
-                                className={`${inputStyle} bg-gray-100 cursor-not-allowed`}
-                            />
-                        </div>
-
-                        <div>
-                            <label className="block text-sm font-medium mb-1">Mobile</label>
-                            <input
-                                type="text"
-                                value={mobile}
-                                readOnly
-                                className={`${inputStyle} bg-gray-100 cursor-not-allowed`}
-                            />
-                        </div>
+            {/* Employee Information */}
+            <SectionTitle>Employee Information</SectionTitle>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="md:col-span-2 flex gap-4">
+                    <div className="flex-1">
+                        <Input label="CIF/NID" name="cif" value={formData.cif} onChange={handleChange} />
                     </div>
+                    <button
+                        type="button"
+                        onClick={handleCIFSearch}
+                        className="mt-6 px-4 py-2 bg-purple-600 text-white rounded-lg shadow hover:bg-purple-700"
+                    >
+                        Search
+                    </button>
+                </div>
 
-                    {/* Section: Verification */}
-                    <SectionTitle>Verification</SectionTitle>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 px-4">
-                        <div>
-                            <label className="block text-sm font-medium mb-1">Biometric Verified</label>
-                            <select
-                                value={biometric}
-                                onChange={(e) => setBiometric(e.target.value)}
-                                required
-                                className={inputStyle}
-                            >
-                                <option value="">Select</option>
-                                <option value="Yes">Yes</option>
-                                <option value="No">No</option>
-                            </select>
-                            {biometric === "No" && (
-                                <p className="text-sm text-red-600 mt-1 font-medium">
-                                    Access Restricted
-                                </p>
-                            )}
-                        </div>
+                <Input label="Name" name="name" value={formData.name} onChange={handleChange} disabled />
+                <Input label="Mobile" name="mobile" value={formData.mobile} onChange={handleChange} disabled />
+                <Input label="Gender" name="gender" value={formData.gender} onChange={handleChange} />
+                <Input label="Blood Group" name="bloodGroup" value={formData.bloodGroup} onChange={handleChange} />
+                <Input
+                    label="Emergency Contact"
+                    name="emergencyContact"
+                    value={formData.emergencyContact}
+                    onChange={handleChange}
+                />
+                <Input
+                    label="Biometric Status (Pending / Verified)"
+                    name="biometricStatus"
+                    value={formData.biometricStatus}
+                    onChange={handleChange}
+                />
+                <Input
+                    label="Joining Date"
+                    name="joiningDate"
+                    type="date"
+                    value={formData.joiningDate}
+                    onChange={handleChange}
+                />
+
+                {formData.biometricStatus === 'Pending' && (
+                    <div className="md:col-span-2 bg-red-100 text-red-700 p-4 rounded border border-red-300">
+                        ⚠️ Biometric verification is pending. Access will be restricted until verification is complete.
                     </div>
-
-                    {/* Section: Employment Info */}
-                    {biometric === "Yes" && (
-                        <>
-                            <SectionTitle>Employment Information</SectionTitle>
-                            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 px-4">
-                                <div>
-                                    <label className="block text-sm font-medium mb-1">Joining Date</label>
-                                    <input type="date" required className={inputStyle} />
-                                </div>
-
-                                <div>
-                                    <label className="block text-sm font-medium mb-1">Department</label>
-                                    <input type="text" required placeholder="e.g. IT" className={inputStyle} />
-                                </div>
-
-                                <div>
-                                    <label className="block text-sm font-medium mb-1">Branch</label>
-                                    <input type="text" required className={inputStyle} />
-                                </div>
-
-                                <div>
-                                    <label className="block text-sm font-medium mb-1">Role</label>
-                                    <input type="text" required className={inputStyle} />
-                                </div>
-
-                                <div>
-                                    <label className="block text-sm font-medium mb-1">Employment Status</label>
-                                    <select
-                                        value={employmentStatus}
-                                        onChange={(e) => setEmploymentStatus(e.target.value)}
-                                        required
-                                        className={inputStyle}
-                                    >
-                                        <option value="">Select</option>
-                                        <option value="Permanent">Permanent</option>
-                                        <option value="Contractual">Contractual</option>
-                                    </select>
-                                </div>
-
-                                {employmentStatus === "Contractual" && (
-                                    <div>
-                                        <label className="block text-sm font-medium mb-1">Contract Expiry</label>
-                                        <input
-                                            type="date"
-                                            value={contractExpiry}
-                                            onChange={(e) => setContractExpiry(e.target.value)}
-                                            className={inputStyle}
-                                        />
-                                    </div>
-                                )}
-                            </div>
-
-                            {/* Section: Access */}
-                            <SectionTitle>System Access</SectionTitle>
-                            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 px-4">
-                                <div>
-                                    <label className="block text-sm font-medium mb-1">Line Manager</label>
-                                    <input
-                                        type="text"
-                                        value="Auto-filled from CIF"
-                                        readOnly
-                                        className={`${inputStyle} bg-gray-100 cursor-not-allowed`}
-                                    />
-                                </div>
-
-                                <div>
-                                    <label className="block text-sm font-medium mb-1">Requested Access</label>
-                                    <input
-                                        type="text"
-                                        placeholder="Auto-suggested"
-                                        className={inputStyle}
-                                    />
-                                </div>
-
-                                <div>
-                                    <label className="block text-sm font-medium mb-1">Access Type</label>
-                                    <select required className={inputStyle}>
-                                        <option value="">Select</option>
-                                        <option value="Viewer">Viewer</option>
-                                        <option value="Editor">Editor</option>
-                                        <option value="Admin">Admin</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            {/* Section: Justification */}
-                            <SectionTitle>Additional Info</SectionTitle>
-                            <div className="space-y-6 px-4">
-                                <div>
-                                    <label className="block text-sm font-medium mb-1">Justification</label>
-                                    <textarea
-                                        rows={3}
-                                        placeholder="Why is access required?"
-                                        required
-                                        className={`${inputStyle} resize-none`}
-                                    ></textarea>
-                                </div>
-
-                                <div>
-                                    <label className="block text-sm font-medium mb-1">Upload Supporting Document</label>
-                                    <input
-                                        type="file"
-                                        className="block w-full text-sm text-gray-700 file:border file:border-gray-300 file:rounded file:px-4 file:py-2 file:bg-gray-100"
-                                    />
-                                </div>
-                            </div>
-
-                            <div className="text-right mt-6 px-4">
-                                <button
-                                    type="submit"
-                                    className="bg-indigo-600 text-white font-semibold px-6 py-2 rounded hover:bg-indigo-700 transition"
-                                >
-                                    Submit Request
-                                </button>
-                            </div>
-                        </>
-                    )}
-                </form>
+                )}
             </div>
-        </div>
+
+            {/* Department & Role */}
+            <SectionTitle>Department & Role Details</SectionTitle>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <Input label="Department" name="department" value={formData.department} onChange={handleChange} />
+                <Input label="Division" name="division" value={formData.division} onChange={handleChange} />
+                <Input label="Branch" name="branch" value={formData.branch} onChange={handleChange} />
+                <Input label="Designation" name="designation" value={formData.designation} onChange={handleChange} />
+
+                <div className="flex flex-col">
+                    <label className="text-sm font-medium text-gray-700 mb-1">Employment Status</label>
+                    <div className="flex gap-6">
+                        <label>
+                            <input
+                                type="radio"
+                                name="employmentStatus"
+                                value="Permanent"
+                                checked={formData.employmentStatus === 'Permanent'}
+                                onChange={handleChange}
+                                className="mr-2"
+                            />
+                            Permanent
+                        </label>
+                        <label>
+                            <input
+                                type="radio"
+                                name="employmentStatus"
+                                value="Contractual"
+                                checked={formData.employmentStatus === 'Contractual'}
+                                onChange={handleChange}
+                                className="mr-2"
+                            />
+                            Contractual
+                        </label>
+                    </div>
+                </div>
+
+                {formData.employmentStatus === 'Contractual' && (
+                    <Input
+                        label="Contract Expiry Date"
+                        name="contractExpiry"
+                        type="date"
+                        value={formData.contractExpiry}
+                        onChange={handleChange}
+                    />
+                )}
+
+                <Input
+                    label="Line Manager CIF"
+                    name="lineManagerCIF"
+                    value={formData.lineManagerCIF}
+                    onChange={handleChange}
+                />
+            </div>
+
+            {/* Access Requirements */}
+            <SectionTitle>Access Requirements</SectionTitle>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <Input
+                    label="Requested Systems / Software"
+                    name="requestedSystems"
+                    value={formData.requestedSystems}
+                    onChange={handleChange}
+                />
+                <Input
+                    label="Role-Based Access Type"
+                    name="accessType"
+                    value={formData.accessType}
+                    onChange={handleChange}
+                />
+                <Input
+                    label="Justification / Purpose"
+                    name="justification"
+                    value={formData.justification}
+                    onChange={handleChange}
+                />
+                <Input
+                    label="Role Designation"
+                    name="roleDesignation"
+                    value={formData.roleDesignation}
+                    onChange={handleChange}
+                />
+            </div>
+
+            {/* Additional Notes */}
+            <SectionTitle>Additional Notes / Attachments</SectionTitle>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <Input
+                    label="Remarks / Special Instructions"
+                    name="remarks"
+                    value={formData.remarks}
+                    onChange={handleChange}
+                />
+                <div className="flex flex-col">
+                    <label className="text-sm font-medium text-gray-700 mb-1">Upload Supporting Documents</label>
+                    <input
+                        type="file"
+                        name="documents"
+                        onChange={handleChange}
+                        className="p-2 border rounded-lg bg-white shadow-sm"
+                    />
+                </div>
+            </div>
+
+            {/* Footer / Metadata */}
+            <SectionTitle>Form Metadata</SectionTitle>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <Input
+                    label="Requested By"
+                    name="requestedBy"
+                    value={formData.requestedBy}
+                    onChange={handleChange}
+                />
+                <Input
+                    label="Request Date"
+                    name="requestDate"
+                    type="date"
+                    value={formData.requestDate}
+                    onChange={handleChange}
+                />
+                <Input
+                    label="Approval Status"
+                    name="approvalStatus"
+                    value={formData.approvalStatus}
+                    onChange={handleChange}
+                    disabled
+                />
+            </div>
+
+            {/* Submit Button */}
+            <div className="mt-10 text-center">
+                <button
+                    type="submit"
+                    className="bg-purple-600 text-white px-8 py-3 rounded-lg text-lg shadow hover:bg-purple-700 transition-all"
+                >
+                    Submit Request
+                </button>
+            </div>
+        </form>
     );
 };
 

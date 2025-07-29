@@ -1,11 +1,11 @@
 import { Outlet } from 'react-router-dom';
-import Sidebar from './Sidebar';
+import Sidebar from '../components/Sidebar.jsx'
 
 const Layout = () => {
     return (
-        <div className="flex min-h-screen bg-gray-50">
+        <div className="flex min-h-screen bg-white">
             <Sidebar />
-            <main className="flex-1 p-4">
+            <main className="flex-1">
                 <Outlet />
             </main>
         </div>

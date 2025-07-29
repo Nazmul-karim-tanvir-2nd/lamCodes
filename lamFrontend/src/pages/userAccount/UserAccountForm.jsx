@@ -1,25 +1,16 @@
+// src/pages/userAccount/UserAccountForm.jsx
 import useUserFormStore from '../../store/useUserFormStore';
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import dummyUsers from '../../data/dummyUser';
-
-const Input = ({ label, name, type = 'text', value, onChange, disabled = false }) => (
-    <div className="flex flex-col">
-        <label className="text-sm font-medium text-gray-700 mb-1">{label}</label>
-        <input
-            type={type}
-            name={name}
-            value={value}
-            onChange={onChange}
-            disabled={disabled}
-            className="p-2 border rounded bg-white shadow-sm outline-none focus:ring-2 focus:ring-purple-400"
-        />
-    </div>
-);
+import FloatingInput from '../../components/FloatingInput'; // ✅ use this
 
 const SectionTitle = ({ children }) => (
-    <h2 className="text-xl font-semibold text-gray-800 border-l-4 border-indigo-500 pl-3 my-6">
-        {children}
-    </h2>
+    <div className="mb-7 flex items-center gap-3">
+        <div className="bg-blue-600 w-[20px] h-[40px] rounded"></div>
+        <h2 className="text-xl font-semibold text-gray-700 my-6 font-sans">
+            {children}
+        </h2>
+    </div>
 );
 
 const UserAccountForm = () => {
@@ -70,7 +61,12 @@ const UserAccountForm = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="md:col-span-2 flex gap-4">
                     <div className="flex-1">
-                        <Input label="CIF/NID" name="cif" value={formData.cif} onChange={handleChange} />
+                        <FloatingInput
+                            label="CIF/NID"
+                            name="cif"
+                            value={formData.cif}
+                            onChange={handleChange}
+                        />
                     </div>
                     <button
                         type="button"
@@ -81,29 +77,13 @@ const UserAccountForm = () => {
                     </button>
                 </div>
 
-                <Input label="Name" name="name" value={formData.name} onChange={handleChange} disabled />
-                <Input label="Mobile" name="mobile" value={formData.mobile} onChange={handleChange} disabled />
-                <Input label="Gender" name="gender" value={formData.gender} onChange={handleChange} />
-                <Input label="Blood Group" name="bloodGroup" value={formData.bloodGroup} onChange={handleChange} />
-                <Input
-                    label="Emergency Contact"
-                    name="emergencyContact"
-                    value={formData.emergencyContact}
-                    onChange={handleChange}
-                />
-                <Input
-                    label="Biometric Status (Pending / Verified)"
-                    name="biometricStatus"
-                    value={formData.biometricStatus}
-                    onChange={handleChange}
-                />
-                <Input
-                    label="Joining Date"
-                    name="joiningDate"
-                    type="date"
-                    value={formData.joiningDate}
-                    onChange={handleChange}
-                />
+                <FloatingInput label="Name" name="name" value={formData.name} onChange={handleChange} disabled />
+                <FloatingInput label="Mobile" name="mobile" value={formData.mobile} onChange={handleChange} disabled />
+                <FloatingInput label="Gender" name="gender" value={formData.gender} onChange={handleChange} />
+                <FloatingInput label="Blood Group" name="bloodGroup" value={formData.bloodGroup} onChange={handleChange} />
+                <FloatingInput label="Emergency Contact" name="emergencyContact" value={formData.emergencyContact} onChange={handleChange} />
+                <FloatingInput label="Biometric Status (Pending / Verified)" name="biometricStatus" value={formData.biometricStatus} onChange={handleChange} />
+                <FloatingInput label="Joining Date" name="joiningDate" type="date" value={formData.joiningDate} onChange={handleChange} />
 
                 {formData.biometricStatus === 'Pending' && (
                     <div className="md:col-span-2 bg-red-100 text-red-700 p-4 rounded border border-red-300">
@@ -112,18 +92,18 @@ const UserAccountForm = () => {
                 )}
             </div>
 
-            {/* Department & Role */}
+            {/* Department & Role Details */}
             <SectionTitle>Department & Role Details</SectionTitle>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <Input label="Department" name="department" value={formData.department} onChange={handleChange} />
-                <Input label="Division" name="division" value={formData.division} onChange={handleChange} />
-                <Input label="Branch" name="branch" value={formData.branch} onChange={handleChange} />
-                <Input label="Designation" name="designation" value={formData.designation} onChange={handleChange} />
+                <FloatingInput label="Department" name="department" value={formData.department} onChange={handleChange} />
+                <FloatingInput label="Division" name="division" value={formData.division} onChange={handleChange} />
+                <FloatingInput label="Branch" name="branch" value={formData.branch} onChange={handleChange} />
+                <FloatingInput label="Designation" name="designation" value={formData.designation} onChange={handleChange} />
 
-                <div className="flex flex-col">
-                    <label className="text-sm font-medium text-gray-700 mb-1">Employment Status</label>
+                <div className="flex flex-col md:col-span-2">
+                    <label className="text-sm font-medium text-gray-700 mb-2">Employment Status</label>
                     <div className="flex gap-6">
-                        <label>
+                        <label className="flex items-center">
                             <input
                                 type="radio"
                                 name="employmentStatus"
@@ -134,7 +114,7 @@ const UserAccountForm = () => {
                             />
                             Permanent
                         </label>
-                        <label>
+                        <label className="flex items-center">
                             <input
                                 type="radio"
                                 name="employmentStatus"
@@ -149,61 +129,25 @@ const UserAccountForm = () => {
                 </div>
 
                 {formData.employmentStatus === 'Contractual' && (
-                    <Input
-                        label="Contract Expiry Date"
-                        name="contractExpiry"
-                        type="date"
-                        value={formData.contractExpiry}
-                        onChange={handleChange}
-                    />
+                    <FloatingInput label="Contract Expiry Date" name="contractExpiry" type="date" value={formData.contractExpiry} onChange={handleChange} />
                 )}
 
-                <Input
-                    label="Line Manager CIF"
-                    name="lineManagerCIF"
-                    value={formData.lineManagerCIF}
-                    onChange={handleChange}
-                />
+                <FloatingInput label="Line Manager CIF" name="lineManagerCIF" value={formData.lineManagerCIF} onChange={handleChange} />
             </div>
 
             {/* Access Requirements */}
             <SectionTitle>Access Requirements</SectionTitle>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <Input
-                    label="Requested Systems / Software"
-                    name="requestedSystems"
-                    value={formData.requestedSystems}
-                    onChange={handleChange}
-                />
-                <Input
-                    label="Role-Based Access Type"
-                    name="accessType"
-                    value={formData.accessType}
-                    onChange={handleChange}
-                />
-                <Input
-                    label="Justification / Purpose"
-                    name="justification"
-                    value={formData.justification}
-                    onChange={handleChange}
-                />
-                <Input
-                    label="Role Designation"
-                    name="roleDesignation"
-                    value={formData.roleDesignation}
-                    onChange={handleChange}
-                />
+                <FloatingInput label="Requested Systems / Software" name="requestedSystems" value={formData.requestedSystems} onChange={handleChange} />
+                <FloatingInput label="Role-Based Access Type" name="accessType" value={formData.accessType} onChange={handleChange} />
+                <FloatingInput label="Justification / Purpose" name="justification" value={formData.justification} onChange={handleChange} />
+                <FloatingInput label="Role Designation" name="roleDesignation" value={formData.roleDesignation} onChange={handleChange} />
             </div>
 
             {/* Additional Notes */}
             <SectionTitle>Additional Notes / Attachments</SectionTitle>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <Input
-                    label="Remarks / Special Instructions"
-                    name="remarks"
-                    value={formData.remarks}
-                    onChange={handleChange}
-                />
+                <FloatingInput label="Remarks / Special Instructions" name="remarks" value={formData.remarks} onChange={handleChange} />
                 <div className="flex flex-col">
                     <label className="text-sm font-medium text-gray-700 mb-1">Upload Supporting Documents</label>
                     <input
@@ -215,36 +159,19 @@ const UserAccountForm = () => {
                 </div>
             </div>
 
-            {/* Footer / Metadata */}
+            {/* Metadata */}
             <SectionTitle>Form Metadata</SectionTitle>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <Input
-                    label="Requested By"
-                    name="requestedBy"
-                    value={formData.requestedBy}
-                    onChange={handleChange}
-                />
-                <Input
-                    label="Request Date"
-                    name="requestDate"
-                    type="date"
-                    value={formData.requestDate}
-                    onChange={handleChange}
-                />
-                <Input
-                    label="Approval Status"
-                    name="approvalStatus"
-                    value={formData.approvalStatus}
-                    onChange={handleChange}
-                    disabled
-                />
+                <FloatingInput label="Requested By" name="requestedBy" value={formData.requestedBy} onChange={handleChange} />
+                <FloatingInput label="Request Date" name="requestDate" type="date" value={formData.requestDate} onChange={handleChange} />
+                <FloatingInput label="Approval Status" name="approvalStatus" value={formData.approvalStatus} onChange={handleChange} disabled />
             </div>
 
-            {/* Submit Button */}
+            {/* Submit */}
             <div className="mt-10 text-center">
                 <button
                     type="submit"
-                    className="bg-purple-600 text-white px-8 py-3 rounded-lg text-lg shadow hover:bg-purple-700 transition-all"
+                    className="bg-blue-600 text-white px-8 py-3 rounded-lg text-lg shadow hover:bg-blue-700 transition-all"
                 >
                     Submit Request
                 </button>

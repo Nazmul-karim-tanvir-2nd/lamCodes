@@ -4,6 +4,7 @@ import { useEffect } from 'react';
 import dummyUsers from '../../data/dummyUser';
 import FloatingInput from '../../components/FloatingInput';
 import { SectionTitle } from '../../components/SectionTitle';
+import { Search } from 'lucide-react';
 
 const UserAccountForm = () => {
     const { formData, updateField } = useUserFormStore();
@@ -50,7 +51,7 @@ const UserAccountForm = () => {
 
             {/* Employee Information */}
             <SectionTitle>Employee Information</SectionTitle>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-24">
                 <div className="md:col-span-2 flex flex-col sm:flex-row items-stretch gap-3">
                     <div className="flex-1">
                         <FloatingInput
@@ -63,12 +64,10 @@ const UserAccountForm = () => {
                     <button
                         type="button"
                         onClick={handleCIFSearch}
-                        className="mt-2 sm:mt-6 inline-flex justify-center items-center px-4 py-2 bg-purple-600 text-white rounded-lg shadow hover:bg-purple-700 transition-all"
+                        className="mt-2 sm:mt-6 inline-flex justify-center items-center px-4 py-2 bg-blue-600 text-white rounded-lg shadow hover:bg-blue-700 transition-all"
                         aria-label="Search CIF"
                     >
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-4.35-4.35m0 0A7.5 7.5 0 1116.65 16.65z" />
-                        </svg>
+                        <Search />
                     </button>
                 </div>
 
@@ -89,7 +88,7 @@ const UserAccountForm = () => {
 
             {/* Department & Role Details */}
             <SectionTitle>Department & Role Details</SectionTitle>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-24">
                 <FloatingInput label="Department" name="department" value={formData.department} onChange={handleChange} />
                 <FloatingInput label="Division" name="division" value={formData.division} onChange={handleChange} />
                 <FloatingInput label="Branch" name="branch" value={formData.branch} onChange={handleChange} />
@@ -132,7 +131,7 @@ const UserAccountForm = () => {
 
             {/* Access Requirements */}
             <SectionTitle>Access Requirements</SectionTitle>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-24">
                 <FloatingInput label="Requested Systems / Software" name="requestedSystems" value={formData.requestedSystems} onChange={handleChange} />
                 <FloatingInput label="Role-Based Access Type" name="accessType" value={formData.accessType} onChange={handleChange} />
                 <FloatingInput label="Justification / Purpose" name="justification" value={formData.justification} onChange={handleChange} />
@@ -141,7 +140,7 @@ const UserAccountForm = () => {
 
             {/* Additional Notes */}
             <SectionTitle>Additional Notes / Attachments</SectionTitle>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-24">
                 <FloatingInput label="Remarks / Special Instructions" name="remarks" value={formData.remarks} onChange={handleChange} />
                 <div className="flex flex-col">
                     <label className="text-sm font-medium text-gray-700 mb-1">Upload Supporting Documents</label>
@@ -156,7 +155,7 @@ const UserAccountForm = () => {
 
             {/* Metadata */}
             <SectionTitle>Form Metadata</SectionTitle>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-24">
                 <FloatingInput label="Requested By" name="requestedBy" value={formData.requestedBy} onChange={handleChange} />
                 <FloatingInput label="Request Date" name="requestDate" type="date" value={formData.requestDate} onChange={handleChange} />
                 <FloatingInput label="Approval Status" name="approvalStatus" value={formData.approvalStatus} onChange={handleChange} disabled />

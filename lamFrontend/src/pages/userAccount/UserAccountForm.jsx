@@ -2,9 +2,8 @@
 import useUserFormStore from '../../store/useUserFormStore';
 import { useEffect } from 'react';
 import dummyUsers from '../../data/dummyUser';
-import FloatingInput from '../../components/FloatingInput'; // ✅ use this
+import FloatingInput from '../../components/FloatingInput';
 import { SectionTitle } from '../../components/SectionTitle';
-
 
 const UserAccountForm = () => {
     const { formData, updateField } = useUserFormStore();
@@ -44,15 +43,15 @@ const UserAccountForm = () => {
     };
 
     return (
-        <form onSubmit={handleSubmit} className="w-full p-10">
-            <h1 className="text-2xl font-bold text-center text-blue-800 mb-10">
+        <form onSubmit={handleSubmit} className="w-full p-4 sm:p-10">
+            <h1 className="text-lg sm:text-2xl font-bold text-center text-blue-800 mb-6 sm:mb-10 border-b-2 border-blue-200 pb-2">
                 New User Account Opening Request
             </h1>
 
             {/* Employee Information */}
             <SectionTitle>Employee Information</SectionTitle>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="md:col-span-2 flex gap-4">
+                <div className="md:col-span-2 flex flex-col sm:flex-row items-stretch gap-3">
                     <div className="flex-1">
                         <FloatingInput
                             label="CIF/NID"
@@ -64,9 +63,12 @@ const UserAccountForm = () => {
                     <button
                         type="button"
                         onClick={handleCIFSearch}
-                        className="mt-6 px-4 py-2 bg-purple-600 text-white rounded-lg shadow hover:bg-purple-700"
+                        className="mt-2 sm:mt-6 inline-flex justify-center items-center px-4 py-2 bg-purple-600 text-white rounded-lg shadow hover:bg-purple-700 transition-all"
+                        aria-label="Search CIF"
                     >
-                        Search
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-4.35-4.35m0 0A7.5 7.5 0 1116.65 16.65z" />
+                        </svg>
                     </button>
                 </div>
 
@@ -95,7 +97,7 @@ const UserAccountForm = () => {
 
                 <div className="flex flex-col md:col-span-2">
                     <label className="text-sm font-medium text-gray-700 mb-2">Employment Status</label>
-                    <div className="flex gap-6">
+                    <div className="flex flex-col sm:flex-row gap-4">
                         <label className="flex items-center">
                             <input
                                 type="radio"

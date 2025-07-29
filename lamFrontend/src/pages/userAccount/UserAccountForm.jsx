@@ -3,15 +3,8 @@ import useUserFormStore from '../../store/useUserFormStore';
 import { useEffect } from 'react';
 import dummyUsers from '../../data/dummyUser';
 import FloatingInput from '../../components/FloatingInput'; // ✅ use this
+import { SectionTitle } from '../../components/SectionTitle';
 
-const SectionTitle = ({ children }) => (
-    <div className="mb-7 flex items-center gap-3">
-        <div className="bg-blue-600 w-[20px] h-[40px] rounded"></div>
-        <h2 className="text-xl font-semibold text-gray-700 my-6 font-sans">
-            {children}
-        </h2>
-    </div>
-);
 
 const UserAccountForm = () => {
     const { formData, updateField } = useUserFormStore();

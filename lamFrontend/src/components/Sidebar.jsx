@@ -32,14 +32,14 @@ const Sidebar = () => {
 
             {/* Sidebar */}
             <aside
-                className={`fixed z-50 md:static top-0 left-0 h-full w-72 bg-white border-r border-gray-200 transform transition-transform duration-200 ease-in-out ${isOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"
+                className={`fixed z-50 md:static top-0 left-0 h-full w-80 bg-white border-r border-gray-200 transform transition-transform duration-200 ease-in-out ${isOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"
                     }`}
             >
                 {/* Logo & Close Button */}
                 <div className="flex items-center justify-between p-4 border-b border-gray-200">
                     <div className="flex items-center gap-3">
                         <img src={idlclogo} alt="IDLC Logo" className="w-9 h-9 object-contain" />
-                        <h1 className="text-lg font-semibold text-blue-700 tracking-wide">
+                        <h1 className="text-xl font-semibold text-blue-700 tracking-wide">
                             Logical Access
                         </h1>
                     </div>
@@ -60,7 +60,7 @@ const Sidebar = () => {
                             end
                             onClick={closeSidebar}
                             className={({ isActive }) =>
-                                `group flex items-center gap-3 px-4 py-2 rounded-lg text-sm font-medium transition-colors ${isActive
+                                `group flex items-center gap-3 px-4 py-2 rounded-lg text-sm sm:text-base font-medium transition-colors ${isActive
                                     ? "bg-blue-100 text-blue-800 font-semibold shadow-sm"
                                     : "text-gray-600 hover:bg-blue-50 hover:text-blue-700"
                                 }`

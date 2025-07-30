@@ -4,14 +4,21 @@ import { useEffect } from 'react';
 import dummyUsers from '../../data/dummyUser';
 import FloatingInput from '../../components/FloatingInput';
 import { SectionTitle } from '../../components/SectionTitle';
-import { Search } from 'lucide-react';
+import {
+    User,
+    Building2,
+    KeyRound,
+    FileText,
+    Info,
+    Search
+} from 'lucide-react';
 
 const UserAccountForm = () => {
     const { formData, updateField } = useUserFormStore();
 
     const handleChange = (e) => {
-        const { name, value, files } = e.target;
-        if (e.target.type === 'file') {
+        const { name, value, files, type } = e.target;
+        if (type === 'file') {
             updateField(name, files[0]);
         } else {
             updateField(name, value);
@@ -21,6 +28,7 @@ const UserAccountForm = () => {
     useEffect(() => {
         const today = new Date().toISOString().split("T")[0];
         updateField("requestDate", today);
+        updateField("approvalStatus", "Pending");
     }, [updateField]);
 
     const handleCIFSearch = () => {
@@ -50,7 +58,7 @@ const UserAccountForm = () => {
             </h1>
 
             {/* Employee Information */}
-            <SectionTitle>Employee Information</SectionTitle>
+            <SectionTitle><User className="w-5 h-5 text-blue-600 mr-2" />Employee Information</SectionTitle>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-24">
                 <div className="md:col-span-2 flex flex-col sm:flex-row items-stretch gap-3">
                     <div className="flex-1">
@@ -67,7 +75,7 @@ const UserAccountForm = () => {
                         className="mt-2 sm:mt-6 inline-flex justify-center items-center px-4 py-2 bg-blue-600 text-white rounded-lg shadow hover:bg-blue-700 transition-all"
                         aria-label="Search CIF"
                     >
-                        <Search />
+                        <Search className="mr-1" /> Search
                     </button>
                 </div>
 
@@ -79,7 +87,7 @@ const UserAccountForm = () => {
                 <FloatingInput label="Biometric Status (Pending / Verified)" name="biometricStatus" value={formData.biometricStatus} onChange={handleChange} />
                 <FloatingInput label="Joining Date" name="joiningDate" type="date" value={formData.joiningDate} onChange={handleChange} />
 
-                {formData.biometricStatus === 'Pending' && (
+                {formData.biometricStatus?.toLowerCase() === 'pending' && (
                     <div className="md:col-span-2 bg-red-100 text-red-700 p-4 rounded border border-red-300">
                         ⚠️ Biometric verification is pending. Access will be restricted until verification is complete.
                     </div>
@@ -87,7 +95,7 @@ const UserAccountForm = () => {
             </div>
 
             {/* Department & Role Details */}
-            <SectionTitle>Department & Role Details</SectionTitle>
+            <SectionTitle><Building2 className="w-5 h-5 text-blue-600 mr-2" />Department & Role Details</SectionTitle>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-24">
                 <FloatingInput label="Department" name="department" value={formData.department} onChange={handleChange} />
                 <FloatingInput label="Division" name="division" value={formData.division} onChange={handleChange} />
@@ -130,7 +138,7 @@ const UserAccountForm = () => {
             </div>
 
             {/* Access Requirements */}
-            <SectionTitle>Access Requirements</SectionTitle>
+            <SectionTitle><KeyRound className="w-5 h-5 text-blue-600 mr-2" />Access Requirements</SectionTitle>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-24">
                 <FloatingInput label="Requested Systems / Software" name="requestedSystems" value={formData.requestedSystems} onChange={handleChange} />
                 <FloatingInput label="Role-Based Access Type" name="accessType" value={formData.accessType} onChange={handleChange} />
@@ -139,7 +147,7 @@ const UserAccountForm = () => {
             </div>
 
             {/* Additional Notes */}
-            <SectionTitle>Additional Notes / Attachments</SectionTitle>
+            <SectionTitle><FileText className="w-5 h-5 text-blue-600 mr-2" />Additional Notes / Attachments</SectionTitle>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-24">
                 <FloatingInput label="Remarks / Special Instructions" name="remarks" value={formData.remarks} onChange={handleChange} />
                 <div className="flex flex-col">
@@ -153,8 +161,8 @@ const UserAccountForm = () => {
                 </div>
             </div>
 
-            {/* Metadata */}
-            <SectionTitle>Form Metadata</SectionTitle>
+            {/* Form Metadata */}
+            <SectionTitle><Info className="w-5 h-5 text-blue-600 mr-2" />Form Metadata</SectionTitle>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-24">
                 <FloatingInput label="Requested By" name="requestedBy" value={formData.requestedBy} onChange={handleChange} />
                 <FloatingInput label="Request Date" name="requestDate" type="date" value={formData.requestDate} onChange={handleChange} />

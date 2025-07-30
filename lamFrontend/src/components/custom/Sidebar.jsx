@@ -10,7 +10,6 @@ import {
 import idlclogo from "../../assets/idlclogo.jpg";
 import useSidebarStore from "../../store/useSidebarStore";
 
-// Navigation items declared outside the component
 const navItems = [
     { to: "/", label: "Account Creation", icon: <User size={22} aria-hidden="true" /> },
     { to: "/access-request", label: "Access Request", icon: <Key size={22} aria-hidden="true" /> },
@@ -45,32 +44,35 @@ const Sidebar = () => {
                     w-80
                 `}
             >
-                {/* Header: logo + close button */}
-                <div className="flex items-center justify-between p-5 border-b border-gray-200">
-                    <div className="flex items-center gap-4">
+                {/* Header */}
+                <div className={`
+                    flex items-center p-5 border-b border-gray-200
+                    ${isOpen ? "justify-between md:justify-center" : "justify-center"}
+                `}>
+                    <div className="flex items-center gap-3">
                         <img
                             src={idlclogo}
                             alt="IDLC Logo"
                             className="w-10 h-10 object-contain"
                         />
                         {isOpen && (
-                            <h1 className="text-2xl font-bold text-blue-700 tracking-wide">
+                            <h1 className="text-xl font-bold text-blue-700 tracking-wide">
                                 IDLC
                             </h1>
                         )}
                     </div>
 
-                    {/* Mobile close button */}
+                    {/* Close button only visible on mobile */}
                     <button
                         onClick={closeSidebar}
-                        className="md:hidden text-gray-500 hover:text-red-500"
+                        className="md:hidden text-gray-500 hover:text-red-500 ml-auto"
                         aria-label="Close sidebar"
                     >
                         <X size={24} />
                     </button>
                 </div>
 
-                {/* Navigation Links */}
+                {/* Navigation */}
                 <nav className="flex-1 p-5 space-y-3">
                     {navItems.map(({ to, label, icon }) => (
                         <NavLink
@@ -80,7 +82,7 @@ const Sidebar = () => {
                             onClick={closeSidebar}
                             className={({ isActive }) =>
                                 `group flex items-center px-4 py-3 rounded-lg text-base font-medium transition-colors
-                                 ${isActive
+                                ${isActive
                                     ? "bg-blue-100 text-blue-800 font-semibold"
                                     : "text-gray-700 hover:bg-blue-50 hover:text-blue-700"}`
                             }

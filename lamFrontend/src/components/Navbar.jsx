@@ -8,7 +8,7 @@ const Navbar = () => {
     return (
         <header className="sticky top-0 z-30 bg-blue-600/80 border-b border-gray-100 shadow">
 
-            <div className="flex items-center justify-between h-16 px-4 sm:px-6 lg:px-8">
+            <div className="flex items-center justify-between h-20 px-4 sm:px-6 lg:px-8">
                 {/* Left: Menu button (mobile only) + title */}
                 <div className="flex items-center gap-4">
                     {/* Mobile Menu Button */}

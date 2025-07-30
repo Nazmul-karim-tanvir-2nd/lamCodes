@@ -10,12 +10,12 @@ import {
 import idlclogo from "../../assets/idlclogo.jpg";
 import useSidebarStore from "../../store/useSidebarStore";
 
-// Navigation items declared outside the component for performance
+// Navigation items declared outside the component
 const navItems = [
-    { to: "/", label: "Account Creation", icon: <User size={18} aria-hidden="true" /> },
-    { to: "/access-request", label: "Access Request", icon: <Key size={18} aria-hidden="true" /> },
-    { to: "/employee-transfer", label: "Employee Transfer", icon: <RefreshCcw size={18} aria-hidden="true" /> },
-    { to: "/employee-clearance", label: "Employee Clearance", icon: <CheckCircle size={18} aria-hidden="true" /> },
+    { to: "/", label: "Account Creation", icon: <User size={22} aria-hidden="true" /> },
+    { to: "/access-request", label: "Access Request", icon: <Key size={22} aria-hidden="true" /> },
+    { to: "/employee-transfer", label: "Employee Transfer", icon: <RefreshCcw size={22} aria-hidden="true" /> },
+    { to: "/employee-clearance", label: "Employee Clearance", icon: <CheckCircle size={22} aria-hidden="true" /> },
 ];
 
 const Sidebar = () => {
@@ -23,7 +23,7 @@ const Sidebar = () => {
 
     return (
         <>
-            {/* Mobile Overlay */}
+            {/* Mobile overlay */}
             {isOpen && (
                 <div
                     className="fixed inset-0 bg-black/30 z-40 md:hidden"
@@ -36,33 +36,42 @@ const Sidebar = () => {
 
             {/* Sidebar */}
             <aside
-  className={`fixed z-50 top-0 left-0 h-full w-80 bg-white border-r border-gray-200 transform transition-transform duration-200 ease-in-out ${
-    isOpen ? "translate-x-0" : "-translate-x-full"
-  }`}
->
-                {/* Logo + Close Button */}
-                <div className="flex items-center justify-between p-4 border-b border-gray-200">
-                    <div className="flex items-center gap-3">
+                className={`
+                    fixed z-50 top-0 left-0 h-full bg-white border-r border-gray-200
+                    transform transition-transform duration-200 ease-in-out
+                    ${isOpen ? "translate-x-0" : "-translate-x-full"}
+                    md:translate-x-0
+                    ${isOpen ? "md:w-80" : "md:w-24"}
+                    w-80
+                `}
+            >
+                {/* Header: logo + close button */}
+                <div className="flex items-center justify-between p-5 border-b border-gray-200">
+                    <div className="flex items-center gap-4">
                         <img
                             src={idlclogo}
                             alt="IDLC Logo"
-                            className="w-8 h-8 object-contain"
+                            className="w-10 h-10 object-contain"
                         />
-                        <h1 className="text-xl font-semibold text-blue-700 tracking-wide">
-                            IDLC
-                        </h1>
+                        {isOpen && (
+                            <h1 className="text-2xl font-bold text-blue-700 tracking-wide">
+                                IDLC
+                            </h1>
+                        )}
                     </div>
+
+                    {/* Mobile close button */}
                     <button
                         onClick={closeSidebar}
                         className="md:hidden text-gray-500 hover:text-red-500"
                         aria-label="Close sidebar"
                     >
-                        <X size={20} />
+                        <X size={24} />
                     </button>
                 </div>
 
-                {/* Navigation */}
-                <nav className="flex-1 p-4 space-y-2">
+                {/* Navigation Links */}
+                <nav className="flex-1 p-5 space-y-3">
                     {navItems.map(({ to, label, icon }) => (
                         <NavLink
                             key={to}
@@ -70,14 +79,15 @@ const Sidebar = () => {
                             end
                             onClick={closeSidebar}
                             className={({ isActive }) =>
-                                `group flex items-center gap-3 px-4 py-2 rounded-lg text-sm sm:text-base font-medium transition-colors ${isActive
-                                    ? "bg-blue-100 text-blue-800 font-semibold shadow-sm"
-                                    : "text-gray-600 hover:bg-blue-50 hover:text-blue-700"
-                                }`
+                                `group flex items-center px-4 py-3 rounded-lg text-base font-medium transition-colors
+                                 ${isActive
+                                    ? "bg-blue-100 text-blue-800 font-semibold"
+                                    : "text-gray-700 hover:bg-blue-50 hover:text-blue-700"}`
                             }
                         >
                             <span className="text-blue-700">{icon}</span>
-                            {label}
+                            {isOpen && <span className="ml-4">{label}</span>}
+                            {!isOpen && <span className="sr-only">{label}</span>}
                         </NavLink>
                     ))}
                 </nav>

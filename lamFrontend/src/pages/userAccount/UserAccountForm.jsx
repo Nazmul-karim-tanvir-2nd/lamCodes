@@ -23,6 +23,7 @@ const UserAccountForm = () => {
         if (type === 'file') {
             updateField(name, files[0]);
         } else if (type === 'checkbox') {
+            // This will rarely be called because we handle checkboxes differently (onCheckedChange)
             updateField(name, checked);
         } else {
             updateField(name, value);
@@ -108,7 +109,7 @@ const UserAccountForm = () => {
                 <div className="flex flex-col md:col-span-2">
                     <label className="text-sm font-medium text-gray-700 mb-2">Employment Status</label>
                     <div className="flex flex-col sm:flex-row gap-4">
-                        <label className="flex items-center gap-2">
+                        <label className="flex items-center gap-2 cursor-pointer select-none">
                             <Checkbox
                                 checked={formData.employmentStatus === "Permanent"}
                                 onCheckedChange={(checked) =>
@@ -117,7 +118,7 @@ const UserAccountForm = () => {
                             />
                             Permanent
                         </label>
-                        <label className="flex items-center gap-2">
+                        <label className="flex items-center gap-2 cursor-pointer select-none">
                             <Checkbox
                                 checked={formData.employmentStatus === "Contractual"}
                                 onCheckedChange={(checked) =>

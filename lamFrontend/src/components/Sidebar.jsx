@@ -1,39 +1,78 @@
-import { NavLink } from 'react-router-dom';
-import { User, Key, RefreshCcw, CheckCircle } from 'lucide-react';
-import idlclogo from '../assets/idlclogo.jpg'
+// src/components/Sidebar.jsx
+import { NavLink } from "react-router-dom";
+import {
+    User,
+    Key,
+    RefreshCcw,
+    CheckCircle,
+    X,
+} from "lucide-react";
+import idlclogo from "../assets/idlclogo.jpg";
+import useSidebarStore from "../store/useSidebarStore";
+
+const navItems = [
+    { to: "/", label: "Account Creation", icon: <User size={18} /> },
+    { to: "/access-request", label: "Access Request", icon: <Key size={18} /> },
+    { to: "/employee-transfer", label: "Employee Transfer", icon: <RefreshCcw size={18} /> },
+    { to: "/employee-clearance", label: "Employee Clearance", icon: <CheckCircle size={18} /> },
+];
 
 const Sidebar = () => {
-    const linkClass =
-        'flex items-center gap-3 px-4 py-2 rounded text-gray-700 hover:bg-blue-100 hover:text-black transition-all border border-gray-100';
-
-    const activeClass =
-        'bg-blue-100 text-black shadow-sm font-bold border-0';
-
+    const { isOpen, closeSidebar } = useSidebarStore();
 
     return (
-        <aside className="bg-white text-black w-96 hidden md:block shadow-lg px-2">
-            <div className="flex items-center justify-center gap-2 text-center py-4 border-b border-gray-400">
-                <img src={idlclogo} alt="IDLC Logo" className="w-8 h-auto" />
-                <h2 className="text-xl font-semibold text-blue-800 font-sans">
-                    Logical Access Management
-                </h2>
-            </div>
+        <>
+            {/* Mobile Sidebar Overlay */}
+            {isOpen && (
+                <div
+                    className="fixed inset-0 bg-black/30 z-40 md:hidden"
+                    onClick={closeSidebar}
+                />
+            )}
 
-            <nav className="space-y-3 py-5">
-                <NavLink to="/" end className={({ isActive }) => `${linkClass} ${isActive ? activeClass : ''}`}>
-                    <User size={20} /> Account Creation
-                </NavLink>
-                <NavLink to="/access-request" className={({ isActive }) => `${linkClass} ${isActive ? activeClass : ''}`}>
-                    <Key size={20} /> Access Request
-                </NavLink>
-                <NavLink to="/employee-transfer" className={({ isActive }) => `${linkClass} ${isActive ? activeClass : ''}`}>
-                    <RefreshCcw size={20} /> Employee Transfer
-                </NavLink>
-                <NavLink to="/employee-clearance" className={({ isActive }) => `${linkClass} ${isActive ? activeClass : ''}`}>
-                    <CheckCircle size={20} /> Employee Clearance
-                </NavLink>
-            </nav>
-        </aside>
+            {/* Sidebar */}
+            <aside
+                className={`fixed z-50 md:static top-0 left-0 h-full w-72 bg-white border-r border-gray-200 transform transition-transform duration-200 ease-in-out ${isOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"
+                    }`}
+            >
+                {/* Logo & Close Button */}
+                <div className="flex items-center justify-between p-4 border-b border-gray-200">
+                    <div className="flex items-center gap-3">
+                        <img src={idlclogo} alt="IDLC Logo" className="w-9 h-9 object-contain" />
+                        <h1 className="text-lg font-semibold text-blue-700 tracking-wide">
+                            Logical Access
+                        </h1>
+                    </div>
+                    <button
+                        onClick={closeSidebar}
+                        className="md:hidden text-gray-500 hover:text-red-500"
+                    >
+                        <X size={20} />
+                    </button>
+                </div>
+
+                {/* Navigation */}
+                <nav className="flex-1 p-4 space-y-2">
+                    {navItems.map((item) => (
+                        <NavLink
+                            key={item.to}
+                            to={item.to}
+                            end
+                            onClick={closeSidebar}
+                            className={({ isActive }) =>
+                                `group flex items-center gap-3 px-4 py-2 rounded-lg text-sm font-medium transition-colors ${isActive
+                                    ? "bg-blue-100 text-blue-800 font-semibold shadow-sm"
+                                    : "text-gray-600 hover:bg-blue-50 hover:text-blue-700"
+                                }`
+                            }
+                        >
+                            <span className="text-blue-700">{item.icon}</span>
+                            {item.label}
+                        </NavLink>
+                    ))}
+                </nav>
+            </aside>
+        </>
     );
 };
 

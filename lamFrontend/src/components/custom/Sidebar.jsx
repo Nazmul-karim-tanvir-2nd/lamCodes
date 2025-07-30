@@ -7,8 +7,8 @@ import {
     CheckCircle,
     X,
 } from "lucide-react";
-import idlclogo from "../assets/idlclogo.jpg";
-import useSidebarStore from "../store/useSidebarStore";
+import idlclogo from "../../assets/idlclogo.jpg";
+import useSidebarStore from "../../store/useSidebarStore";
 
 const navItems = [
     { to: "/", label: "Account Creation", icon: <User size={18} /> },

@@ -4,6 +4,8 @@ import { useEffect } from 'react';
 import dummyUsers from '../../data/dummyUser';
 import FloatingInput from '../../components/FloatingInput';
 import { SectionTitle } from '../../components/SectionTitle';
+import { Checkbox } from '../../components/ui/Checkbox';
+import { Button } from '../../components/ui/Button';
 import {
     User,
     Building2,
@@ -17,9 +19,11 @@ const UserAccountForm = () => {
     const { formData, updateField } = useUserFormStore();
 
     const handleChange = (e) => {
-        const { name, value, files, type } = e.target;
+        const { name, value, files, type, checked } = e.target;
         if (type === 'file') {
             updateField(name, files[0]);
+        } else if (type === 'checkbox') {
+            updateField(name, checked);
         } else {
             updateField(name, value);
         }
@@ -52,7 +56,7 @@ const UserAccountForm = () => {
     };
 
     return (
-        <form onSubmit={handleSubmit} className="w-full p-4 sm:p-10">
+        <form onSubmit={handleSubmit} className="w-full p-8 sm:p-10">
             <h1 className="text-lg sm:text-2xl font-bold text-center text-blue-800 mb-6 sm:mb-10 border-b-2 border-blue-200 pb-2">
                 New User Account Opening Request
             </h1>
@@ -69,14 +73,13 @@ const UserAccountForm = () => {
                             onChange={handleChange}
                         />
                     </div>
-                    <button
+                    <Button
                         type="button"
                         onClick={handleCIFSearch}
-                        className="mt-2 sm:mt-6 inline-flex justify-center items-center px-4 py-2 bg-blue-600 text-white rounded-lg shadow hover:bg-blue-700 transition-all"
-                        aria-label="Search CIF"
+                        className="mt-2 sm:mt-6"
                     >
                         <Search className="mr-1" /> Search
-                    </button>
+                    </Button>
                 </div>
 
                 <FloatingInput label="Name" name="name" value={formData.name} onChange={handleChange} disabled />
@@ -84,7 +87,7 @@ const UserAccountForm = () => {
                 <FloatingInput label="Gender" name="gender" value={formData.gender} onChange={handleChange} />
                 <FloatingInput label="Blood Group" name="bloodGroup" value={formData.bloodGroup} onChange={handleChange} />
                 <FloatingInput label="Emergency Contact" name="emergencyContact" value={formData.emergencyContact} onChange={handleChange} />
-                <FloatingInput label="Biometric Status (Pending / Verified)" name="biometricStatus" value={formData.biometricStatus} onChange={handleChange} />
+                <FloatingInput label="Biometric Status (Pending / Verified)" name="biometricStatus" value={formData.biometricStatus} onChange={handleChange} disabled />
                 <FloatingInput label="Joining Date" name="joiningDate" type="date" value={formData.joiningDate} onChange={handleChange} />
 
                 {formData.biometricStatus?.toLowerCase() === 'pending' && (
@@ -105,25 +108,21 @@ const UserAccountForm = () => {
                 <div className="flex flex-col md:col-span-2">
                     <label className="text-sm font-medium text-gray-700 mb-2">Employment Status</label>
                     <div className="flex flex-col sm:flex-row gap-4">
-                        <label className="flex items-center">
-                            <input
-                                type="radio"
-                                name="employmentStatus"
-                                value="Permanent"
-                                checked={formData.employmentStatus === 'Permanent'}
-                                onChange={handleChange}
-                                className="mr-2"
+                        <label className="flex items-center gap-2">
+                            <Checkbox
+                                checked={formData.employmentStatus === "Permanent"}
+                                onCheckedChange={(checked) =>
+                                    updateField("employmentStatus", checked ? "Permanent" : "")
+                                }
                             />
                             Permanent
                         </label>
-                        <label className="flex items-center">
-                            <input
-                                type="radio"
-                                name="employmentStatus"
-                                value="Contractual"
-                                checked={formData.employmentStatus === 'Contractual'}
-                                onChange={handleChange}
-                                className="mr-2"
+                        <label className="flex items-center gap-2">
+                            <Checkbox
+                                checked={formData.employmentStatus === "Contractual"}
+                                onCheckedChange={(checked) =>
+                                    updateField("employmentStatus", checked ? "Contractual" : "")
+                                }
                             />
                             Contractual
                         </label>
@@ -171,12 +170,9 @@ const UserAccountForm = () => {
 
             {/* Submit */}
             <div className="mt-10 text-center">
-                <button
-                    type="submit"
-                    className="bg-blue-600 text-white px-8 py-3 rounded-lg text-lg shadow hover:bg-blue-700 transition-all"
-                >
+                <Button type="submit" size="lg">
                     Submit Request
-                </button>
+                </Button>
             </div>
         </form>
     );

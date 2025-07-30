@@ -1,3 +1,4 @@
+// src\components\FloatingInput.jsx
 import { useState } from "react";
 import classNames from "classnames";
 

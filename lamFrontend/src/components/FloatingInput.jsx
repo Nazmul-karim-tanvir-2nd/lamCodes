@@ -1,4 +1,4 @@
-// src\components\FloatingInput.jsx
+// src/components/FloatingInput.jsx
 import { useState } from "react";
 import classNames from "classnames";
 
@@ -14,15 +14,14 @@ const FloatingInput = ({
     const [isFocused, setIsFocused] = useState(false);
     const shouldFloat = isFocused || (value && value.length > 0);
 
-    // Adjust label top position specifically for date inputs to avoid overlap
     const labelTop = shouldFloat
-        ? "0.25rem"   // roughly 4px when floating
+        ? "0.25rem"
         : type === "date"
-            ? "1.50rem"   // move label a bit lower for date inputs when not floated
-            : "1.25rem";  // keep same for other types when not floated
+            ? "1.6rem"
+            : "1.4rem";
 
     return (
-        <div className="relative w-full min-h-[56px]">
+        <div className="relative w-full min-h-[60px]">
             <input
                 id={name}
                 name={name}
@@ -35,13 +34,13 @@ const FloatingInput = ({
                 onBlur={() => setIsFocused(false)}
                 autoComplete="off"
                 className={classNames(
-                    "w-full bg-transparent text-gray-800 outline-none pt-6 pb-1 px-2 text-base sm:text-lg",
-                    "placeholder-transparent transition-all duration-300 ease-in-out border-b",
+                    "w-full bg-transparent text-gray-800 dark:text-white outline-none pt-6 pb-1 px-2",
+                    "text-sm sm:text-base border-b transition-all duration-300 ease-in-out",
                     {
-                        "border-dashed border-gray-300": !isFocused && !disabled,
-                        "hover:border-gray-400 hover:border-b hover:border-solid": !isFocused && !disabled,
-                        "border-b-2 border-solid border-teal-500": isFocused && !disabled,
-                        "bg-gray-50 text-gray-400 cursor-not-allowed border-gray-200 border-solid": disabled,
+                        "border-dashed border-gray-400": !isFocused && !disabled,
+                        "hover:border-gray-600 hover:border-b": !isFocused && !disabled,
+                        "border-b-2 border-red-500": isFocused && !disabled,
+                        "bg-gray-100 text-gray-500 cursor-not-allowed border-gray-300": disabled,
                     }
                 )}
                 style={{
@@ -51,11 +50,11 @@ const FloatingInput = ({
             <label
                 htmlFor={name}
                 className={classNames(
-                    "absolute left-2 bg-white px-1 select-none transition-all duration-300 ease-in-out",
+                    "absolute left-2 px-1 bg-white dark:bg-gray-900 select-none transition-all duration-300",
                     {
-                        "text-teal-500 text-xs sm:text-sm": shouldFloat,
-                        "text-gray-400 text-base sm:text-lg": !shouldFloat,
-                        "cursor-not-allowed": disabled,
+                        "text-blue-600 font-medium text-xs sm:text-sm": shouldFloat,
+                        "text-gray-700 text-base sm:text-lg": !shouldFloat,
+                        "cursor-not-allowed text-gray-400": disabled,
                     }
                 )}
                 style={{ top: labelTop }}

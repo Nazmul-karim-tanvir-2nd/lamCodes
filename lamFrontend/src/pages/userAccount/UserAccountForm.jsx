@@ -67,7 +67,7 @@ const UserAccountForm = () => {
             className="w-full p-2 sm:p-2 space-y-2"
         >
 
-            <h1 className="text-2xl font-semibold text-center text-blue-800 mb-4 border-b border-red-200 pb-4">
+            <h1 className="text-base sm:text-2xl font-bold sm:font-semibold text-center text-blue-800 mb-4 sm:mb-4 underline underline-offset-8 decoration-red-500/80">
                 New User Account Opening Request
             </h1>
 

@@ -1,11 +1,11 @@
 import useUserFormStore from '../../store/useUserFormStore';
 import { useEffect } from 'react';
-import dummyUsers from '../../data/dummyUser';
-import FloatingInput from '../../components/FloatingInput';
-import FloatingCheckbox from '../../components/custom/FloatingCheckbox';
-import FloatingSelect from '../../components/custom/FloatingSelect';
-import { SectionTitle } from '../../components/SectionTitle';
-import { Button } from '../../components/ui/Button';
+import dummyUsers from '../../data/dummyUser.js';
+import FloatingInput from '../../components/custom/FloatingInput.jsx';
+import FloatingCheckbox from '../../components/custom/FloatingCheckbox.jsx';
+import FloatingSelect from '../../components/custom/FloatingSelect.jsx';
+import { SectionTitle } from '../../components/SectionTitle.jsx';
+import { Button } from '../../components/ui/Button.jsx';
 import {
     User,
     Building2,
@@ -67,7 +67,7 @@ const UserAccountForm = () => {
             className="w-full p-2 sm:p-2 space-y-2"
         >
 
-            <h1 className="text-2xl font-semibold text-center text-blue-800 mb-8 border-b border-red-200 pb-4">
+            <h1 className="text-2xl font-semibold text-center text-blue-800 mb-4 border-b border-red-200 pb-4">
                 New User Account Opening Request
             </h1>
 

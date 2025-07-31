@@ -1,7 +1,7 @@
 // src/pages/employeeTransfer/EmployeeTransfer.jsx
 import { useEffect } from 'react';
 import useUserFormStore from '../../store/useUserFormStore';
-import FloatingInput from '../../components/FloatingInput';
+import FloatingInput from '../../components/custom/FloatingInput';
 import { SectionTitle } from '../../components/SectionTitle';
 import { Search } from 'lucide-react';
 import dummyUsers from '../../data/dummyUser';

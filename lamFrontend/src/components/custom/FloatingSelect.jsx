@@ -29,7 +29,7 @@ const FloatingSelect = ({ label, name, value, onChange, options = [], disabled =
                     }
                 )}
             >
-                <option value="" disabled>Select {label}</option>
+                <option value="" disabled>{label}</option>
                 {options.map((opt) => (
                     <option key={opt.value} value={opt.value}>
                         {opt.label}

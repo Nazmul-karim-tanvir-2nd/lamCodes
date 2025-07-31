@@ -76,7 +76,7 @@ const UserAccountForm = () => {
                 <User className="w-5 h-5 text-red-600 mr-2" />
                 Basic Information
             </SectionTitle>
-            <div className="bg-white rounded-md border border-red-200 px-6 py-6 grid grid-cols-1 md:grid-cols-3 gap-y-4 md:gap-y-6 gap-x-4 md:gap-x-8 mb-14 shadow">
+            <div className="bg-white rounded-md border border-red-200 px-6 py-6 grid grid-cols-1 md:grid-cols-3 gap-y-2 md:gap-y-2 gap-x-4 md:gap-x-8 mb-14 shadow">
                 <div className="md:col-span-2 flex gap-4">
                     <FloatingInput
                         label={<RequiredLabel>CIF/NID</RequiredLabel>}
@@ -97,7 +97,7 @@ const UserAccountForm = () => {
                 <FloatingInput label={<RequiredLabel>Mobile</RequiredLabel>} name="mobile" value={formData.mobile} onChange={handleChange} disabled />
 
                 <FloatingSelect
-                    label={<RequiredLabel>Select Gender</RequiredLabel>}
+                    label={<RequiredLabel>Gender</RequiredLabel>}
                     name="gender"
                     value={formData.gender}
                     onChange={handleChange}
@@ -125,7 +125,7 @@ const UserAccountForm = () => {
                 <Building2 className="w-5 h-5 text-red-600 mr-2" />
                 Department & Role Details
             </SectionTitle>
-            <div className="bg-white rounded-md border border-red-200 px-6 py-6 grid grid-cols-1 md:grid-cols-3 gap-y-4 md:gap-y-6 gap-x-4 md:gap-x-8 mb-14 shadow">
+            <div className="bg-white rounded-md border border-red-200 px-6 py-6 grid grid-cols-1 md:grid-cols-3 gap-y-2 md:gap-y-2 gap-x-4 md:gap-x-8 mb-14 shadow">
                 <FloatingInput label={<RequiredLabel>Department</RequiredLabel>} name="department" value={formData.department} onChange={handleChange} />
                 <FloatingInput label={<RequiredLabel>Division</RequiredLabel>} name="division" value={formData.division} onChange={handleChange} />
                 <FloatingInput label={<RequiredLabel>Branch</RequiredLabel>} name="branch" value={formData.branch} onChange={handleChange} />
@@ -168,7 +168,7 @@ const UserAccountForm = () => {
                 <KeyRound className="w-5 h-5 text-red-600 mr-2" />
                 Access Requirements
             </SectionTitle>
-            <div className="bg-white rounded-md border border-red-200 px-6 py-6 grid grid-cols-1 md:grid-cols-3 gap-y-4 md:gap-y-6 gap-x-4 md:gap-x-8 mb-14 shadow">
+            <div className="bg-white rounded-md border border-red-200 px-6 py-6 grid grid-cols-1 md:grid-cols-3 gap-y-2 md:gap-y-2 gap-x-4 md:gap-x-8 mb-14 shadow">
                 <FloatingInput label={<RequiredLabel>Requested Systems / Software</RequiredLabel>} name="requestedSystems" value={formData.requestedSystems} onChange={handleChange} />
                 <FloatingInput label={<RequiredLabel>Role-Based Access Type</RequiredLabel>} name="accessType" value={formData.accessType} onChange={handleChange} />
                 <FloatingInput label={<RequiredLabel>Justification / Purpose</RequiredLabel>} name="justification" value={formData.justification} onChange={handleChange} />
@@ -200,7 +200,7 @@ const UserAccountForm = () => {
                 <Info className="w-5 h-5 text-red-600 mr-2" />
                 Submitted by
             </SectionTitle>
-            <div className="bg-white rounded-md border border-red-200 px-6 py-6 grid grid-cols-1 md:grid-cols-3 gap-y-4 md:gap-y-6 gap-x-4 md:gap-x-8 mb-14 shadow">
+            <div className="bg-white rounded-md border border-red-200 px-6 py-6 grid grid-cols-1 md:grid-cols-3 gap-y-2 md:gap-y-2 gap-x-4 md:gap-x-8 mb-14 shadow">
                 <FloatingInput label="Requested By" name="requestedBy" value={formData.requestedBy} onChange={handleChange} />
                 <FloatingInput label="Request Date" name="requestDate" type="date" value={formData.requestDate} onChange={handleChange} />
                 <FloatingInput label="Approval Status" name="approvalStatus" value={formData.approvalStatus} onChange={handleChange} disabled />

@@ -2,8 +2,9 @@ import useUserFormStore from '../../store/useUserFormStore';
 import { useEffect } from 'react';
 import dummyUsers from '../../data/dummyUser';
 import FloatingInput from '../../components/FloatingInput';
+import FloatingCheckbox from '../../components/custom/FloatingCheckbox';
+import FloatingSelect from '../../components/custom/FloatingSelect';
 import { SectionTitle } from '../../components/SectionTitle';
-import { Checkbox } from '../../components/ui/Checkbox';
 import { Button } from '../../components/ui/Button';
 import {
     User,
@@ -70,7 +71,7 @@ const UserAccountForm = () => {
                 New User Account Opening Request
             </h1>
 
-            {/* Employee Information */}
+            {/* Basic Information */}
             <SectionTitle>
                 <User className="w-5 h-5 text-red-600 mr-2" />
                 Basic Information
@@ -94,7 +95,19 @@ const UserAccountForm = () => {
 
                 <FloatingInput label={<RequiredLabel>Name</RequiredLabel>} name="name" value={formData.name} onChange={handleChange} disabled />
                 <FloatingInput label={<RequiredLabel>Mobile</RequiredLabel>} name="mobile" value={formData.mobile} onChange={handleChange} disabled />
-                <FloatingInput label={<RequiredLabel>Gender</RequiredLabel>} name="gender" value={formData.gender} onChange={handleChange} />
+
+                <FloatingSelect
+                    label={<RequiredLabel>Select Gender</RequiredLabel>}
+                    name="gender"
+                    value={formData.gender}
+                    onChange={handleChange}
+                    options={[
+                        { label: "Male", value: "Male" },
+                        { label: "Female", value: "Female" },
+                        { label: "Other", value: "Other" },
+                    ]}
+                />
+
                 <FloatingInput label="Blood Group" name="bloodGroup" value={formData.bloodGroup} onChange={handleChange} />
                 <FloatingInput label="Emergency Contact" name="emergencyContact" value={formData.emergencyContact} onChange={handleChange} />
                 <FloatingInput label="Biometric Status (Pending / Verified)" name="biometricStatus" value={formData.biometricStatus} onChange={handleChange} disabled />
@@ -118,28 +131,23 @@ const UserAccountForm = () => {
                 <FloatingInput label={<RequiredLabel>Branch</RequiredLabel>} name="branch" value={formData.branch} onChange={handleChange} />
                 <FloatingInput label={<RequiredLabel>Designation</RequiredLabel>} name="designation" value={formData.designation} onChange={handleChange} />
 
-                <div className="flex flex-col md:col-span-3">
-                    <label className="text-sm font-medium text-gray-700 mb-2">Employment Status <span className="text-red-600">*</span></label>
-                    <div className="flex flex-col sm:flex-row gap-6">
-                        <label className="flex items-center gap-2 cursor-pointer select-none">
-                            <Checkbox
-                                checked={formData.employmentStatus === "Permanent"}
-                                onCheckedChange={(checked) =>
-                                    updateField("employmentStatus", checked ? "Permanent" : "")
-                                }
-                            />
-                            Permanent
-                        </label>
-                        <label className="flex items-center gap-2 cursor-pointer select-none">
-                            <Checkbox
-                                checked={formData.employmentStatus === "Contractual"}
-                                onCheckedChange={(checked) =>
-                                    updateField("employmentStatus", checked ? "Contractual" : "")
-                                }
-                            />
-                            Contractual
-                        </label>
-                    </div>
+                <div className="md:col-span-3 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <FloatingCheckbox
+                        label="Permanent Employment"
+                        name="employmentStatusPermanent"
+                        checked={formData.employmentStatus === "Permanent"}
+                        onChange={(e) =>
+                            updateField("employmentStatus", e.target.checked ? "Permanent" : "")
+                        }
+                    />
+                    <FloatingCheckbox
+                        label="Contractual Employment"
+                        name="employmentStatusContractual"
+                        checked={formData.employmentStatus === "Contractual"}
+                        onChange={(e) =>
+                            updateField("employmentStatus", e.target.checked ? "Contractual" : "")
+                        }
+                    />
                 </div>
 
                 {formData.employmentStatus === 'Contractual' && (

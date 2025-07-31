@@ -77,7 +77,7 @@ const UserAccountForm = () => {
                 Basic Information
             </SectionTitle>
             <div className="bg-white rounded-md border border-red-200 px-6 py-6 grid grid-cols-1 md:grid-cols-3 gap-y-2 md:gap-y-2 gap-x-4 md:gap-x-8 mb-14 shadow">
-                <div className="md:col-span-2 flex gap-4">
+                <div className="md:col-span-1 flex gap-4">
                     <FloatingInput
                         label={<RequiredLabel>CIF/NID</RequiredLabel>}
                         name="cif"
@@ -89,7 +89,7 @@ const UserAccountForm = () => {
                         onClick={handleCIFSearch}
                         className="self-end bg-red-600/80 hover:bg-red-700 text-white px-4 py-2 rounded-md transition"
                     >
-                        <Search className="mr-1" /> Search
+                        <Search className="mr-1" />
                     </Button>
                 </div>
 

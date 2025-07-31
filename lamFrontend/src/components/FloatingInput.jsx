@@ -17,7 +17,7 @@ const FloatingInput = ({
     const labelTop = shouldFloat
         ? "0.25rem"
         : type === "date"
-            ? "1.6rem"
+            ? "1.4rem"
             : "1.4rem";
 
     return (

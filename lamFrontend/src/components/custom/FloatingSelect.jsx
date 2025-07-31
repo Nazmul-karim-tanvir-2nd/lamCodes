@@ -1,4 +1,3 @@
-// src/components/FloatingSelect.jsx
 import { useState } from "react";
 import classNames from "classnames";
 
@@ -10,6 +9,20 @@ const FloatingSelect = ({ label, name, value, onChange, options = [], disabled =
 
     return (
         <div className="relative w-full min-h-[60px]">
+            <label
+                htmlFor={name}
+                className={classNames(
+                    "absolute left-2 px-1 bg-white dark:bg-gray-900 select-none transition-all duration-300",
+                    {
+                        "text-blue-600 font-medium text-xs sm:text-sm": shouldFloat,
+                        "text-gray-700 text-base sm:text-lg": !shouldFloat,
+                        "cursor-not-allowed text-gray-400": disabled,
+                    }
+                )}
+                style={{ top: labelTop }}
+            >
+                {label}
+            </label>
             <select
                 id={name}
                 name={name}
@@ -29,27 +42,13 @@ const FloatingSelect = ({ label, name, value, onChange, options = [], disabled =
                     }
                 )}
             >
-                <option value="" disabled>{label}</option>
+                <option value="" disabled>-- Select --</option>
                 {options.map((opt) => (
                     <option key={opt.value} value={opt.value}>
                         {opt.label}
                     </option>
                 ))}
             </select>
-            <label
-                htmlFor={name}
-                className={classNames(
-                    "absolute left-2 px-1 bg-white dark:bg-gray-900 select-none transition-all duration-300",
-                    {
-                        "text-blue-600 font-medium text-xs sm:text-sm": shouldFloat,
-                        "text-gray-700 text-base sm:text-lg": !shouldFloat,
-                        "cursor-not-allowed text-gray-400": disabled,
-                    }
-                )}
-                style={{ top: labelTop }}
-            >
-                {label}
-            </label>
         </div>
     );
 };

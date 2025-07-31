@@ -6,7 +6,7 @@ const Navbar = () => {
     const toggleSidebar = useSidebarStore((state) => state.toggleSidebar);
 
     return (
-        <header className="sticky top-0 z-30 bg-blue-600/80 border-b border-gray-100 shadow">
+        <header className="sticky top-0 z-30 bg-blue-600/80 shadow">
 
             <div className="flex items-center justify-between h-20 px-4 sm:px-6 lg:px-8">
                 {/* Left: Menu button (mobile only) + title */}
@@ -14,7 +14,7 @@ const Navbar = () => {
                     {/* Mobile Menu Button */}
                     <button
                         onClick={toggleSidebar}
-                        className="p-2 rounded-md hover:bg-gray-100 transition"
+                        className="p-2 rounded-md hover:bg-blue-400 transition"
                         aria-label="Toggle sidebar"
                     >
                         <Menu className="text-white w-6 h-6" />

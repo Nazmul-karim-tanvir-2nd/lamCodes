@@ -163,18 +163,6 @@ const UserAccountForm = () => {
                 <FloatingInput label="Line Manager CIF" name="lineManagerCIF" value={formData.lineManagerCIF} onChange={handleChange} />
             </div>
 
-            {/* Access Requirements */}
-            <SectionTitle>
-                <KeyRound className="w-5 h-5 text-red-600 mr-2" />
-                Access Requirements
-            </SectionTitle>
-            <div className="bg-white rounded-md border border-red-200 px-6 py-6 grid grid-cols-1 md:grid-cols-3 gap-y-2 md:gap-y-2 gap-x-4 md:gap-x-8 mb-14 shadow">
-                <FloatingInput label={<RequiredLabel>Requested Systems / Software</RequiredLabel>} name="requestedSystems" value={formData.requestedSystems} onChange={handleChange} />
-                <FloatingInput label={<RequiredLabel>Role-Based Access Type</RequiredLabel>} name="accessType" value={formData.accessType} onChange={handleChange} />
-                <FloatingInput label={<RequiredLabel>Justification / Purpose</RequiredLabel>} name="justification" value={formData.justification} onChange={handleChange} />
-                <FloatingInput label="Role Designation" name="roleDesignation" value={formData.roleDesignation} onChange={handleChange} />
-            </div>
-
             {/* Additional Notes / Attachments */}
             <SectionTitle>
                 <FileText className="w-5 h-5 text-red-600 mr-2" />

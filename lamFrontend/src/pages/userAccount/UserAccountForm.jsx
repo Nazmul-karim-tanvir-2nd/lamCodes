@@ -66,16 +66,16 @@ const UserAccountForm = () => {
             className="w-full p-2 sm:p-2 space-y-2"
         >
 
-            <h1 className="text-2xl font-semibold text-center text-blue-800 mb-6 border-b border-red-200 pb-4">
+            <h1 className="text-2xl font-semibold text-center text-blue-800 mb-8 border-b border-red-200 pb-4">
                 New User Account Opening Request
             </h1>
 
             {/* Employee Information */}
             <SectionTitle>
                 <User className="w-5 h-5 text-red-600 mr-2" />
-                Employee Information
+                Basic Information
             </SectionTitle>
-            <div className="bg-white rounded-md border border-red-200 px-8 py-8 grid grid-cols-1 md:grid-cols-3 gap-8 mb-14 shadow">
+            <div className="bg-white rounded-md border border-red-200 px-6 py-6 grid grid-cols-1 md:grid-cols-3 gap-y-4 md:gap-y-6 gap-x-4 md:gap-x-8 mb-14 shadow">
                 <div className="md:col-span-2 flex gap-4">
                     <FloatingInput
                         label={<RequiredLabel>CIF/NID</RequiredLabel>}
@@ -112,7 +112,7 @@ const UserAccountForm = () => {
                 <Building2 className="w-5 h-5 text-red-600 mr-2" />
                 Department & Role Details
             </SectionTitle>
-            <div className="bg-white rounded-md border border-red-200 px-8 py-8 grid grid-cols-1 md:grid-cols-3 gap-8 mb-14 shadow">
+            <div className="bg-white rounded-md border border-red-200 px-6 py-6 grid grid-cols-1 md:grid-cols-3 gap-y-4 md:gap-y-6 gap-x-4 md:gap-x-8 mb-14 shadow">
                 <FloatingInput label={<RequiredLabel>Department</RequiredLabel>} name="department" value={formData.department} onChange={handleChange} />
                 <FloatingInput label={<RequiredLabel>Division</RequiredLabel>} name="division" value={formData.division} onChange={handleChange} />
                 <FloatingInput label={<RequiredLabel>Branch</RequiredLabel>} name="branch" value={formData.branch} onChange={handleChange} />
@@ -160,7 +160,7 @@ const UserAccountForm = () => {
                 <KeyRound className="w-5 h-5 text-red-600 mr-2" />
                 Access Requirements
             </SectionTitle>
-            <div className="bg-white rounded-md border border-red-200 px-8 py-8 grid grid-cols-1 md:grid-cols-3 gap-8 mb-14 shadow">
+            <div className="bg-white rounded-md border border-red-200 px-6 py-6 grid grid-cols-1 md:grid-cols-3 gap-y-4 md:gap-y-6 gap-x-4 md:gap-x-8 mb-14 shadow">
                 <FloatingInput label={<RequiredLabel>Requested Systems / Software</RequiredLabel>} name="requestedSystems" value={formData.requestedSystems} onChange={handleChange} />
                 <FloatingInput label={<RequiredLabel>Role-Based Access Type</RequiredLabel>} name="accessType" value={formData.accessType} onChange={handleChange} />
                 <FloatingInput label={<RequiredLabel>Justification / Purpose</RequiredLabel>} name="justification" value={formData.justification} onChange={handleChange} />
@@ -172,7 +172,7 @@ const UserAccountForm = () => {
                 <FileText className="w-5 h-5 text-red-600 mr-2" />
                 Additional Notes / Attachments
             </SectionTitle>
-            <div className="bg-white rounded-md border border-red-200 px-8 py-8 grid grid-cols-1 md:grid-cols-3 gap-8 mb-14 shadow">
+            <div className="bg-white rounded-md border border-red-200 px-6 py-6 grid grid-cols-1 md:grid-cols-3 gap-y-4 md:gap-y-6 gap-x-4 md:gap-x-8 mb-14 shadow">
                 <FloatingInput label="Remarks / Special Instructions" name="remarks" value={formData.remarks} onChange={handleChange} />
                 <div className="flex flex-col">
                     <label className="text-sm font-medium text-gray-700 mb-1">
@@ -190,9 +190,9 @@ const UserAccountForm = () => {
             {/* Form Metadata */}
             <SectionTitle>
                 <Info className="w-5 h-5 text-red-600 mr-2" />
-                Form Metadata
+                Submitted by
             </SectionTitle>
-            <div className="bg-white rounded-md border border-red-200 px-8 py-8 grid grid-cols-1 md:grid-cols-3 gap-8 mb-14 shadow">
+            <div className="bg-white rounded-md border border-red-200 px-6 py-6 grid grid-cols-1 md:grid-cols-3 gap-y-4 md:gap-y-6 gap-x-4 md:gap-x-8 mb-14 shadow">
                 <FloatingInput label="Requested By" name="requestedBy" value={formData.requestedBy} onChange={handleChange} />
                 <FloatingInput label="Request Date" name="requestDate" type="date" value={formData.requestDate} onChange={handleChange} />
                 <FloatingInput label="Approval Status" name="approvalStatus" value={formData.approvalStatus} onChange={handleChange} disabled />

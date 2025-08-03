@@ -6,7 +6,7 @@ const dummyUsers = [
         biometricStatus: "Verified",
     },
     {
-        cif: "789012",
+        cif: "222222",
         name: "Shorna Khatun",
         mobile: "01898765432",
         biometricStatus: "Pending",
@@ -16,6 +16,12 @@ const dummyUsers = [
         name: "Rezaul Karim",
         mobile: "01900112233",
         biometricStatus: "Verified",
+    },
+    {
+        cif: "111111",
+        name: "Jishan Rahman",
+        mobile: "01900112233",
+        designation: "Senior Manager",
     },
 ];
 

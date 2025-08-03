@@ -44,9 +44,8 @@ const EmployeeTransfer = () => {
             </h1>
 
             {/* Employee Identification */}
+            <SectionTitle className="mb-3">Employee Identification</SectionTitle>
             <section className="bg-white rounded-md border border-red-200 px-6 py-6 grid grid-cols-1 md:grid-cols-3 gap-y-2 md:gap-y-2 gap-x-4 md:gap-x-8 mb-14 shadow">
-                <SectionTitle className="md:col-span-3">Employee Identification</SectionTitle>
-
                 <div className="md:col-span-3 flex gap-4">
                     <FloatingInput
                         label="CIF / Employee Ref ID"
@@ -71,8 +70,8 @@ const EmployeeTransfer = () => {
             </section>
 
             {/* New Assignment Details */}
+            <SectionTitle className="mb-3">New Assignment Details</SectionTitle>
             <section className="bg-white rounded-md border border-red-200 px-6 py-6 grid grid-cols-1 md:grid-cols-3 gap-y-2 md:gap-y-2 gap-x-4 md:gap-x-8 mb-14 shadow">
-                <SectionTitle className="md:col-span-3">New Assignment Details</SectionTitle>
                 <FloatingInput label="New Department" name="newDepartment" value={formData.newDepartment} onChange={handleChange} />
                 <FloatingInput label="New Branch" name="newBranch" value={formData.newBranch} onChange={handleChange} />
                 <FloatingInput label="New Line Manager" name="newLineManager" value={formData.newLineManager} onChange={handleChange} />
@@ -82,8 +81,8 @@ const EmployeeTransfer = () => {
             </section>
 
             {/* Access Change Instructions */}
+            <SectionTitle className="mb-3">Access Change Instructions</SectionTitle>
             <section className="bg-white rounded-md border border-red-200 px-6 py-6 grid grid-cols-1 md:grid-cols-3 gap-y-2 md:gap-y-2 gap-x-4 md:gap-x-8 mb-14 shadow">
-                <SectionTitle className="md:col-span-3">Access Change Instructions</SectionTitle>
                 <FloatingInput label="Revoke Existing Software Access" name="revokeSoftware" value={formData.revokeSoftware} onChange={handleChange} />
                 <FloatingInput label="Revoke Existing Device Access" name="revokeDevice" value={formData.revokeDevice} onChange={handleChange} />
                 <FloatingInput label="Assign New Role-Based Access (Auto from Matrix)" name="autoAssignAccess" value={formData.autoAssignAccess} onChange={handleChange} />
@@ -91,8 +90,8 @@ const EmployeeTransfer = () => {
             </section>
 
             {/* Approval & Submission Info */}
+            <SectionTitle className="mb-3">Approval & Submission Info</SectionTitle>
             <section className="bg-white rounded-md border border-red-200 px-6 py-6 grid grid-cols-1 md:grid-cols-3 gap-y-2 md:gap-y-2 gap-x-4 md:gap-x-8 mb-14 shadow">
-                <SectionTitle className="md:col-span-3">Approval & Submission Info</SectionTitle>
                 <FloatingInput label="Requested By" name="requestedBy" value={formData.requestedBy} onChange={handleChange} />
                 <FloatingInput label="Request Date" name="requestDate" type="date" value={formData.requestDate} disabled />
                 <FloatingInput label="Line Manager Approval Status" name="lineManagerApproval" value={formData.lineManagerApproval} onChange={handleChange} />

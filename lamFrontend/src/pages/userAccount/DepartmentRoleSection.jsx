@@ -97,21 +97,34 @@ const DepartmentRoleSection = ({
                 />
 
                 {/* Employment Type */}
-                <div className="md:col-span-3 grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <FloatingCheckbox
-                        label="Permanent Employment"
-                        name="employmentStatusPermanent"
-                        checked={formData.employmentStatus === 'Permanent'}
-                        onChange={(e) => updateField('employmentStatus', e.target.checked ? 'Permanent' : '')}
-                        disabled={!isEditable}
-                    />
-                    <FloatingCheckbox
-                        label="Contractual Employment"
-                        name="employmentStatusContractual"
-                        checked={formData.employmentStatus === 'Contractual'}
-                        onChange={(e) => updateField('employmentStatus', e.target.checked ? 'Contractual' : '')}
-                        disabled={!isEditable}
-                    />
+                <div className="md:col-span-3">
+                    <h3
+                        className={`inline-block px-3 py-1 rounded mb-2
+      ${formData.employmentStatus ? 'text-blue-600 font-medium' : 'text-gray-700'}`}
+                    >
+                        Select Employment Type
+                    </h3>
+
+                    <div className="flex flex-col gap-1 pl-8 sm:pl-16">
+                        <FloatingCheckbox
+                            label="Permanent Employment"
+                            name="employmentStatusPermanent"
+                            checked={formData.employmentStatus === 'Permanent'}
+                            onChange={(e) =>
+                                updateField('employmentStatus', e.target.checked ? 'Permanent' : '')
+                            }
+                            disabled={!isEditable}
+                        />
+                        <FloatingCheckbox
+                            label="Contractual Employment"
+                            name="employmentStatusContractual"
+                            checked={formData.employmentStatus === 'Contractual'}
+                            onChange={(e) =>
+                                updateField('employmentStatus', e.target.checked ? 'Contractual' : '')
+                            }
+                            disabled={!isEditable}
+                        />
+                    </div>
                 </div>
 
                 {formData.employmentStatus === 'Contractual' && (

@@ -17,8 +17,8 @@ const FloatingCheckbox = ({ label, name, checked, onChange, disabled = false }) 
                 onFocus={() => setIsFocused(true)}
                 onBlur={() => setIsFocused(false)}
                 className={classNames(
-                    "appearance-none w-4 h-4 border border-gray-400 rounded-md checked:bg-red-600 checked:border-red-600",
-                    "focus:ring-2 focus:ring-red-400 transition-all cursor-pointer",
+                    "appearance-none w-4 h-4 border border-gray-400 rounded-md checked:bg-blue-600 checked:border-blue-600",
+                    "focus:ring-2 focus:ring-blue-400 transition-all cursor-pointer",
                     {
                         "bg-gray-200 cursor-not-allowed": disabled,
                     }
@@ -29,7 +29,7 @@ const FloatingCheckbox = ({ label, name, checked, onChange, disabled = false }) 
                 className={classNames(
                     "text-base text-gray-700 dark:bg-gray-900 transition-all select-none",
                     {
-                        "font-medium text-red-600": shouldFloat,
+                        "font-medium text-blue-600": shouldFloat,
                         "text-gray-400 cursor-not-allowed": disabled,
                     }
                 )}

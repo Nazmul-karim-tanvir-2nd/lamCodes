@@ -56,7 +56,7 @@ const Sidebar = () => {
                             className="w-10 h-10 object-contain"
                         />
                         {isOpen && (
-                            <h1 className="text-xl font-bold text-blue-700 tracking-wide">
+                            <h1 className="text-xl font-bold text-gray-800 tracking-wide">
                                 IDLC
                             </h1>
                         )}

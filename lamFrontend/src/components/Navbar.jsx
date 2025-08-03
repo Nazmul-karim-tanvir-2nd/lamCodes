@@ -6,7 +6,7 @@ const Navbar = () => {
     const toggleSidebar = useSidebarStore((state) => state.toggleSidebar);
 
     return (
-        <header className="sticky top-0 z-30 bg-red-600/80 shadow">
+        <header className="sticky top-0 z-30 bg-red-600/80 shadow-md">
 
             <div className="flex items-center justify-between h-20 px-2 sm:px-4 lg:px-4">
                 {/* Left: Menu button (mobile only) + title */}

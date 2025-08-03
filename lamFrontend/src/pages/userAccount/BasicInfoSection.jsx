@@ -2,7 +2,7 @@ import { SectionTitle } from '../../components/SectionTitle';
 import FloatingInput from '../../components/custom/FloatingInput';
 import FloatingSelect from '../../components/custom/FloatingSelect';
 import { Button } from '../../components/ui/Button';
-import { Search, User } from 'lucide-react';
+import { Check, Info, Search, User } from 'lucide-react';
 
 const RequiredLabel = ({ children }) => (
     <span>{children} <span className="text-red-600">*</span></span>
@@ -10,6 +10,7 @@ const RequiredLabel = ({ children }) => (
 
 const BasicInfoSection = ({ formData, handleChange, handleCIFSearch }) => {
     const isBiometricPending = formData.biometricStatus?.toLowerCase() === 'pending';
+    const isBiometricVerified = formData.biometricStatus?.toLowerCase() === 'verified';
 
     return (
         <>
@@ -56,8 +57,20 @@ const BasicInfoSection = ({ formData, handleChange, handleCIFSearch }) => {
                 <FloatingInput label={<RequiredLabel>Joining Date</RequiredLabel>} name="joiningDate" type="date" value={formData.joiningDate} onChange={handleChange} />
 
                 {isBiometricPending && (
-                    <div className="md:col-span-3 bg-red-100 text-red-700 p-4 rounded border border-red-300">
-                        ⚠️ Biometric verification is pending. Access to other sections is restricted until verification is complete.
+                    <div className="md:col-span-3 flex items-center gap-3 bg-red-100 border border-red-300 text-red-700 p-4 rounded-lg shadow-sm justify-center">
+                        <Info className="w-5 h-5 shrink-0" />
+                        <span className="text-sm md:text-base font-medium">
+                            Biometric verification is <strong>pending</strong>. Access to other form sections is restricted until verification is complete.
+                        </span>
+                    </div>
+                )}
+
+                {isBiometricVerified && (
+                    <div className="md:col-span-3 flex items-center gap-3 bg-green-100 border border-green-300 text-green-700 p-4 rounded-lg shadow-sm justify-center">
+                        <Check className="w-5 h-5 shrink-0" />
+                        <span className="text-sm md:text-base font-medium">
+                            Biometric verification is <strong>verified</strong>. Access to other form sections is granted.
+                        </span>
                     </div>
                 )}
             </div>

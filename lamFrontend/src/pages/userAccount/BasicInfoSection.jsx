@@ -50,8 +50,23 @@ const BasicInfoSection = ({ formData, handleChange, handleCIFSearch }) => {
                         { label: "Other", value: "Other" },
                     ]}
                 />
+                <FloatingSelect
+                    label={<RequiredLabel>Blood Group</RequiredLabel>}
+                    name="bloodgroup"
+                    value={formData.bloodgroup}
+                    onChange={handleChange}
+                    options={[
+                        { label: "A+", value: "A+" },
+                        { label: "A-", value: "A-" },
+                        { label: "B+", value: "B+" },
+                        { label: "B-", value: "B-" },
+                        { label: "O+", value: "O+" },
+                        { label: "O-", value: "O-" },
+                        { label: "AB+", value: "AB+" },
+                        { label: "AB-", value: "AB-" },
+                    ]}
+                />
 
-                <FloatingInput label="Blood Group" name="bloodGroup" value={formData.bloodGroup} onChange={handleChange} />
                 <FloatingInput label="Emergency Contact" name="emergencyContact" value={formData.emergencyContact} onChange={handleChange} />
                 <FloatingInput label="Biometric Status (Pending / Verified)" name="biometricStatus" value={formData.biometricStatus} onChange={handleChange} disabled />
                 <FloatingInput label={<RequiredLabel>Joining Date</RequiredLabel>} name="joiningDate" type="date" value={formData.joiningDate} onChange={handleChange} />

@@ -1,5 +1,5 @@
 export const SectionTitle = ({ children }) => (
-    <div className="group mb-6 flex items-center gap-2 sm:gap-3 transition-all duration-300">
+    <div className="group mb-2 flex items-center gap-2 sm:gap-3 transition-all duration-300">
         {/* Dash/Line */}
         <div
             className="w-[12px] h-[32px] sm:w-[16px] sm:h-[40px] rounded-sm

@@ -1,9 +1,13 @@
 const dummyUsers = [
     {
         cif: "123456",
-        name: "Tanvir Ahmed",
+        name: "Shafi Ahmed",
         mobile: "01712345678",
         biometricStatus: "Verified",
+        department: 'IT',
+        branch: 'Dilkhusha',
+        designation: 'Apprentice',
+        lineManager: 'Saifur Rahman',
     },
     {
         cif: "222222",

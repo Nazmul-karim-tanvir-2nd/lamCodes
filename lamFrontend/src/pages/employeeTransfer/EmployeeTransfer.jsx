@@ -49,7 +49,7 @@ const EmployeeTransfer = () => {
                 {/* CIF + Search button share same column */}
                 <div className="flex gap-2 items-end">
                     <FloatingInput
-                        label="CIF / Employee Ref ID"
+                        label="CIF / NID"
                         name="cif"
                         value={formData.cif}
                         onChange={handleChange}

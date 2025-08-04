@@ -1,13 +1,13 @@
 @import "tailwindcss";
 
 @font-face {
-    font-family: 'IDLC';
-    src: url('./assets/fonts/IDLC-Regular.ttf') format('truetype');
-
+    font-family: 'IDLCFont';
+    src: url('fonts/your-font-file.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
 }
 
-@font-face {
-    font-family: 'K2D';
-    src: url('./assets/fonts/K2D-Regular.ttf') format('truetype');
-
+body {
+    font-family: 'IDLCFont', sans-serif;
+    /* Fallback to a generic sans-serif font */
 }

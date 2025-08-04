@@ -1,17 +1,14 @@
-// src/components/Navbar.jsx
 import { Menu } from "lucide-react";
 import useSidebarStore from "../store/useSidebarStore";
 
-const Navbar = () => {
+const Navbar = ({ onLoginClick }) => {
     const toggleSidebar = useSidebarStore((state) => state.toggleSidebar);
 
     return (
         <header className="sticky top-0 z-30 bg-red-600/80 shadow-md">
-
             <div className="flex items-center justify-between h-20 px-2 sm:px-4 lg:px-4">
-                {/* Left: Menu button (mobile only) + title */}
+                {/* Left: Menu button + title */}
                 <div className="flex items-center gap-4">
-                    {/* Mobile Menu Button */}
                     <button
                         onClick={toggleSidebar}
                         className="p-2 rounded-md hover:bg-red-400 transition"
@@ -20,19 +17,21 @@ const Navbar = () => {
                         <Menu className="text-white w-6 h-6" />
                     </button>
 
-                    {/* App Title */}
                     <h1 className="text-lg sm:text-xl font-semibold tracking-wide text-white">
                         Logical Access Management
                     </h1>
                 </div>
 
-                {/* Right Side: Placeholder for future items like profile, settings */}
+                {/* Right Side: Add Login Button */}
                 <div className="flex items-center space-x-4">
-                    {/* Example: Notification dot */}
-                    <div className="relative">
-                        <span className="w-3 h-3 bg-red-500 rounded-full absolute top-0 right-0 animate-ping opacity-75"></span>
-                        <span className="w-3 h-3 bg-red-500 rounded-full absolute top-0 right-0"></span>
-                    </div>
+
+                    {/* Login Button */}
+                    <button
+                        onClick={onLoginClick}
+                        className="text-white bg-red-400 hover:bg-red-500 px-4 py-1 rounded-md font-semibold text-lg transition"
+                    >
+                        Login
+                    </button>
                 </div>
             </div>
         </header>

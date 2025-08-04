@@ -17,7 +17,7 @@ const Navbar = ({ onLoginClick }) => {
                         <Menu className="text-white w-5 h-5 sm:w-6 sm:h-6" />
                     </button>
 
-                    <h1 className="text-base sm:text-lg md:text-xl font-semibold text-white whitespace-nowrap overflow-hidden text-ellipsis max-w-[160px] sm:max-w-none">
+                    <h1 className="text-base sm:text-lg md:text-xl font-semibold text-white whitespace-nowrap overflow-hidden text-ellipsis sm:max-w-none">
                         Logical Access Mangement
                     </h1>
                 </div>

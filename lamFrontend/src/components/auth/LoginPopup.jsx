@@ -39,7 +39,7 @@ const LoginPopup = ({ setShowLogin }) => {
     };
 
     return (
-        <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center">
+        <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-md flex items-center justify-center">
             <form
                 onSubmit={onLogin}
                 className="w-[90vw] max-w-md bg-white text-gray-700 flex flex-col gap-6 p-6 rounded-xl shadow-xl relative"

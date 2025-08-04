@@ -21,16 +21,6 @@ const Navbar = ({ onLoginClick }) => {
                         Logical Access Mangement
                     </h1>
                 </div>
-
-                {/* Right: Login Button */}
-                <div className="flex items-center space-x-2 sm:space-x-4">
-                    <button
-                        onClick={onLoginClick}
-                        className="px-3 py-1 sm:px-4 sm:py-1.5 text-sm sm:text-base text-white bg-red-500 hover:bg-red-600 active:bg-red-700 border border-white rounded-lg font-semibold shadow-sm transition duration-200"
-                    >
-                        Login
-                    </button>
-                </div>
             </div>
         </header>
     );

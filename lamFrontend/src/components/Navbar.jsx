@@ -6,7 +6,7 @@ const Navbar = ({ onLoginClick }) => {
 
     return (
         <header className="sticky top-0 z-30 bg-red-600/80 shadow-md">
-            <div className="flex items-center justify-between h-16 sm:h-20 px-2 sm:px-4">
+            <div className="flex items-center justify-between h-20 sm:h-20 px-2 sm:px-4">
                 {/* Left: Menu button + title */}
                 <div className="flex items-center gap-2 sm:gap-4">
                     <button

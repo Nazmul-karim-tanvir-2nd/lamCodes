@@ -2,8 +2,12 @@ import { useEffect } from 'react';
 import useUserFormStore from '../../store/useUserFormStore';
 import FloatingInput from '../../components/custom/FloatingInput';
 import { SectionTitle } from '../../components/SectionTitle';
-import { Search } from 'lucide-react';
+import { Search, User } from 'lucide-react';
 import dummyUsers from '../../data/dummyUser';
+import { FaIdBadge } from 'react-icons/fa';
+import { MdAssignment } from 'react-icons/md';
+import { RiKey2Fill } from 'react-icons/ri';
+import { BsCheck2Circle } from 'react-icons/bs';
 
 const EmployeeTransfer = () => {
     const { formData, updateField } = useUserFormStore();
@@ -44,7 +48,7 @@ const EmployeeTransfer = () => {
             </h1>
 
             {/* Employee Identification */}
-            <SectionTitle className="mb-3">Employee Identification</SectionTitle>
+            <SectionTitle className="mb-3"><User className="w-5 h-5 text-red-600 mr-2" />Employee Identification</SectionTitle>
             <section className="bg-white rounded-md border border-red-200 px-6 py-6 grid grid-cols-1 md:grid-cols-3 gap-y-2 md:gap-y-2 gap-x-4 md:gap-x-8 mb-8 shadow">
                 {/* CIF + Search button share same column */}
                 <div className="flex gap-2 items-end">
@@ -83,7 +87,7 @@ const EmployeeTransfer = () => {
             </section>
 
             {/* New Assignment Details */}
-            <SectionTitle className="mb-3">New Assignment Details</SectionTitle>
+            <SectionTitle className="mb-3"><MdAssignment className="w-5 h-5 text-red-600 mr-2" />New Assignment Details</SectionTitle>
             <section className="bg-white rounded-md border border-red-200 px-6 py-6 grid grid-cols-1 md:grid-cols-3 gap-y-2 md:gap-y-2 gap-x-4 md:gap-x-8 mb-8 shadow">
                 <FloatingInput label="New Department" name="newDepartment" value={formData.newDepartment} onChange={handleChange} />
                 <FloatingInput label="New Branch" name="newBranch" value={formData.newBranch} onChange={handleChange} />
@@ -94,7 +98,7 @@ const EmployeeTransfer = () => {
             </section>
 
             {/* Access Change Instructions */}
-            <SectionTitle className="mb-3">Access Change Instructions</SectionTitle>
+            <SectionTitle className="mb-3"><RiKey2Fill className="w-5 h-5 text-red-600 mr-2" />Access Change Instructions</SectionTitle>
             <section className="bg-white rounded-md border border-red-200 px-6 py-6 grid grid-cols-1 md:grid-cols-3 gap-y-2 md:gap-y-2 gap-x-4 md:gap-x-8 mb-8 shadow">
                 <FloatingInput label="Revoke Existing Software Access" name="revokeSoftware" value={formData.revokeSoftware} onChange={handleChange} />
                 <FloatingInput label="Revoke Existing Device Access" name="revokeDevice" value={formData.revokeDevice} onChange={handleChange} />
@@ -103,7 +107,7 @@ const EmployeeTransfer = () => {
             </section>
 
             {/* Approval & Submission Info */}
-            <SectionTitle className="mb-3">Approval & Submission Info</SectionTitle>
+            <SectionTitle className="mb-3"><BsCheck2Circle className="w-5 h-5 text-red-600 mr-2" />Approval & Submission Info</SectionTitle>
             <section className="bg-white rounded-md border border-red-200 px-6 py-6 grid grid-cols-1 md:grid-cols-3 gap-y-2 md:gap-y-2 gap-x-4 md:gap-x-8 mb-8 shadow">
                 <FloatingInput label="Requested By" name="requestedBy" value={formData.requestedBy} onChange={handleChange} />
                 <FloatingInput label="Request Date" name="requestDate" type="date" value={formData.requestDate} disabled />

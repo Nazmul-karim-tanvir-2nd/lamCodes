@@ -96,7 +96,7 @@ const EmployeeClearance = () => {
 
   return (
     <form onSubmit={handleSubmit} className="w-full p-2 sm:p-2 space-y-4">
-      <h1 className="text-base sm:text-2xl font-bold text-center text-blue-800 mb-4 underline underline-offset-8 decoration-red-500/80">
+      <h1 className="text-base sm:text-xl font-bold text-center text-blue-800 mb-4 underline underline-offset-8 decoration-gray-500/80">
         Clearance Tracker
       </h1>
 

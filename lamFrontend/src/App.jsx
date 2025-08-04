@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import UserAccountForm from './pages/userAccount/UserAccountForm.jsx';
-import AccessRequest from './pages/accessRequest/AccessRequest.jsx';
+import AccessRequest from './pages/accessRequest/AccessRequestMain.jsx';
 import EmployeeTransfer from './pages/employeeTransfer/EmployeeTransfer.jsx';
 import EmployeeClearance from './pages/employeeClearance/EmployeeClearance.jsx';
 import Layout from './layout/Layout.jsx';

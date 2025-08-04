@@ -41,7 +41,7 @@ const AccessRequestMain = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="w-full p-2 sm:p-2 space-y-4">
+    <form onSubmit={handleSubmit} className="w-full p-2 sm:p-2 space-y-8">
       <h1 className="text-base sm:text-xl font-bold text-center text-blue-800 mb-4 underline underline-offset-8 decoration-gray-500/80">
         Access Request Form
       </h1>

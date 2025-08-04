@@ -11,7 +11,7 @@ const Navbar = ({ onLoginClick }) => {
                 <div className="flex items-center gap-2 sm:gap-4">
                     <button
                         onClick={toggleSidebar}
-                        className="p-2 rounded-md hover:bg-red-500/80 transition"
+                        className="p-2 rounded-md hover:bg-red-400/80 transition"
                         aria-label="Toggle sidebar"
                     >
                         <Menu className="text-white w-5 h-5 sm:w-6 sm:h-6" />

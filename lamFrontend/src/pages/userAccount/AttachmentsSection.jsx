@@ -12,7 +12,7 @@ const AttachmentsSection = ({ formData, handleChange }) => {
                 Additional Notes / Attachments
             </SectionTitle>
 
-            <div className="bg-white rounded-md border border-red-200 px-6 py-6 grid grid-cols-1 md:grid-cols-3 gap-y-4 md:gap-y-6 gap-x-4 md:gap-x-8 mb-14 shadow">
+            <div className="bg-white rounded-md border border-red-200 px-6 py-6 grid grid-cols-1 md:grid-cols-3 gap-y-4 md:gap-y-6 gap-x-4 md:gap-x-8 mb-8 shadow">
                 <FloatingInput
                     label="Remarks / Special Instructions"
                     name="remarks"

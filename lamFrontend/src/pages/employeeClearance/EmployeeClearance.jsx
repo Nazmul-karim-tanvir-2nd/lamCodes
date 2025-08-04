@@ -103,7 +103,7 @@ const EmployeeClearance = () => {
         Clearance Tracker
       </h1>
 
-      <ClearanceSection title="Files & Documents" deptKey="Files" icon={<RiFilePaper2Line />} />
+      
       <ClearanceSection title="Finance Department" deptKey="Finance" icon={<FaMoneyCheckAlt />} />
       <ClearanceSection title="Administration Department" deptKey="Administration" icon={<FaBuilding />} />
       <ClearanceSection title="Consumer Division" deptKey="Consumer" icon={<FaUsersCog />} />

@@ -18,7 +18,7 @@ const Layout = () => {
       >
 
         <Navbar />
-        <main className="flex-1 p-4 overflow-y-auto bg-white">
+        <main className="flex-1 p-4 overflow-y-auto bg-gray-50">
           <Outlet />
         </main>
       </div>

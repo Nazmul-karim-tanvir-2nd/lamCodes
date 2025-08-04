@@ -28,10 +28,11 @@ const Navbar = ({ onLoginClick }) => {
                     {/* Login Button */}
                     <button
                         onClick={onLoginClick}
-                        className="text-white bg-red-400 hover:bg-red-500 px-4 py-1 rounded-md font-semibold text-lg transition"
+                        className="px-4 py-1 text-white bg-red-600 hover:bg-red-500 active:bg-red-700 border-2 border-gray-50 rounded-xl text-lg font-semibold shadow-md transition-all duration-200 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-white/40"
                     >
                         Login
                     </button>
+
                 </div>
             </div>
         </header>

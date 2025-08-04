@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import idlclogo from '../../assets/idlclogo.jpg';
 import useAuthStore from '../../store/useAuthStore';
 import axios from "axios";
-import { X } from 'lucide-react'; // Optional: better close icon
+import { X } from 'lucide-react'; 
 
 const LoginPopup = ({ setShowLogin }) => {
     const { url, setToken } = useAuthStore();

@@ -7,6 +7,8 @@ import EmployeeInfoSection from "./EmployeeInfoSection";
 import AccessTypesSection from "./AccessTypesSection";
 import NotesAttachmentsSection from "./NotesAttachmentsSection";
 import { getAccessKey } from "../../lib/accessTypeMapper";
+import dummyUsers2 from "../../data/dummyUser2";
+
 
 const AccessRequestMain = () => {
   const {
@@ -19,6 +21,9 @@ const AccessRequestMain = () => {
   } = useAccessRequestStore();
 
   const [cifInput, setCifInput] = useState("");
+  const matchedUser = dummyUsers2.find(u => u.cif === cif);
+const lineManagerStatus = matchedUser?.lineManagerStatus || "Pending";
+
 
 const handleSubmit = (e) => {
   e.preventDefault();
@@ -47,7 +52,7 @@ selectedTypes.forEach((type) => {
     fields: filledFields,
     attachment,
     submittedAt: new Date().toISOString(),
-    lineManagerStatus: "Successful",
+    lineManagerStatus,
     reviewStatus: "Pending",
     reviewer: null,
     reviewComment: ""

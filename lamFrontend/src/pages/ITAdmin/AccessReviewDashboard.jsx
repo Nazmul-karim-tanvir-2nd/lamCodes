@@ -33,7 +33,7 @@ const AccessReviewDashboard = () => {
   return (
     <div className="p-4 max-w-7xl mx-auto">
       <h1 className="text-xl font-bold text-center text-blue-800 mb-6 underline underline-offset-8 decoration-red-500/80">
-        IT/Admin Access Review Dashboard
+        Admin Access Review Dashboard
       </h1>
 
       <div className="mb-6 flex flex-wrap gap-4">
@@ -89,19 +89,79 @@ const AccessReviewDashboard = () => {
 
           <div>
             <SectionTitle>Requested Access</SectionTitle>
-            <ul className="list-disc list-inside">
+            <ul className="list-disc list-inside space-y-2 text-sm">
               {req.selectedTypes.map((type) => {
                 const key = getAccessKey(type);
                 const data = req.fields?.[key];
 
                 return (
                   <li key={type}>
-                    <strong>{type}:</strong>{" "}
-                    {data?.justification || data?.access || data?.service || "N/A"}
+                    <strong>{type}</strong>
+                    <div className="ml-4 mt-1 space-y-1">
+                      {key === "Software" && (
+                        <p><strong>Justification:</strong> {data?.justification || "N/A"}</p>
+                      )}
+
+                      {key === "Cloud" && (
+                        <>
+                          <p><strong>Cloud Service:</strong> {data?.service || "N/A"}</p>
+                          <p><strong>Justification:</strong> {data?.justification || "N/A"}</p>
+                        </>
+                      )}
+
+                      {key === "Internet" && (
+                        <p><strong>Justification:</strong> {data?.justification || "N/A"}</p>
+                      )}
+
+                      {key === "Device" && (
+                        <>
+                          <p><strong>Device Type:</strong> {data?.type || "N/A"}</p>
+                          <p><strong>Justification:</strong> {data?.justification || "N/A"}</p>
+                        </>
+                      )}
+
+                      {key === "Email" && (
+                        <>
+                          <p><strong>Current Limit:</strong> {data?.current || "N/A"} MB</p>
+                          <p><strong>Required Limit:</strong> {data?.required || "N/A"} MB</p>
+                          <p><strong>Justification:</strong> {data?.justification || "N/A"}</p>
+                        </>
+                      )}
+
+                      {key === "Additional" && (
+                        <>
+                          <p><strong>Access Needed:</strong> {data?.access || "N/A"}</p>
+                          <p><strong>Justification:</strong> {data?.justification || "N/A"}</p>
+                        </>
+                      )}
+                    </div>
                   </li>
                 );
               })}
+
+              {/* Notes Section */}
+              {req.fields?.Notes?.details && (
+                <li>
+                  <strong>Remarks / Special Instructions:</strong>
+                  <div className="ml-4 mt-1">{req.fields.Notes.details}</div>
+                </li>
+              )}
+
+              {/* Attachment Link */}
+              {req.attachment && req.attachmentName && (
+                <li>
+                  <strong>Attachment:</strong>{" "}
+                  <a
+                    href={req.attachment}
+                    download={req.attachmentName}
+                    className="text-blue-600 underline"
+                  >
+                    {req.attachmentName}
+                  </a>
+                </li>
+              )}
             </ul>
+
           </div>
 
           {req.lineManagerStatus === "Successful" && (

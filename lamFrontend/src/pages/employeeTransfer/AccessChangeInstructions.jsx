@@ -1,10 +1,10 @@
 import FloatingInput from "../../components/custom/FloatingInput";
 import { SectionTitle } from "../../components/SectionTitle";
 import { RiKey2Fill } from "react-icons/ri";
-import useUserFormStore from "../../store/useUserFormStore";
+import useUserTransfer from "../../store/useUserTransfer";
 
 const AccessChangeInstructions = () => {
-    const { formData, updateField } = useUserFormStore();
+    const { formData, updateField } = useUserTransfer();
 
     const handleChange = (e) => {
         const { name, value } = e.target;

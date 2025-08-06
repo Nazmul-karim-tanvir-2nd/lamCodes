@@ -1,10 +1,10 @@
 import FloatingInput from "../../components/custom/FloatingInput";
 import { SectionTitle } from "../../components/SectionTitle";
 import { MdAssignment } from "react-icons/md";
-import useUserFormStore from "../../store/useUserFormStore";
+import useUserTransfer from "../../store/useUserTransfer";
 
 const NewAssignmentDetails = () => {
-    const { formData, updateField } = useUserFormStore();
+    const { formData, updateField } = useUserTransfer();
 
     const handleChange = (e) => {
         const { name, value } = e.target;

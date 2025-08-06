@@ -1,12 +1,12 @@
 import { useEffect } from "react";
-import useUserFormStore from "../../store/useUserFormStore";
+import useUserTransfer from "../../store/useUserTransfer";
 import EmployeeIdentification from "./EmployeeIdentification";
 import NewAssignmentDetails from "./NewAssignmentDetails";
 import AccessChangeInstructions from "./AccessChangeInstructions";
 import ApprovalSubmissionInfo from "./ApprovalSubmissionInfo";
 
 const EmployeeTransfer = () => {
-    const { formData, updateField } = useUserFormStore();
+    const { formData, updateField } = useUserTransfer();
 
     useEffect(() => {
         const today = new Date().toISOString().split("T")[0];

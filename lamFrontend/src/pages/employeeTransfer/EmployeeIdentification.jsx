@@ -2,10 +2,10 @@ import FloatingInput from "../../components/custom/FloatingInput";
 import { SectionTitle } from "../../components/SectionTitle";
 import { Search, User } from "lucide-react";
 import dummyUsers from "../../data/dummyUser";
-import useUserFormStore from "../../store/useUserFormStore";
+import useUserTransfer from "../../store/useUserTransfer";
 
 const EmployeeIdentification = () => {
-    const { formData, updateField } = useUserFormStore();
+    const { formData, updateField } = useUserTransfer();
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -50,13 +50,38 @@ const EmployeeIdentification = () => {
                     </button>
                 </div>
 
-                <FloatingInput label="Full Name" name="name" value={formData.name} disabled />
+                <FloatingInput
+                    label="Full Name"
+                    name="name"
+                    value={formData.name}
+                    disabled
+                />
                 <div></div>
 
-                <FloatingInput label="Current Department" name="currentDepartment" value={formData.currentDepartment} disabled />
-                <FloatingInput label="Current Branch" name="currentBranch" value={formData.currentBranch} disabled />
-                <FloatingInput label="Current Designation" name="currentDesignation" value={formData.currentDesignation} disabled />
-                <FloatingInput label="Current Line Manager" name="currentLineManager" value={formData.currentLineManager} disabled />
+                <FloatingInput
+                    label="Current Department"
+                    name="currentDepartment"
+                    value={formData.currentDepartment}
+                    disabled
+                />
+                <FloatingInput
+                    label="Current Branch"
+                    name="currentBranch"
+                    value={formData.currentBranch}
+                    disabled
+                />
+                <FloatingInput
+                    label="Current Designation"
+                    name="currentDesignation"
+                    value={formData.currentDesignation}
+                    disabled
+                />
+                <FloatingInput
+                    label="Current Line Manager"
+                    name="currentLineManager"
+                    value={formData.currentLineManager}
+                    disabled
+                />
             </section>
         </>
     );

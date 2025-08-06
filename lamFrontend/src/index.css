@@ -1,5 +1,5 @@
 @import "tailwindcss";
-
+/* 
 @font-face {
     font-family: 'IDLCFont';
     src: url('fonts/IDLC-Regular.ttf') format('truetype');
@@ -16,5 +16,5 @@
 
 body {
     font-family: 'IDLCFont1', sans-serif;
-    /* Fallback to a generic sans-serif font */
-}
+   
+} */

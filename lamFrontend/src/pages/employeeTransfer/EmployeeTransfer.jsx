@@ -1,39 +1,17 @@
-import { useEffect } from 'react';
-import useUserFormStore from '../../store/useUserFormStore';
-import FloatingInput from '../../components/custom/FloatingInput';
-import { SectionTitle } from '../../components/SectionTitle';
-import { Info, Search, User } from 'lucide-react';
-import dummyUsers from '../../data/dummyUser';
-import { FaIdBadge } from 'react-icons/fa';
-import { MdAssignment } from 'react-icons/md';
-import { RiKey2Fill } from 'react-icons/ri';
-import { BsCheck2Circle } from 'react-icons/bs';
+import { useEffect } from "react";
+import useUserFormStore from "../../store/useUserFormStore";
+import EmployeeIdentification from "./EmployeeIdentification";
+import NewAssignmentDetails from "./NewAssignmentDetails";
+import AccessChangeInstructions from "./AccessChangeInstructions";
+import ApprovalSubmissionInfo from "./ApprovalSubmissionInfo";
 
 const EmployeeTransfer = () => {
     const { formData, updateField } = useUserFormStore();
 
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        updateField(name, value);
-    };
-
     useEffect(() => {
-        const today = new Date().toISOString().split('T')[0];
-        updateField('requestDate', today);
+        const today = new Date().toISOString().split("T")[0];
+        updateField("requestDate", today);
     }, [updateField]);
-
-    const handleSearch = () => {
-        const match = dummyUsers.find((u) => u.cif === formData.cif);
-        if (match) {
-            updateField("name", match.name);
-            updateField("currentDepartment", match.department);
-            updateField("currentBranch", match.branch);
-            updateField("currentDesignation", match.designation);
-            updateField("currentLineManager", match.lineManager);
-        } else {
-            alert("No user found with this CIF");
-        }
-    };
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -47,74 +25,10 @@ const EmployeeTransfer = () => {
                 Employee Transfer Request Form
             </h1>
 
-            {/* Employee Identification */}
-            <SectionTitle className="mb-3"><User className="w-5 h-5 text-red-600 mr-2" />Employee Identification</SectionTitle>
-            <section className="bg-white rounded-md border border-red-200 px-6 py-6 grid grid-cols-1 md:grid-cols-3 gap-y-2 md:gap-y-2 gap-x-4 md:gap-x-8 mb-8 shadow">
-                {/* CIF + Search button share same column */}
-                <div className="flex gap-2 items-end">
-                    <FloatingInput
-                        label="CIF / NID"
-                        name="cif"
-                        value={formData.cif}
-                        onChange={handleChange}
-                        className="flex-1"
-                    />
-                    <button
-                        type="button"
-                        onClick={handleSearch}
-                        className="bg-red-600/80 hover:bg-red-700 text-white px-4 py-2 rounded-md transition"
-                    >
-                        <Search className="w-5 h-5" />
-                    </button>
-                </div>
-
-                {/* Name in next column */}
-                <FloatingInput
-                    label="Full Name"
-                    name="name"
-                    value={formData.name}
-                    disabled
-                />
-
-                {/* Leave 3rd column empty for this row */}
-                <div></div>
-
-                {/* Other inputs */}
-                <FloatingInput label="Current Department" name="currentDepartment" value={formData.currentDepartment} disabled />
-                <FloatingInput label="Current Branch" name="currentBranch" value={formData.currentBranch} disabled />
-                <FloatingInput label="Current Designation" name="currentDesignation" value={formData.currentDesignation} disabled />
-                <FloatingInput label="Current Line Manager" name="currentLineManager" value={formData.currentLineManager} disabled />
-            </section>
-
-            {/* New Assignment Details */}
-            <SectionTitle className="mb-3"><MdAssignment className="w-5 h-5 text-red-600 mr-2" />New Assignment Details</SectionTitle>
-            <section className="bg-white rounded-md border border-red-200 px-6 py-6 grid grid-cols-1 md:grid-cols-3 gap-y-2 md:gap-y-2 gap-x-4 md:gap-x-8 mb-8 shadow">
-                <FloatingInput label="New Department" name="newDepartment" value={formData.newDepartment} onChange={handleChange} />
-                <FloatingInput label="New Branch" name="newBranch" value={formData.newBranch} onChange={handleChange} />
-                <FloatingInput label="New Line Manager" name="newLineManager" value={formData.newLineManager} onChange={handleChange} />
-                <FloatingInput label="Effective Date of Transfer" name="effectiveDate" type="date" value={formData.effectiveDate} onChange={handleChange} />
-                <FloatingInput label="Reason for Transfer (Optional)" name="reason" value={formData.reason} onChange={handleChange} />
-                <FloatingInput label="Remarks (if any)" name="newRemarks" value={formData.newRemarks} onChange={handleChange} />
-            </section>
-
-            {/* Access Change Instructions */}
-            <SectionTitle className="mb-3"><RiKey2Fill className="w-5 h-5 text-red-600 mr-2" />Access Change Instructions</SectionTitle>
-            <section className="bg-white rounded-md border border-red-200 px-6 py-6 grid grid-cols-1 md:grid-cols-3 gap-y-2 md:gap-y-2 gap-x-4 md:gap-x-8 mb-8 shadow">
-                <FloatingInput label="Revoke Existing Software Access" name="revokeSoftware" value={formData.revokeSoftware} onChange={handleChange} />
-                <FloatingInput label="Revoke Existing Device Access" name="revokeDevice" value={formData.revokeDevice} onChange={handleChange} />
-                <FloatingInput label="Assign New Role-Based Access (Auto from Matrix)" name="autoAssignAccess" value={formData.autoAssignAccess} onChange={handleChange} />
-                <FloatingInput label="Remarks (if any)" name="accessRemarks" value={formData.accessRemarks} onChange={handleChange} />
-            </section>
-
-            {/* Approval & Submission Info */}
-            <SectionTitle className="mb-3"><Info className="w-5 h-5 text-red-600 mr-2" />Approval & Submission Info</SectionTitle>
-            <section className="bg-white rounded-md border border-red-200 px-6 py-6 grid grid-cols-1 md:grid-cols-3 gap-y-2 md:gap-y-2 gap-x-4 md:gap-x-8 mb-8 shadow">
-                <FloatingInput label="Requested By" name="requestedBy" value={formData.requestedBy} onChange={handleChange} />
-                <FloatingInput label="Request Date" name="requestDate" type="date" value={formData.requestDate} disabled />
-                <FloatingInput label="Line Manager Approval Status" name="lineManagerApproval" value={formData.lineManagerApproval} onChange={handleChange} />
-                <FloatingInput label="Department Head / HR Approval Status" name="hrApproval" value={formData.hrApproval} onChange={handleChange} />
-                <FloatingInput label="IT/Admin Final Action Status" name="itFinalAction" value={formData.itFinalAction} onChange={handleChange} />
-            </section>
+            <EmployeeIdentification />
+            <NewAssignmentDetails />
+            <AccessChangeInstructions />
+            <ApprovalSubmissionInfo />
 
             <div className="text-center">
                 <button

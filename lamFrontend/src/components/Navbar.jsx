@@ -1,15 +1,12 @@
 import { Menu } from "lucide-react";
 import useSidebarStore from "../store/useSidebarStore";
-import { RiDashboardHorizontalFill } from "react-icons/ri";
 import { useNavigate } from "react-router-dom";
 
 const Navbar = ({ onLoginClick }) => {
   const toggleSidebar = useSidebarStore((state) => state.toggleSidebar);
   const navigate = useNavigate();
 
-  const goToDashboard = () => {
-    navigate("/review-dashboard"); 
-  };
+
 
   return (
     <header className="sticky top-0 z-30 bg-red-600/80 shadow-md">
@@ -29,12 +26,7 @@ const Navbar = ({ onLoginClick }) => {
           </h1>
         </div>
 
-     <button
-          className="hover:text-yellow-300 transition"
-          onClick={() => navigate("/dashboard")}
-        >
-          <RiDashboardHorizontalFill size={28} className="text-white" />
-        </button>
+    
       </div>
     </header>
   );

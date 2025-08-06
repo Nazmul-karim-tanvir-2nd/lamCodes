@@ -7,6 +7,8 @@ import {
     CheckCircle,
     X,
 } from "lucide-react";
+import { ShieldUser } from 'lucide-react';
+
 import idlclogo from "../../assets/idlclogo.jpg";
 import useSidebarStore from "../../store/useSidebarStore";
 
@@ -15,6 +17,8 @@ const navItems = [
     { to: "/access-request", label: "Access Request", icon: <Key size={22} aria-hidden="true" /> },
     { to: "/employee-transfer", label: "Employee Transfer", icon: <RefreshCcw size={22} aria-hidden="true" /> },
     { to: "/employee-clearance", label: "Employee Clearance", icon: <CheckCircle size={22} aria-hidden="true" /> },
+     { to: "/dashboard", label: "Access Review", icon: <ShieldUser size={22} aria-hidden="true" /> },
+     
 ];
 
 const Sidebar = () => {

@@ -1,4 +1,4 @@
-// src/pages/access-request/AccessTypesSection.jsx
+// src/pages/accessRequest/AccessTypesSection.jsx
 import { Key } from "lucide-react";
 import FloatingCheckbox from "../../components/custom/FloatingCheckbox";
 import { SectionTitle } from "../../components/SectionTitle";

@@ -6,6 +6,7 @@ import useAccessRequestStore from "./../../store/accessRequestStore";
 import EmployeeInfoSection from "./EmployeeInfoSection";
 import AccessTypesSection from "./AccessTypesSection";
 import NotesAttachmentsSection from "./NotesAttachmentsSection";
+import { getAccessKey } from "../../lib/accessTypeMapper";
 
 const AccessRequestMain = () => {
   const {
@@ -19,26 +20,48 @@ const AccessRequestMain = () => {
 
   const [cifInput, setCifInput] = useState("");
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (!cif) {
-      Swal.fire("Missing CIF", "Please enter a valid CIF before submitting.", "error");
-      return;
-    }
+const handleSubmit = (e) => {
+  e.preventDefault();
+  if (!cif) {
+    Swal.fire("Missing CIF", "Please enter a valid CIF before submitting.", "error");
+    return;
+  }
 
-    const formData = {
-      cif,
-      selectedTypes,
-      fields,
-      attachment,
-      submittedAt: new Date().toISOString()
-    };
+  // Validate access fields
+ const filledFields = {};
+selectedTypes.forEach((type) => {
+  const key = getAccessKey(type);
+  if (key && fields[key]) {
+    filledFields[key] = { ...fields[key] };
+  }
+});
 
-    localStorage.setItem("accessRequest", JSON.stringify(formData));
-    Swal.fire("Access Request Submitted", "", "success");
-    reset();
-    setCifInput("");
+  // Optional notes
+  if (fields?.Notes?.details) {
+    filledFields["Notes"] = { details: fields.Notes.details };
+  }
+
+  const formData = {
+    cif,
+    selectedTypes,
+    fields: filledFields,
+    attachment,
+    submittedAt: new Date().toISOString(),
+    lineManagerStatus: "Successful",
+    reviewStatus: "Pending",
+    reviewer: null,
+    reviewComment: ""
   };
+
+  const existing = JSON.parse(localStorage.getItem("accessRequests")) || [];
+  existing.push(formData);
+  localStorage.setItem("accessRequests", JSON.stringify(existing));
+
+  Swal.fire("Access Request Submitted", "", "success");
+  reset();
+  setCifInput("");
+};
+
 
   return (
     <form onSubmit={handleSubmit} className="w-full p-2 sm:p-2 space-y-8">
@@ -60,3 +83,4 @@ const AccessRequestMain = () => {
 };
 
 export default AccessRequestMain;
+

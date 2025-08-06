@@ -1,3 +1,4 @@
+// src/data/dummyUser2.js
 const dummyUsers2 = [
   {
     cif: "123458",
@@ -11,7 +12,8 @@ const dummyUsers2 = [
     lineManager: "Md. Nurul Alam Jewel",
     emergencyContact: "01724448104",
     biometricStatus: "Verified",
-  },
+    lineManagerStatus: "Successful"
+  }
 ];
 
 export default dummyUsers2;

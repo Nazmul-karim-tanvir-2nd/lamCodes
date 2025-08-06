@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import useUserFormStore from '../../store/useUserFormStore';
 import FloatingInput from '../../components/custom/FloatingInput';
 import { SectionTitle } from '../../components/SectionTitle';
-import { Search, User } from 'lucide-react';
+import { Info, Search, User } from 'lucide-react';
 import dummyUsers from '../../data/dummyUser';
 import { FaIdBadge } from 'react-icons/fa';
 import { MdAssignment } from 'react-icons/md';
@@ -107,7 +107,7 @@ const EmployeeTransfer = () => {
             </section>
 
             {/* Approval & Submission Info */}
-            <SectionTitle className="mb-3"><BsCheck2Circle className="w-5 h-5 text-red-600 mr-2" />Approval & Submission Info</SectionTitle>
+            <SectionTitle className="mb-3"><Info className="w-5 h-5 text-red-600 mr-2" />Approval & Submission Info</SectionTitle>
             <section className="bg-white rounded-md border border-red-200 px-6 py-6 grid grid-cols-1 md:grid-cols-3 gap-y-2 md:gap-y-2 gap-x-4 md:gap-x-8 mb-8 shadow">
                 <FloatingInput label="Requested By" name="requestedBy" value={formData.requestedBy} onChange={handleChange} />
                 <FloatingInput label="Request Date" name="requestDate" type="date" value={formData.requestDate} disabled />

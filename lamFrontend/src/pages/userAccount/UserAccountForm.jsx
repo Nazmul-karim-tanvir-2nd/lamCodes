@@ -7,6 +7,7 @@ import BasicInfoSection from './BasicInfoSection.jsx';
 import DepartmentRoleSection from './DepartmentRoleSection.jsx';
 import AttachmentsSection from './AttachmentsSection.jsx';
 import MetadataSection from './MetadataSection.jsx';
+import { checkCIF } from "../../api/userFormApi";
 
 const UserAccountForm = () => {
     const { formData, updateField } = useUserFormStore();
@@ -33,17 +34,25 @@ const UserAccountForm = () => {
     };
 
 
-    const handleCIFSearch = () => {
+    const handleCIFSearch = async () => {
         const sanitizedCIF = formData.cif.trim().replace(/[^\w\s\-]/gi, '');
-        const match = dummyUsers.find((u) => u.cif === sanitizedCIF);
-        if (match) {
-            updateField("name", match.name);
-            updateField("mobile", match.mobile);
-            updateField("biometricStatus", match.biometricStatus);
+        if (!sanitizedCIF) {
+            Swal.fire({ title: "Enter a valid CIF", icon: "warning" });
+            return;
+        }
+
+        const data = await checkCIF(sanitizedCIF);
+
+        if (data.exists) {
+            updateField("name", data.name);
+            updateField("mobile", data.mobile);
+            updateField("biometricStatus", data.biometricStatus);
+            Swal.fire({ title: "CIF Found", text: `User: ${data.name}`, icon: "success" });
         } else {
-            alert("No user found with this CIF");
+            Swal.fire({ title: "CIF Not Found", icon: "error" });
         }
     };
+
 
     const handleSubmit = (e) => {
         e.preventDefault();

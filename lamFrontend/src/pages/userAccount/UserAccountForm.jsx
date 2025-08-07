@@ -2,7 +2,7 @@ import useUserFormStore from '../../store/useUserFormStore';
 import { useEffect } from 'react';
 import dummyUsers from '../../data/dummyUser.js';
 import { Button } from '../../components/ui/Button.jsx';
-
+import Swal from "sweetalert2";
 import BasicInfoSection from './BasicInfoSection.jsx';
 import DepartmentRoleSection from './DepartmentRoleSection.jsx';
 import AttachmentsSection from './AttachmentsSection.jsx';
@@ -44,7 +44,11 @@ const UserAccountForm = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log("Submitted Data:", formData);
-        alert("Form submitted! Check console for full data.");
+        Swal.fire({
+            title: "Form Submitted Successfully!",
+            icon: "success",
+            draggable: true
+        });
     };
 
     useEffect(() => {

@@ -68,7 +68,7 @@ const AccessReviewDashboard = () => {
 });
 
   return (
-    <div className="p-4 max-w-7xl mx-auto">
+    <div className="p-4  mx-auto">
       <h1 className="text-xl font-bold text-center text-blue-800 mb-6 underline underline-offset-8 decoration-gray-500/80">
         Access Review Dashboard
       </h1>

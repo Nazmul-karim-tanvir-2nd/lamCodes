@@ -1,20 +1,20 @@
 @import "tailwindcss";
-/* 
+
 @font-face {
     font-family: 'IDLCFont';
-    src: url('fonts/IDLC-Regular.ttf') format('truetype');
+    src: url('../src/assets/fonts/IDLC-Regular.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'IDLCFont1';
-    src: url('fonts/K2D-Regular.ttf') format('truetype');
+    src: url('../src/assets/fonts/K2D-Regular.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
 
 body {
-    font-family: 'IDLCFont1', sans-serif;
-   
-} */
+    font-family: 'IDLCFont', sans-serif;
+    /* Fallback to a generic sans-serif font */
+}

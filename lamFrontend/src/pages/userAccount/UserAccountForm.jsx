@@ -15,9 +15,15 @@ const UserAccountForm = () => {
         const { name, value, files, type, checked } = e.target;
         if (type === 'file') {
             const file = files[0];
-            const allowedTypes = ['application/pdf', 'image/jpeg', 'image/png'];
+            const allowedTypes = [
+                'application/pdf',
+                'image/jpeg',
+                'image/png',
+                'application/msword',                      // .doc
+                'application/vnd.openxmlformats-officedocument.wordprocessingml.document'  // .docx
+            ];
             if (!allowedTypes.includes(file.type)) {
-                alert("Invalid file type. Only PDF, JPG, and PNG are allowed.");
+                alert("Invalid file type. Only PDF, JPG, PNG, DOC, and DOCX are allowed.");
                 return;
             }
             updateField(name, file);
@@ -26,15 +32,13 @@ const UserAccountForm = () => {
         else updateField(name, value);
     };
 
+
     const handleCIFSearch = () => {
         const sanitizedCIF = formData.cif.trim().replace(/[^\w\s\-]/gi, '');
         const match = dummyUsers.find((u) => u.cif === sanitizedCIF);
         if (match) {
             updateField("name", match.name);
             updateField("mobile", match.mobile);
-            updateField("gender", match.gender);
-            updateField("bloodGroup", match.bloodGroup);
-            updateField("emergencyContact", match.emergencyContact);
             updateField("biometricStatus", match.biometricStatus);
         } else {
             alert("No user found with this CIF");

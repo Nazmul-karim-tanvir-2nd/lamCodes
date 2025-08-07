@@ -29,6 +29,9 @@ const AttachmentsSection = ({ formData, handleChange }) => {
                         className="p-2 border rounded-lg bg-white shadow-sm"
                         disabled={!isEditable}
                     />
+                    <p className="text-sm text-gray-500 mt-1">
+                        Formats: PDF, DOC, JPG, PNG.
+                    </p>
                 </div>
             </div>
         </>

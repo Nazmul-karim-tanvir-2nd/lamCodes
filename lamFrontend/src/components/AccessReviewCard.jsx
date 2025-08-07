@@ -58,8 +58,12 @@ const AccessReviewCard = ({
                 <p className="font-medium text-gray-700">{type}</p>
 
                 {key === "Software" && (
-                  <p className="text-sm"><strong>Justification:</strong> {data?.justification || "N/A"}</p>
-                )}
+  <>
+    <p className="text-sm"><strong>Category:</strong> {data?.category || "N/A"}</p>
+    <p className="text-sm"><strong>Software:</strong> {data?.software || "N/A"}</p>
+    <p className="text-sm"><strong>Justification:</strong> {data?.justification || "N/A"}</p>
+  </>
+)}
                 {key === "Cloud" && (
                   <>
                     <p className="text-sm"><strong>Service:</strong> {data?.service || "N/A"}</p>

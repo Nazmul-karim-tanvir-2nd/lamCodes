@@ -13,13 +13,22 @@ const UserAccountForm = () => {
 
     const handleChange = (e) => {
         const { name, value, files, type, checked } = e.target;
-        if (type === 'file') updateField(name, files[0]);
+        if (type === 'file') {
+            const file = files[0];
+            const allowedTypes = ['application/pdf', 'image/jpeg', 'image/png'];
+            if (!allowedTypes.includes(file.type)) {
+                alert("Invalid file type. Only PDF, JPG, and PNG are allowed.");
+                return;
+            }
+            updateField(name, file);
+        }
         else if (type === 'checkbox') updateField(name, checked);
         else updateField(name, value);
     };
 
     const handleCIFSearch = () => {
-        const match = dummyUsers.find((u) => u.cif === formData.cif);
+        const sanitizedCIF = formData.cif.trim().replace(/[^\w\s\-]/gi, '');
+        const match = dummyUsers.find((u) => u.cif === sanitizedCIF);
         if (match) {
             updateField("name", match.name);
             updateField("mobile", match.mobile);

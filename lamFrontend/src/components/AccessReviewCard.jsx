@@ -1,70 +1,161 @@
-//src/components/AccessReviewCard
 import React from "react";
-import { getAccessKey } from "../../lib/accessTypeMapper";
+import { getAccessKey } from "../lib/accessTypeMapper";
+import { FaKey } from "react-icons/fa";
+import FloatingTextarea from "../components/custom/FloatingTextarea";
+import { Button } from "./ui/Button";
+import dummyUsers2 from "../data/dummyUser2";
+import FloatingCheckbox from "../components/custom/FloatingCheckbox";
 
 
+const AccessReviewCard = ({
+  request,
+  selectedTypes,
+  toggleAccessType,
+  onApprove,
+  onReject,
+  onCommentChange,
+}) => {
+  const user = dummyUsers2.find(u => u.cif === request.cif);
 
-
-const AccessReviewCard = ({ request }) => {
   return (
-    <div className="bg-white border border-gray-200 rounded-md p-6 shadow space-y-4 mb-6">
-      <div className="text-sm text-gray-600">
-        <p><strong>CIF:</strong> {request.cif}</p>
-        <p><strong>Submitted At:</strong> {new Date(request.submittedAt).toLocaleString()}</p>
-        <p><strong>Line Manager Approval:</strong> {request?.fields?.ManagerApproval || "Pending"}</p>
+    <div className="bg-white border border-red-300 rounded-lg shadow-md p-4 space-y-4 w-full">
+      {/* Employee Info */}
+      <div className=" rounded-md bg-gray-50 p-4 grid grid-cols-1 md:grid-cols-2 gap-2">
+        <div>
+          <p><strong>CIF:</strong> {request.cif}</p>
+          <p><strong>Name:</strong> {user?.name || "N/A"}</p>
+        </div>
+        <div>
+          <p><strong>Department:</strong> {user?.department || "N/A"}</p>
+          <p><strong>Line Manager:</strong> {user?.lineManager || "N/A"}</p>
+          <p><strong>Submitted:</strong> {new Date(request.submittedAt).toLocaleString()}</p>
+        </div>
       </div>
 
-      <div>
-        <h3 className="font-semibold text-gray-800 mb-2">Access Type Justifications</h3>
-        {request.selectedTypes.map((label) => {
-          const key = getAccessKey(label);
-          const field = request.fields?.[key];
+      {/* Access Section */}
+      <div className=" rounded-md p-4">
+        <h2 className="font-semibold flex items-center gap-2 text-gray-800 mb-4">
+          <FaKey className="text-red-600" /> Requested Access
+        </h2>
 
-          return (
-            <div key={label} className="mb-4">
-              <p className="font-medium text-gray-700">{label}</p>
-              {field?.justification && (
-                <p className="text-sm text-gray-600 mt-1">
-                  <strong>Justification:</strong> {field.justification}
-                </p>
-              )}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          {request.selectedTypes.map((type) => {
+            const key = getAccessKey(type);
+            const data = request.fields?.[key];
+            const checked = selectedTypes.includes(type);
 
-              {key === "Cloud" && field?.service && (
-                <p className="text-sm text-gray-600 mt-1">
-                  <strong>Cloud Service:</strong> {field.service}
-                </p>
-              )}
+            return (
+              <div key={type} className=" p-3 rounded-md shadow-sm bg-gray-50 relative">
+                <div className="absolute top-2 right-2">
+  <FloatingCheckbox
+    name={type}
+    checked={checked}
+    onChange={() => toggleAccessType(type)}
+  />
+</div>
+                <p className="font-medium text-gray-700">{type}</p>
 
-              {key === "Device" && field?.type && (
-                <p className="text-sm text-gray-600 mt-1">
-                  <strong>Device Type:</strong> {field.type}
-                </p>
-              )}
+                {key === "Software" && (
+                  <p className="text-sm"><strong>Justification:</strong> {data?.justification || "N/A"}</p>
+                )}
+                {key === "Cloud" && (
+                  <>
+                    <p className="text-sm"><strong>Service:</strong> {data?.service || "N/A"}</p>
+                    <p className="text-sm"><strong>Justification:</strong> {data?.justification || "N/A"}</p>
+                  </>
+                )}
+                {key === "Internet" && (
+                  <p className="text-sm"><strong>Justification:</strong> {data?.justification || "N/A"}</p>
+                )}
+                {key === "Device" && (
+                  <>
+                    <p className="text-sm"><strong>Device:</strong> {data?.type || "N/A"}</p>
+                    <p className="text-sm"><strong>Justification:</strong> {data?.justification || "N/A"}</p>
+                  </>
+                )}
+                {key === "Email" && (
+                  <>
+                    <p className="text-sm"><strong>Current:</strong> {data?.current || "N/A"} MB</p>
+                    <p className="text-sm"><strong>Required:</strong> {data?.required || "N/A"} MB</p>
+                    <p className="text-sm"><strong>Justification:</strong> {data?.justification || "N/A"}</p>
+                  </>
+                )}
+                {key === "Additional" && (
+                  <>
+                    <p className="text-sm"><strong>Access Needed:</strong> {data?.access || "N/A"}</p>
+                    <p className="text-sm"><strong>Justification:</strong> {data?.justification || "N/A"}</p>
+                  </>
+                )}
+              </div>
+            );
+          })}
+        </div>
 
-              {key === "Email" && (
-                <div className="text-sm text-gray-600 space-y-1 mt-1">
-                  <p><strong>Current Limit:</strong> {field.current} MB</p>
-                  <p><strong>Required Limit:</strong> {field.required} MB</p>
-                </div>
-              )}
-
-              {key === "Additional" && field?.access && (
-                <p className="text-sm text-gray-600 mt-1">
-                  <strong>Access Needed:</strong> {field.access}
-                </p>
-              )}
-            </div>
-          );
-        })}
+        {/* Notes + Attachment */}
+        {(request.fields?.Notes?.details || request.attachment) && (
+          <div className="mt-4 border-t pt-3">
+            {request.fields?.Notes?.details && (
+              <p className="text-sm"><strong>Remarks:</strong> {request.fields.Notes.details}</p>
+            )}
+            {request.attachment && request.attachmentName && (
+              <p className="text-sm mt-2">
+                <strong>Attachment:</strong>{" "}
+                <a
+                  href={request.attachment}
+                  download={request.attachmentName}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-600 underline"
+                >
+                  {request.attachmentName}
+                </a>
+              </p>
+            )}
+          </div>
+        )}
       </div>
 
-      <div className="flex gap-4">
-        <button className="bg-green-600 hover:bg-green-700 text-white px-4 py-1 rounded text-sm">
-          Approve
-        </button>
-        <button className="bg-red-600 hover:bg-red-700 text-white px-4 py-1 rounded text-sm">
-          Reject
-        </button>
+      {/* Review Section */}
+      <div className=" rounded-md bg-gray-50 p-4 grid grid-cols-1 md:grid-cols-3 gap-4 items-start">
+        <div>
+          <p>
+            <strong>Line Manager Status:</strong>{" "}
+            <span className={request.lineManagerStatus === "Successful" ? "text-green-600" : "text-yellow-600"}>
+              {request.lineManagerStatus}
+            </span>
+          </p>
+          <p>
+            <strong>Review Status:</strong>{" "}
+            <span className={
+              request.reviewStatus === "Approved" ? "text-green-600" :
+              request.reviewStatus === "Rejected" ? "text-red-600" : "text-gray-600"
+            }>
+              {request.reviewStatus}
+            </span>
+          </p>
+        </div>
+
+        {/* Reviewer Comment */}
+        <div>
+          <FloatingTextarea
+            label="Reviewer Comment"
+            name="comment"
+            value={request.reviewComment}
+            onChange={(e) => onCommentChange(e.target.value)}
+          />
+        </div>
+
+        {/* Buttons */}
+        {request.lineManagerStatus === "Successful" && (
+          <div className="flex gap-4 justify-end items-end">
+            <Button className="bg-green-600 text-white px-6 py-2" onClick={onApprove}>
+              Approve
+            </Button>
+            <Button className="bg-red-600 text-white px-6 py-2" onClick={onReject}>
+              Reject
+            </Button>
+          </div>
+        )}
       </div>
     </div>
   );

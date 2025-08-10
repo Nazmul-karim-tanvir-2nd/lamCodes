@@ -1,4 +1,3 @@
-// src/store/useReviewDashboardStore.js
 import { create } from "zustand";
 
 const ensureIds = (arr = []) =>
@@ -17,8 +16,8 @@ const useReviewDashboardStore = create((set, get) => ({
   loadRequests: () => {
     const stored = JSON.parse(localStorage.getItem("accessRequests")) || [];
     const normalized = ensureIds(stored);
-    localStorage.setItem("accessRequests", JSON.stringify(normalized));
     set({ requests: normalized });
+    persist(normalized); // Ensure persistence after normalization
   },
 
   setFilter: (key, value) =>
@@ -54,7 +53,6 @@ const useReviewDashboardStore = create((set, get) => ({
           perTypeStatus,
         };
       });
-      console.log('Updated requests array', { updated });
       persist(updated);
       return { requests: updated };
     }),
@@ -75,10 +73,16 @@ const useReviewDashboardStore = create((set, get) => ({
           perTypeStatus,
         };
       });
-      console.log('Updated requests array', { updated });
       persist(updated);
       return { requests: updated };
     }),
+
+  addRequest: (newRequest) => {
+    const currentRequests = get().requests;
+    const updatedRequests = [...currentRequests, newRequest];
+    set({ requests: updatedRequests });
+    persist(updatedRequests);
+  },
 }));
 
 export default useReviewDashboardStore;

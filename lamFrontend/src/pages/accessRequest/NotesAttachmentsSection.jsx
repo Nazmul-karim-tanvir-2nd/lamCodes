@@ -1,12 +1,12 @@
-// src/pages/accessRequest/NotesAttachmentsSection.jsx
+import { useState } from "react";
 import FloatingTextarea from "../../components/custom/FloatingTextarea";
-
-import { SectionTitle } from "../../components/SectionTitle"
+import { SectionTitle } from "../../components/SectionTitle";
 import { FileText } from "lucide-react";
-import useAccessRequestStore from "../../store/accessRequestStore"
+import useAccessRequestStore from "../../store/accessRequestStore";
 
 const NotesAttachmentsSection = () => {
   const { fields, setFieldValue, setAttachment } = useAccessRequestStore();
+  const [selectedFileName, setSelectedFileName] = useState("");
 
   return (
     <>
@@ -24,17 +24,19 @@ const NotesAttachmentsSection = () => {
         />
 
         <div className="flex flex-col md:col-span-2">
-          <label className="text-sm font-medium text-gray-700 mb-1">
-            Upload Supporting Documents
-          </label>
+          <label className="text-sm font-medium text-gray-700 mb-1">Upload Supporting Documents</label>
           <input
             type="file"
             accept=".pdf,.doc,.docx,.jpg,.jpeg,.png"
-            onChange={(e) => setAttachment(e.target.files[0])}
+            onChange={(e) => {
+              const file = e.target.files?.[0] || null;
+              setAttachment(file);
+              setSelectedFileName(file ? file.name : "");
+            }}
             className="p-2 border rounded-lg bg-white shadow-sm w-1/2"
           />
           <p className="text-sm text-gray-500 mt-1">
-            Formats: PDF, DOC, JPG, PNG.
+            {selectedFileName ? <>Selected: <b>{selectedFileName}</b></> : "Formats: PDF, DOC, JPG, PNG."}
           </p>
         </div>
       </div>

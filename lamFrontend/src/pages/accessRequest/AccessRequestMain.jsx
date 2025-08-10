@@ -1,15 +1,15 @@
-// src/pages/accessRequest/AccessRequestMain.jsx
 import { useState } from "react";
 import Swal from "sweetalert2";
 import { Button } from "./../../components/ui/Button";
 import useAccessRequestStore from "./../../store/accessRequestStore";
+import useReviewDashboardStore from "../../store/useReviewDashboardStore"; // Import for type safety, though not directly used
 import EmployeeInfoSection from "./EmployeeInfoSection";
 import AccessTypesSection from "./AccessTypesSection";
 import NotesAttachmentsSection from "./NotesAttachmentsSection";
 import { getAccessKey } from "../../lib/accessTypeMapper";
 import dummyUsers2 from "../../data/dummyUser2";
 
-// helper: File -> data URL (base64)
+// Helper: File -> data URL (base64)
 const fileToDataUrl = (file) =>
   new Promise((resolve) => {
     if (!file) return resolve(null);
@@ -23,12 +23,13 @@ const AccessRequestMain = () => {
     cif,
     selectedTypes,
     fields,
-    attachment,        // <— File from NotesAttachmentsSection
+    attachment, // File from NotesAttachmentsSection
     reset,
+    submitRequest, // Use the submitRequest action from accessRequestStore
   } = useAccessRequestStore();
 
   const [cifInput, setCifInput] = useState("");
-  const matchedUser = dummyUsers2.find(u => u.cif === cif);
+  const matchedUser = dummyUsers2.find((u) => u.cif === cif);
   const lineManagerStatus = matchedUser?.lineManagerStatus || "Pending";
 
   const handleSubmit = async (e) => {
@@ -46,33 +47,34 @@ const AccessRequestMain = () => {
     });
 
     // Optional notes live under fields.Notes.details
-    if (fields?.Notes?.details) {
-      filledFields["Notes"] = { details: fields.Notes.details };
+    if (fields?.Notes?.details || fields?.Notes?.attachment) {
+      filledFields["Notes"] = {
+        details: fields.Notes.details || "",
+        attachment: fields.Notes.attachment || null,
+      };
     }
 
-    // Safely persist attachment (optional)
-    const attachmentUrl = await fileToDataUrl(attachment);
-    const attachmentName = attachment ? attachment.name : null;
+    // Convert attachment to data URL
+    const attachmentUrl = await fileToDataUrl(attachment) || fields.Notes.attachment;
+    const attachmentName = attachment ? attachment.name : fields.Notes.attachment ? "uploaded-file" : null;
 
+    // Prepare form data
     const formData = {
-      // unique id so each row expands independently
-      id: `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
+      id: crypto.randomUUID(),
       cif,
       selectedTypes,
       fields: filledFields,
-      // store a serializable version of the file:
-      attachmentUrl,       // base64/dataURL
-      attachmentName,      // original filename
+      attachmentName,
+      attachmentUrl,
       submittedAt: new Date().toISOString(),
       lineManagerStatus,
       reviewStatus: "Pending",
       reviewer: null,
-      reviewComment: ""
+      reviewComment: "",
     };
 
-    const existing = JSON.parse(localStorage.getItem("accessRequests")) || [];
-    existing.push(formData);
-    localStorage.setItem("accessRequests", JSON.stringify(existing));
+    // Submit the request via accessRequestStore
+    submitRequest(formData);
 
     Swal.fire("Access Request Submitted", "", "success");
     reset();

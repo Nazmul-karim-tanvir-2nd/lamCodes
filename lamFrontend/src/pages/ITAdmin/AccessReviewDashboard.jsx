@@ -1,10 +1,8 @@
-// src/pages/ITAdmin/AccessRequestDashboard.jsx
 import React, { useEffect, useMemo, useState } from "react";
 import useReviewDashboardStore from "../../store/useReviewDashboardStore";
 import dummyUsers2 from "../../data/dummyUser2";
 import ExpandedReviewDetail from "./ExpandedReviewDetail";
 import { SectionTitle } from "../../components/SectionTitle";
-
 
 const Badge = ({ children }) => (
   <span className="inline-block px-2 py-0.5 text-[11px] rounded-full bg-gray-200 text-gray-800 mr-1 mb-1">
@@ -19,9 +17,16 @@ const statusClass = (status) => {
   return "text-yellow-700 bg-yellow-50 border-yellow-200";
 };
 
+// Function to check if the URL is an image
+const isImageUrl = (url) => {
+  return /\.(jpg|jpeg|png|gif|bmp)$/i.test(url) || /^data:image\/[a-z]+;base64,/.test(url);
+};
+
 export default function AccessReviewDashboard() {
   const { requests, loadRequests, setFilter, filters } = useReviewDashboardStore();
   const [expandedId, setExpandedId] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedImageUrl, setSelectedImageUrl] = useState(null);
 
   useEffect(() => {
     loadRequests();
@@ -37,6 +42,16 @@ export default function AccessReviewDashboard() {
   }, [requests, filters]);
 
   const toggleRow = (id) => setExpandedId((prev) => (prev === id ? null : id));
+
+  const openModal = (imageUrl) => {
+    setSelectedImageUrl(imageUrl);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setSelectedImageUrl(null);
+  };
 
   return (
     <div className="p-4 mx-auto">
@@ -88,8 +103,8 @@ export default function AccessReviewDashboard() {
                 <th className="px-4 py-3 border-b border-red-200">LM Status</th>
                 <th className="px-4 py-3 border-b border-red-200">Review Status</th>
                 <th className="px-4 py-3 border-b border-red-200">Attachment</th>
-                <th className="px-4 py-3 border-b border-red-200">Actions</th></tr>
-
+                <th className="px-4 py-3 border-b border-red-200">Actions</th>
+              </tr>
             </thead>
             <tbody>
               {filtered.map((req) => {
@@ -122,11 +137,28 @@ export default function AccessReviewDashboard() {
                         </span>
                       </td>
                       <td className="px-4 py-3 border-b border-red-200">
-                        {req.attachmentName ? (
-                          <a href={req.attachment} target="_blank" rel="noreferrer" className="text-blue-600 underline">
-                            {req.attachmentName}
-                          </a>
-                        ) : "—"}
+                        {req.attachmentUrl ? (
+                          isImageUrl(req.attachmentUrl) ? (
+                            <span
+                              className="text-blue-600 underline cursor-pointer"
+                              onClick={() => openModal(req.attachmentUrl)}
+                            >
+                              {req.attachmentName || "View Image"}
+                            </span>
+                          ) : (
+                            <a
+                              href={req.attachmentUrl}
+                              download={req.attachmentName || "attachment"}
+                              target="_blank"
+                              rel="noreferrer"
+                              className="text-blue-600 underline"
+                            >
+                              {req.attachmentName || "View / Download"}
+                            </a>
+                          )
+                        ) : (
+                          "—"
+                        )}
                       </td>
                       <td className="px-4 py-3 border-b border-red-200">
                         <button className="text-blue-600 hover:text-blue-800 underline" onClick={() => toggleRow(req.id)}>
@@ -147,6 +179,22 @@ export default function AccessReviewDashboard() {
               })}
             </tbody>
           </table>
+        </div>
+      )}
+
+      {/* Modal for larger image */}
+      {isModalOpen && selectedImageUrl && (
+        <div
+          className="fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center z-50"
+          onClick={closeModal}
+        >
+          <div
+            className="bg-white p-4 rounded-lg w-full h-full overflow-auto"
+            style={{ backgroundImage: `url(${selectedImageUrl})`, backgroundSize: 'contain', backgroundRepeat: 'no-repeat', backgroundPosition: 'center' }}
+            onClick={(e) => e.stopPropagation()} // Prevent closing when clicking inside modal
+          >
+            {/* Cross icon removed */}
+          </div>
         </div>
       )}
     </div>

@@ -1,48 +1,39 @@
 import { useEffect, useMemo, useState } from "react";
 import useReviewDashboardStore from "../../store/useReviewDashboardStore";
 
-// Display names -> field keys saved in localStorage
 const TYPE_KEY = {
   "Software Access": "Software",
   "Cloud Access": "Cloud",
   "Internet Access": "Internet",
   "Device Request": "Device",
   "Email Attachment Increase": "Email",
+  "Increase Email Attachment Size": "Email",
   "Additional Access": "Additional",
 };
 
-// Which fields to show for each access key
 const FIELDS_MAP = {
-  Software:   [
+  Software: [
     ["Category", "category"],
     ["Software", "software"],
     ["Justification", "justification"],
-    ["Notes", "notes"],
   ],
-  Cloud:      [
+  Cloud: [
     ["Service", "service"],
     ["Justification", "justification"],
-    ["Notes", "notes"],
   ],
-  Internet:   [
-    ["Justification", "justification"],
-    ["Notes", "notes"],
-  ],
-  Device:     [
+  Internet: [["Justification", "justification"]],
+  Device: [
     ["Device Type", "type"],
     ["Justification", "justification"],
-    ["Notes", "notes"],
   ],
-  Email:      [
+  Email: [
     ["Current (MB)", "current"],
     ["Required (MB)", "required"],
     ["Justification", "justification"],
-    ["Notes", "notes"],
   ],
   Additional: [
     ["Access Needed", "access"],
     ["Justification", "justification"],
-    ["Notes", "notes"],
   ],
 };
 
@@ -57,181 +48,114 @@ const Row = ({ label, value }) => (
 
 export default function ExpandedReviewDetail({ request, isFinalized }) {
   const approveRequest = useReviewDashboardStore((s) => s.approveRequest);
-  const rejectRequest  = useReviewDashboardStore((s) => s.rejectRequest);
+  const rejectRequest = useReviewDashboardStore((s) => s.rejectRequest);
 
-  const [checked, setChecked] = useState(() => new Set());
   const [comment, setComment] = useState(request.reviewComment || "");
 
   const visibleTypes = useMemo(
-    () => (request.selectedTypes || []).filter((t) => allTypes.includes(t)),
+    () => (request.selectedTypes || []).filter((type) => allTypes.includes(type)),
     [request.selectedTypes]
   );
 
-  // Reset when the row changes
   useEffect(() => {
-    setChecked(new Set());
     setComment(request.reviewComment || "");
   }, [request.id, request.reviewComment]);
 
-  const toggle = (type) => {
-    setChecked((prev) => {
-      const next = new Set(prev);
-      if (next.has(type)) next.delete(type);
-      else next.add(type);
-      return next;
-    });
-  };
-
-  const LM_OK = request.lineManagerStatus === "Successful";
-  const canAction = LM_OK && !isFinalized;
+  const isLineManagerApproved = request.lineManagerStatus === "Successful";
+  const canApprove = isLineManagerApproved && !isFinalized;
+  const canReject = isLineManagerApproved && !isFinalized;
+  const isCommentEmpty = !comment?.trim();
+  const isApproveDisabled = !canApprove || isCommentEmpty;
+  const isRejectDisabled = !canReject || isCommentEmpty;
 
   return (
     <div className="rounded border border-gray-200 bg-white p-4 space-y-14">
-      {/* ===== Details Section ===== */}
       <div>
         <h3 className="font-semibold text-gray-800 mb-3">Access details</h3>
-
-        {(visibleTypes.length === 0) && (
-          <div className="text-sm text-gray-500">No access types selected.</div>
-        )}
-
         <div className="space-y-6">
           {visibleTypes.map((displayType) => {
             const key = TYPE_KEY[displayType];
             const data = (request.fields && request.fields[key]) || {};
-            const fieldDefs = FIELDS_MAP[key] || [];
+            const fieldDefinitions = FIELDS_MAP[key] || [];
 
             return (
               <div key={`${request.id}-${key}`} className="rounded border border-gray-200 p-3">
                 <div className="font-medium text-gray-900 mb-2">{displayType}</div>
-
-                {fieldDefs.map(([label, prop]) => (
+                {fieldDefinitions.map(([label, prop]) => (
                   <Row key={prop} label={label} value={data[prop]} />
                 ))}
-
-                {/* per-type attachment if you store it inside request.fields[key].attachmentPreview */}
-                {"attachmentPreview" in data && (
-                  <Row
-                    label="Attachment"
-                    value={
-                      data.attachmentPreview
-                        ? (
-                          <a
-                            href={data.attachmentPreview}
-                            target="_blank"
-                            rel="noreferrer"
-                            className="text-blue-600 underline"
-                          >
-                            View / Download
-                          </a>
-                        )
-                        : "No file attached"
-                    }
-                  />
-                )}
               </div>
             );
           })}
-        </div>
 
-        {/* top-level attachment (from Notes/Attachments section) if you save it on request.attachmentUrl */}
-        {"attachmentUrl" in request && (
-          <div className="mt-4">
+          {"Notes" in (request.fields || {}) && (
+            <div className="rounded border border-gray-200 p-3">
+              <div className="font-medium text-gray-900 mb-2">Additional Notes</div>
+              <Row label="Remarks" value={request.fields.Notes?.details} />
+            </div>
+          )}
+
+          <div className="rounded border border-gray-200 p-3">
+            <div className="font-medium text-gray-900 mb-2">Overall Attachment</div>
             <Row
-              label="Overall Attachment"
+              label="File"
               value={
-                request.attachmentUrl
-                  ? (
-                    <a
-                      href={request.attachmentUrl}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="text-blue-600 underline"
-                    >
-                      View / Download
-                    </a>
-                  )
-                  : "—"
+                request.attachmentUrl ? (
+                  <a
+                    href={request.attachmentUrl}
+                    download={request.attachmentName || "attachment"}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-blue-600 underline"
+                  >
+                    {request.attachmentName || "View / Download"}
+                  </a>
+                ) : (
+                  "—"
+                )
               }
             />
           </div>
-        )}
+        </div>
       </div>
 
-      {/* ===== Approve/Reject Section ===== */}
       <div>
-        <div className="text-sm text-gray-600 mb-2">
-          Select the access types you want to <b>approve</b>. Unchecked types will be rejected.
-        </div>
-
-        <div className="flex flex-wrap gap-3 mb-3">
-          {visibleTypes.map((t) => (
-            <label
-              key={`${request.id}-${t}`}
-              className={`inline-flex items-center gap-2 px-3 py-2 border rounded ${
-                checked.has(t) ? "bg-green-50 border-green-200" : "bg-gray-50 border-gray-200"
-              }`}
-            >
-              <input
-                type="checkbox"
-                checked={checked.has(t)}
-                onChange={() => toggle(t)}
-                disabled={!canAction}
-              />
-              <span className="text-sm">{t}</span>
-            </label>
-          ))}
-        </div>
-
+        <div className="text-sm text-gray-600 mb-2">This decision will apply to all requested access types.</div>
         <textarea
           className="w-full border rounded p-2 text-sm"
-          placeholder="Reviewer comment (optional)"
+          placeholder="Reviewer comment (required)"
           value={comment}
           onChange={(e) => setComment(e.target.value)}
-          disabled={!canAction}
+          disabled={!isLineManagerApproved || isFinalized}
         />
-
-        <div className="mt-3 flex gap-2">
-          {canAction ? (
-            <>
-              <button
-                className="px-4 py-2 rounded bg-green-600 text-white"
-                onClick={() => {
-                  // persist comment
-                  const stored = JSON.parse(localStorage.getItem("accessRequests") || "[]");
-                  const updated = stored.map((r) =>
-                    r.id === request.id ? { ...r, reviewComment: comment } : r
-                  );
-                  localStorage.setItem("accessRequests", JSON.stringify(updated));
-
-                  // approve by id
-                  approveRequest(request.id, Array.from(checked));
-                }}
-              >
-                Approve
-              </button>
-
-              <button
-                className="px-4 py-2 rounded bg-red-600 text-white"
-                onClick={() => {
-                  const stored = JSON.parse(localStorage.getItem("accessRequests") || "[]");
-                  const updated = stored.map((r) =>
-                    r.id === request.id ? { ...r, reviewComment: comment } : r
-                  );
-                  localStorage.setItem("accessRequests", JSON.stringify(updated));
-
-                  rejectRequest(request.id, Array.from(checked));
-                }}
-              >
-                Reject
-              </button>
-            </>
-          ) : (
-            <div className="text-sm text-gray-500">
-              {isFinalized ? "This request is finalized." : "Waiting for Line Manager approval."}
-            </div>
-          )}
+        <div className="mt-3 flex flex-col sm:flex-row gap-2">
+          <button
+            className="px-4 py-2 rounded bg-green-600 text-white disabled:opacity-50 disabled:cursor-not-allowed"
+            disabled={isApproveDisabled}
+            onClick={() => approveRequest(request.id, comment)}
+          >
+            Approve
+          </button>
+          <button
+            className="px-4 py-2 rounded bg-red-600 text-white disabled:opacity-50 disabled:cursor-not-allowed"
+            disabled={isRejectDisabled}
+            onClick={() => rejectRequest(request.id, comment)}
+          >
+            Reject
+          </button>
         </div>
+        {!isLineManagerApproved && !isFinalized && (
+          <div className="text-sm text-gray-500 mt-2">Waiting for Line Manager approval.</div>
+        )}
+        {isFinalized && (
+          <div className="text-sm text-gray-500 mt-2">
+            {request.reviewStatus === "Approved" ? (
+              <span className="text-green-700 font-medium">Request Approved</span>
+            ) : (
+              <span className="text-red-700 font-medium">Request Rejected</span>
+            )}
+          </div>
+        )}
       </div>
     </div>
   );

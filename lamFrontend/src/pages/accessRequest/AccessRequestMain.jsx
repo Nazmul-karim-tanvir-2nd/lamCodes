@@ -9,41 +9,60 @@ import NotesAttachmentsSection from "./NotesAttachmentsSection";
 import { getAccessKey } from "../../lib/accessTypeMapper";
 import dummyUsers2 from "../../data/dummyUser2";
 
-const uid = () =>
-  (globalThis.crypto?.randomUUID?.() ||
-    `${Date.now()}-${Math.random().toString(36).slice(2)}`);
+// helper: File -> data URL (base64)
+const fileToDataUrl = (file) =>
+  new Promise((resolve) => {
+    if (!file) return resolve(null);
+    const fr = new FileReader();
+    fr.onload = () => resolve(fr.result);
+    fr.readAsDataURL(file);
+  });
 
 const AccessRequestMain = () => {
-  const { cif, selectedTypes, fields, attachment, reset } = useAccessRequestStore();
-  const [cifInput, setCifInput] = useState("");
+  const {
+    cif,
+    selectedTypes,
+    fields,
+    attachment,        // <— File from NotesAttachmentsSection
+    reset,
+  } = useAccessRequestStore();
 
-  const matchedUser = dummyUsers2.find((u) => u.cif === cif);
+  const [cifInput, setCifInput] = useState("");
+  const matchedUser = dummyUsers2.find(u => u.cif === cif);
   const lineManagerStatus = matchedUser?.lineManagerStatus || "Pending";
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!cif) {
       Swal.fire("Missing CIF", "Please enter a valid CIF before submitting.", "error");
       return;
     }
 
-    // collect only chosen types
+    // Build selected fields only
     const filledFields = {};
     selectedTypes.forEach((type) => {
       const key = getAccessKey(type);
       if (key && fields[key]) filledFields[key] = { ...fields[key] };
     });
+
+    // Optional notes live under fields.Notes.details
     if (fields?.Notes?.details) {
       filledFields["Notes"] = { details: fields.Notes.details };
     }
 
+    // Safely persist attachment (optional)
+    const attachmentUrl = await fileToDataUrl(attachment);
+    const attachmentName = attachment ? attachment.name : null;
+
     const formData = {
-      id: uid(),                           // ✅ unique per request
+      // unique id so each row expands independently
+      id: `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
       cif,
       selectedTypes,
       fields: filledFields,
-      attachment,
-      attachmentName: attachment?.name || null,
+      // store a serializable version of the file:
+      attachmentUrl,       // base64/dataURL
+      attachmentName,      // original filename
       submittedAt: new Date().toISOString(),
       lineManagerStatus,
       reviewStatus: "Pending",

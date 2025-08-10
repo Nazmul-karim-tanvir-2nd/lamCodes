@@ -47,7 +47,7 @@ export default function AccessReviewDashboard() {
       <div className="flex gap-4 mb-6 flex-wrap">
         <select
           onChange={(e) => setFilter("department", e.target.value)}
-          className="border p-2 rounded"
+          className="border rounded-md border border-red-200 p-2 "
           value={filters.department}
         >
           <option value="">All Departments</option>
@@ -60,7 +60,7 @@ export default function AccessReviewDashboard() {
 
         <select
           onChange={(e) => setFilter("accessType", e.target.value)}
-          className="border p-2 rounded"
+          className="border rounded-md border border-red-200 p-2"
           value={filters.accessType}
         >
           <option value="">All Access Types</option>
@@ -76,19 +76,19 @@ export default function AccessReviewDashboard() {
       {filtered.length === 0 ? (
         <p className="text-center text-gray-500">No access requests found.</p>
       ) : (
-        <div className="overflow-x-auto bg-white border border-gray-200 rounded-md">
+        <div className="overflow-x-auto bg-white border rounded-md border-red-200">
           <table className="min-w-full text-sm">
             <thead className="bg-gray-50 text-gray-700">
               <tr className="text-left">
-                <th className="px-4 py-3 border-b">CIF</th>
-                <th className="px-4 py-3 border-b">Name</th>
-                <th className="px-4 py-3 border-b">Department</th>
-                <th className="px-4 py-3 border-b">Access Types</th>
-                <th className="px-4 py-3 border-b">Submitted</th>
-                <th className="px-4 py-3 border-b">LM Status</th>
-                <th className="px-4 py-3 border-b">Review Status</th>
-                <th className="px-4 py-3 border-b">Attachment</th>
-                <th className="px-4 py-3 border-b">Actions</th></tr>
+                <th className="px-4 py-3 border-b border-red-200">CIF</th>
+                <th className="px-4 py-3 border-b border-red-200">Name</th>
+                <th className="px-4 py-3 border-b border-red-200">Department</th>
+                <th className="px-4 py-3 border-b border-red-200">Access Types</th>
+                <th className="px-4 py-3 border-b border-red-200">Submitted</th>
+                <th className="px-4 py-3 border-b border-red-200">LM Status</th>
+                <th className="px-4 py-3 border-b border-red-200">Review Status</th>
+                <th className="px-4 py-3 border-b border-red-200">Attachment</th>
+                <th className="px-4 py-3 border-b border-red-200">Actions</th></tr>
 
             </thead>
             <tbody>
@@ -100,35 +100,35 @@ export default function AccessReviewDashboard() {
                 return (
                   <React.Fragment key={req.id}>
                     <tr className="hover:bg-gray-50">
-                      <td className="px-4 py-3 border-b">{req.cif}</td>
-                      <td className="px-4 py-3 border-b">{user?.name || "N/A"}</td>
-                      <td className="px-4 py-3 border-b">{user?.department || "N/A"}</td>
-                      <td className="px-4 py-3 border-b">
+                      <td className="px-4 py-3 border-b border-red-200">{req.cif}</td>
+                      <td className="px-4 py-3 border-b border-red-200">{user?.name || "N/A"}</td>
+                      <td className="px-4 py-3 border-b border-red-200">{user?.department || "N/A"}</td>
+                      <td className="px-4 py-3 border-b border-red-200">
                         <div className="flex flex-wrap">
                           {(req.selectedTypes || []).map((t) => (
                             <Badge key={`${req.id}-${t}`}>{t}</Badge>
                           ))}
                         </div>
                       </td>
-                      <td className="px-4 py-3 border-b">{req.submittedAt ? new Date(req.submittedAt).toLocaleString() : "—"}</td>
-                      <td className="px-4 py-3 border-b">
+                      <td className="px-4 py-3 border-b border-red-200">{req.submittedAt ? new Date(req.submittedAt).toLocaleString() : "—"}</td>
+                      <td className="px-4 py-3 border-b border-red-200">
                         <span className={`inline-block px-2 py-0.5 border rounded ${statusClass(req.lineManagerStatus)}`}>
                           {req.lineManagerStatus || "—"}
                         </span>
                       </td>
-                      <td className="px-4 py-3 border-b">
+                      <td className="px-4 py-3 border-b border-red-200">
                         <span className={`inline-block px-2 py-0.5 border rounded ${statusClass(req.reviewStatus)}`}>
                           {req.reviewStatus || "—"}
                         </span>
                       </td>
-                      <td className="px-4 py-3 border-b">
+                      <td className="px-4 py-3 border-b border-red-200">
                         {req.attachmentName ? (
                           <a href={req.attachment} target="_blank" rel="noreferrer" className="text-blue-600 underline">
                             {req.attachmentName}
                           </a>
                         ) : "—"}
                       </td>
-                      <td className="px-4 py-3 border-b">
+                      <td className="px-4 py-3 border-b border-red-200">
                         <button className="text-blue-600 hover:text-blue-800 underline" onClick={() => toggleRow(req.id)}>
                           {isOpen ? "Hide" : "Review"}
                         </button>
@@ -137,7 +137,7 @@ export default function AccessReviewDashboard() {
 
                     {isOpen && (
                       <tr>
-                        <td className="px-4 py-4 bg-gray-50 border-b" colSpan={9}>
+                        <td className="px-4 py-4 bg-gray-50 border-b border-red-200" colSpan={9}>
                           <ExpandedReviewDetail request={req} isFinalized={isFinalized} />
                         </td>
                       </tr>

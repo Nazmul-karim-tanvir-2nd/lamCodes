@@ -13,7 +13,7 @@ const empty = {
 export default create((set, get) => ({
   cif: '',
   showForm: false,
-  // use keys (software, cloud, internet, device, email, additional)
+ 
   selectedTypes: [],
   fields: structuredClone(empty),
 
@@ -26,7 +26,7 @@ export default create((set, get) => ({
   setFieldValue: (typeKey, field, value) =>
     set((s) => ({ fields: { ...s.fields, [typeKey]: { ...s.fields[typeKey], [field]: value } } })),
 
-  // handy when you pick a file
+
   setAttachment: (typeKey, file) =>
     set((s) => ({ fields: { ...s.fields, [typeKey]: { ...s.fields[typeKey], attachment: file } } })),
 

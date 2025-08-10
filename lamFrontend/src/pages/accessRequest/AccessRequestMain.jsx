@@ -9,64 +9,56 @@ import NotesAttachmentsSection from "./NotesAttachmentsSection";
 import { getAccessKey } from "../../lib/accessTypeMapper";
 import dummyUsers2 from "../../data/dummyUser2";
 
+const uid = () =>
+  (globalThis.crypto?.randomUUID?.() ||
+    `${Date.now()}-${Math.random().toString(36).slice(2)}`);
 
 const AccessRequestMain = () => {
-  const {
-    cif,
-    selectedTypes,
-    fields,
-    attachment,
-    reset,
-    setCif
-  } = useAccessRequestStore();
-
+  const { cif, selectedTypes, fields, attachment, reset } = useAccessRequestStore();
   const [cifInput, setCifInput] = useState("");
-  const matchedUser = dummyUsers2.find(u => u.cif === cif);
-const lineManagerStatus = matchedUser?.lineManagerStatus || "Pending";
 
+  const matchedUser = dummyUsers2.find((u) => u.cif === cif);
+  const lineManagerStatus = matchedUser?.lineManagerStatus || "Pending";
 
-const handleSubmit = (e) => {
-  e.preventDefault();
-  if (!cif) {
-    Swal.fire("Missing CIF", "Please enter a valid CIF before submitting.", "error");
-    return;
-  }
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!cif) {
+      Swal.fire("Missing CIF", "Please enter a valid CIF before submitting.", "error");
+      return;
+    }
 
-  // Validate access fields
- const filledFields = {};
-selectedTypes.forEach((type) => {
-  const key = getAccessKey(type);
-  if (key && fields[key]) {
-    filledFields[key] = { ...fields[key] };
-  }
-});
+    // collect only chosen types
+    const filledFields = {};
+    selectedTypes.forEach((type) => {
+      const key = getAccessKey(type);
+      if (key && fields[key]) filledFields[key] = { ...fields[key] };
+    });
+    if (fields?.Notes?.details) {
+      filledFields["Notes"] = { details: fields.Notes.details };
+    }
 
-  // Optional notes
-  if (fields?.Notes?.details) {
-    filledFields["Notes"] = { details: fields.Notes.details };
-  }
+    const formData = {
+      id: uid(),                           // ✅ unique per request
+      cif,
+      selectedTypes,
+      fields: filledFields,
+      attachment,
+      attachmentName: attachment?.name || null,
+      submittedAt: new Date().toISOString(),
+      lineManagerStatus,
+      reviewStatus: "Pending",
+      reviewer: null,
+      reviewComment: ""
+    };
 
-  const formData = {
-    cif,
-    selectedTypes,
-    fields: filledFields,
-    attachment,
-    submittedAt: new Date().toISOString(),
-    lineManagerStatus,
-    reviewStatus: "Pending",
-    reviewer: null,
-    reviewComment: ""
+    const existing = JSON.parse(localStorage.getItem("accessRequests")) || [];
+    existing.push(formData);
+    localStorage.setItem("accessRequests", JSON.stringify(existing));
+
+    Swal.fire("Access Request Submitted", "", "success");
+    reset();
+    setCifInput("");
   };
-
-  const existing = JSON.parse(localStorage.getItem("accessRequests")) || [];
-  existing.push(formData);
-  localStorage.setItem("accessRequests", JSON.stringify(existing));
-
-  Swal.fire("Access Request Submitted", "", "success");
-  reset();
-  setCifInput("");
-};
-
 
   return (
     <form onSubmit={handleSubmit} className="w-full p-2 sm:p-2 space-y-8">
@@ -88,4 +80,3 @@ selectedTypes.forEach((type) => {
 };
 
 export default AccessRequestMain;
-

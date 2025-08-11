@@ -207,9 +207,11 @@ export default function AccessReviewDashboard() {
             <thead className="bg-gray-50 text-gray-700">
               <tr className="text-left">
                 <th className="px-4 py-3 border-b border-red-200">
-                  
-                    <span className="px-4 py-3  text-red-600 hover:underline cursor-pointer" checked={selectAll} onChange={toggleSelectAll} disabled={eligibleRequests.length === 0} >Select All</span>
-                  
+                  <div className="flex items-center ">
+                    <span className="text-red-600 p-2 text-center">Select All</span>
+                    <FloatingCheckbox checked={selectAll} onChange={toggleSelectAll} disabled={eligibleRequests.length === 0} />
+                    
+                  </div>
                 </th>
                 <th className="px-4 py-3 border-b border-red-200">CIF</th>
                 <th className="px-4 py-3 border-b border-red-200">Name</th>

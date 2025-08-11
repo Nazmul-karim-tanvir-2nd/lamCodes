@@ -17,7 +17,7 @@ const useReviewDashboardStore = create((set, get) => ({
     const stored = JSON.parse(localStorage.getItem("accessRequests")) || [];
     const normalized = ensureIds(stored);
     set({ requests: normalized });
-    persist(normalized); // Ensure persistence after normalization
+    persist(normalized);
   },
 
   setFilter: (key, value) =>
@@ -40,7 +40,7 @@ const useReviewDashboardStore = create((set, get) => ({
   approveRequest: (id, reviewComment) =>
     set((s) => {
       const updated = s.requests.map((r) => {
-        if (r.id !== id) return r;
+        if (r.id !== id || r.lineManagerStatus !== "Successful") return r;
         const perTypeStatus = Object.fromEntries(
           (r.selectedTypes || []).map((t) => [t, "Approved"])
         );
@@ -60,7 +60,7 @@ const useReviewDashboardStore = create((set, get) => ({
   rejectRequest: (id, reviewComment) =>
     set((s) => {
       const updated = s.requests.map((r) => {
-        if (r.id !== id) return r;
+        if (r.id !== id || r.lineManagerStatus !== "Successful") return r;
         const perTypeStatus = Object.fromEntries(
           (r.selectedTypes || []).map((t) => [t, "Rejected"])
         );
@@ -83,6 +83,46 @@ const useReviewDashboardStore = create((set, get) => ({
     set({ requests: updatedRequests });
     persist(updatedRequests);
   },
+
+  approveMultiple: (ids, reviewComment) =>
+    set((s) => {
+      const updated = s.requests.map((r) => {
+        if (!ids.includes(r.id) || r.lineManagerStatus !== "Successful") return r;
+        const perTypeStatus = Object.fromEntries(
+          (r.selectedTypes || []).map((t) => [t, "Approved"])
+        );
+        return {
+          ...r,
+          reviewStatus: "Approved",
+          reviewer: "IT Admin",
+          reviewedAt: new Date().toISOString(),
+          reviewComment,
+          perTypeStatus,
+        };
+      });
+      persist(updated);
+      return { requests: updated };
+    }),
+
+  rejectMultiple: (ids, reviewComment) =>
+    set((s) => {
+      const updated = s.requests.map((r) => {
+        if (!ids.includes(r.id) || r.lineManagerStatus !== "Successful") return r;
+        const perTypeStatus = Object.fromEntries(
+          (r.selectedTypes || []).map((t) => [t, "Rejected"])
+        );
+        return {
+          ...r,
+          reviewStatus: "Rejected",
+          reviewer: "IT Admin",
+          reviewedAt: new Date().toISOString(),
+          reviewComment,
+          perTypeStatus,
+        };
+      });
+      persist(updated);
+      return { requests: updated };
+    }),
 }));
 
 export default useReviewDashboardStore;

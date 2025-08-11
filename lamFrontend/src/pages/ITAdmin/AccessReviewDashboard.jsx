@@ -1,8 +1,16 @@
 import React, { useEffect, useMemo, useState } from "react";
+import { Link } from "react-router-dom";
 import useReviewDashboardStore from "../../store/useReviewDashboardStore";
 import dummyUsers2 from "../../data/dummyUser2";
-import ExpandedReviewDetail from "./ExpandedReviewDetail";
-import { SectionTitle } from "../../components/SectionTitle";
+import FloatingCheckbox from "../../components/custom/FloatingCheckbox"; // Assume path is correct
+import Swal from "sweetalert2";
+import { IoMdCloseCircleOutline } from "react-icons/io";
+
+
+// Function to check if the URL is an image
+const isImageUrl = (url) => {
+  return /\.(jpg|jpeg|png|gif|bmp)$/i.test(url) || /^data:image\/[a-z]+;base64,/.test(url);
+};
 
 const Badge = ({ children }) => (
   <span className="inline-block px-2 py-0.5 text-[11px] rounded-full bg-gray-200 text-gray-800 mr-1 mb-1">
@@ -17,14 +25,10 @@ const statusClass = (status) => {
   return "text-yellow-700 bg-yellow-50 border-yellow-200";
 };
 
-// Function to check if the URL is an image
-const isImageUrl = (url) => {
-  return /\.(jpg|jpeg|png|gif|bmp)$/i.test(url) || /^data:image\/[a-z]+;base64,/.test(url);
-};
-
 export default function AccessReviewDashboard() {
-  const { requests, loadRequests, setFilter, filters } = useReviewDashboardStore();
-  const [expandedId, setExpandedId] = useState(null);
+  const { requests, loadRequests, setFilter, filters, approveMultiple, rejectMultiple } = useReviewDashboardStore();
+  const [selectedIds, setSelectedIds] = useState([]);
+  const [selectAll, setSelectAll] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedImageUrl, setSelectedImageUrl] = useState(null);
 
@@ -41,7 +45,66 @@ export default function AccessReviewDashboard() {
     });
   }, [requests, filters]);
 
-  const toggleRow = (id) => setExpandedId((prev) => (prev === id ? null : id));
+  const eligibleRequests = filtered.filter((r) => r.lineManagerStatus === "Successful" && !r.isFinalized);
+
+  const toggleSelectAll = () => {
+    if (selectAll) {
+      setSelectedIds([]);
+    } else {
+      setSelectedIds(eligibleRequests.map((r) => r.id));
+    }
+    setSelectAll(!selectAll);
+  };
+
+  const toggleSelect = (id) => {
+    if (selectedIds.includes(id)) {
+      setSelectedIds(selectedIds.filter((selectedId) => selectedId !== id));
+    } else {
+      setSelectedIds([...selectedIds, id]);
+    }
+  };
+
+  const handleBulkApprove = async () => {
+    if (selectedIds.length === 0) return;
+    const { value: comment } = await Swal.fire({
+      input: "textarea",
+      inputLabel: "Reviewer Comment (required)",
+      inputPlaceholder: "Enter your comment...",
+      inputAttributes: {
+        "aria-label": "Reviewer comment",
+      },
+      showCancelButton: true,
+      confirmButtonText: "Approve",
+    });
+    if (comment) {
+      approveMultiple(selectedIds, comment);
+      setSelectedIds([]);
+      setSelectAll(false);
+      loadRequests();
+      Swal.fire("Approved", "Selected requests approved.", "success");
+    }
+  };
+
+  const handleBulkReject = async () => {
+    if (selectedIds.length === 0) return;
+    const { value: comment } = await Swal.fire({
+      input: "textarea",
+      inputLabel: "Reviewer Comment (required)",
+      inputPlaceholder: "Enter your comment...",
+      inputAttributes: {
+        "aria-label": "Reviewer comment",
+      },
+      showCancelButton: true,
+      confirmButtonText: "Reject",
+    });
+    if (comment) {
+      rejectMultiple(selectedIds, comment);
+      setSelectedIds([]);
+      setSelectAll(false);
+      loadRequests();
+      Swal.fire("Rejected", "Selected requests rejected.", "success");
+    }
+  };
 
   const openModal = (imageUrl) => {
     setSelectedImageUrl(imageUrl);
@@ -88,6 +151,24 @@ export default function AccessReviewDashboard() {
         </select>
       </div>
 
+      {/* Bulk Actions */}
+      {selectedIds.length > 0 && (
+        <div className="flex gap-4 mb-4">
+          <button
+            className="px-4 py-2 rounded bg-green-600 text-white disabled:opacity-50"
+            onClick={handleBulkApprove}
+          >
+            Approve Selected
+          </button>
+          <button
+            className="px-4 py-2 rounded bg-red-600 text-white disabled:opacity-50"
+            onClick={handleBulkReject}
+          >
+            Reject Selected
+          </button>
+        </div>
+      )}
+
       {filtered.length === 0 ? (
         <p className="text-center text-gray-500">No access requests found.</p>
       ) : (
@@ -95,6 +176,10 @@ export default function AccessReviewDashboard() {
           <table className="min-w-full text-sm">
             <thead className="bg-gray-50 text-gray-700">
               <tr className="text-left">
+                <th className="px-4 py-3 border-b border-red-200 text-red-600 hover:underline cursor-pointer " checked={selectAll} onClick={toggleSelectAll}>
+               Select All
+                 
+                </th>
                 <th className="px-4 py-3 border-b border-red-200">CIF</th>
                 <th className="px-4 py-3 border-b border-red-200">Name</th>
                 <th className="px-4 py-3 border-b border-red-200">Department</th>
@@ -110,33 +195,40 @@ export default function AccessReviewDashboard() {
               {filtered.map((req) => {
                 const user = dummyUsers2.find((u) => u.cif === req.cif);
                 const isFinalized = req.reviewStatus === "Approved" || req.reviewStatus === "Rejected";
-                const isOpen = expandedId === req.id;
+                const isEligible = req.lineManagerStatus === "Successful" && !isFinalized;
+                const isSelected = selectedIds.includes(req.id);
 
                 return (
-                  <React.Fragment key={req.id}>
-                    <tr className="hover:bg-gray-50">
-                      <td className="px-4 py-3 border-b border-red-200">{req.cif}</td>
-                      <td className="px-4 py-3 border-b border-red-200">{user?.name || "N/A"}</td>
-                      <td className="px-4 py-3 border-b border-red-200">{user?.department || "N/A"}</td>
-                      <td className="px-4 py-3 border-b border-red-200">
-                        <div className="flex flex-wrap">
-                          {(req.selectedTypes || []).map((t) => (
-                            <Badge key={`${req.id}-${t}`}>{t}</Badge>
-                          ))}
-                        </div>
-                      </td>
-                      <td className="px-4 py-3 border-b border-red-200">{req.submittedAt ? new Date(req.submittedAt).toLocaleString() : "—"}</td>
-                      <td className="px-4 py-3 border-b border-red-200">
-                        <span className={`inline-block px-2 py-0.5 border rounded ${statusClass(req.lineManagerStatus)}`}>
-                          {req.lineManagerStatus || "—"}
-                        </span>
-                      </td>
-                      <td className="px-4 py-3 border-b border-red-200">
-                        <span className={`inline-block px-2 py-0.5 border rounded ${statusClass(req.reviewStatus)}`}>
-                          {req.reviewStatus || "—"}
-                        </span>
-                      </td>
-                      <td className="px-4 py-3 border-b border-red-200">
+                  <tr key={req.id} className="hover:bg-gray-50">
+                    <td className="px-4 py-3 border-b border-red-200">
+                      <FloatingCheckbox
+                        checked={isSelected}
+                        onChange={() => toggleSelect(req.id)}
+                        disabled={!isEligible}
+                      />
+                    </td>
+                    <td className="px-4 py-3 border-b border-red-200">{req.cif}</td>
+                    <td className="px-4 py-3 border-b border-red-200">{user?.name || "N/A"}</td>
+                    <td className="px-4 py-3 border-b border-red-200">{user?.department || "N/A"}</td>
+                    <td className="px-4 py-3 border-b border-red-200">
+                      <div className="flex flex-wrap">
+                        {(req.selectedTypes || []).map((t) => (
+                          <Badge key={`${req.id}-${t}`}>{t}</Badge>
+                        ))}
+                      </div>
+                    </td>
+                    <td className="px-4 py-3 border-b border-red-200">{req.submittedAt ? new Date(req.submittedAt).toLocaleString() : "—"}</td>
+                    <td className="px-4 py-3 border-b border-red-200">
+                      <span className={`inline-block px-2 py-0.5 border rounded ${statusClass(req.lineManagerStatus)}`}>
+                        {req.lineManagerStatus || "—"}
+                      </span>
+                    </td>
+                    <td className="px-4 py-3 border-b border-red-200">
+                      <span className={`inline-block px-2 py-0.5 border rounded ${statusClass(req.reviewStatus)}`}>
+                        {req.reviewStatus || "—"}
+                      </span>
+                    </td>
+                     <td className="px-4 py-3 border-b border-red-200">
                         {req.attachmentUrl ? (
                           isImageUrl(req.attachmentUrl) ? (
                             <span
@@ -160,21 +252,12 @@ export default function AccessReviewDashboard() {
                           "—"
                         )}
                       </td>
-                      <td className="px-4 py-3 border-b border-red-200">
-                        <button className="text-blue-600 hover:text-blue-800 underline" onClick={() => toggleRow(req.id)}>
-                          {isOpen ? "Hide" : "Review"}
-                        </button>
-                      </td>
-                    </tr>
-
-                    {isOpen && (
-                      <tr>
-                        <td className="px-4 py-4 bg-gray-50 border-b border-red-200" colSpan={9}>
-                          <ExpandedReviewDetail request={req} isFinalized={isFinalized} />
-                        </td>
-                      </tr>
-                    )}
-                  </React.Fragment>
+                    <td className="px-4 py-3 border-b border-red-200">
+                      <Link to={`/access-review-details/${req.id}`} className="text-blue-600 hover:text-blue-800 underline">
+                        Review
+                      </Link>
+                    </td>
+                  </tr>
                 );
               })}
             </tbody>
@@ -189,11 +272,15 @@ export default function AccessReviewDashboard() {
           onClick={closeModal}
         >
           <div
-            className="bg-white p-4 rounded-lg w-full h-full overflow-auto"
+            className="relative bg-transparent p-4 rounded-lg w-1/2 h-1/2 overflow-auto"
             style={{ backgroundImage: `url(${selectedImageUrl})`, backgroundSize: 'contain', backgroundRepeat: 'no-repeat', backgroundPosition: 'center' }}
-            onClick={(e) => e.stopPropagation()} // Prevent closing when clicking inside modal
+            onClick={(e) => e.stopPropagation()} 
           >
-            {/* Cross icon removed */}
+            < IoMdCloseCircleOutline
+                          className="absolute text-white text-2xl cursor-pointer hover:text-gray-300"
+                          onClick={closeModal}
+                        />
+           
           </div>
         </div>
       )}

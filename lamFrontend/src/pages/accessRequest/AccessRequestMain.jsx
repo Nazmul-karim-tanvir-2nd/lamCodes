@@ -2,7 +2,7 @@ import { useState } from "react";
 import Swal from "sweetalert2";
 import { Button } from "./../../components/ui/Button";
 import useAccessRequestStore from "./../../store/accessRequestStore";
-import useReviewDashboardStore from "../../store/useReviewDashboardStore"; // Import for type safety, though not directly used
+import useReviewDashboardStore from "../../store/useReviewDashboardStore"; 
 import EmployeeInfoSection from "./EmployeeInfoSection";
 import AccessTypesSection from "./AccessTypesSection";
 import NotesAttachmentsSection from "./NotesAttachmentsSection";
@@ -46,7 +46,7 @@ const AccessRequestMain = () => {
       if (key && fields[key]) filledFields[key] = { ...fields[key] };
     });
 
-    // Optional notes live under fields.Notes.details
+    // Handle optional notes and attachment
     if (fields?.Notes?.details || fields?.Notes?.attachment) {
       filledFields["Notes"] = {
         details: fields.Notes.details || "",
@@ -54,9 +54,9 @@ const AccessRequestMain = () => {
       };
     }
 
-    // Convert attachment to data URL
-    const attachmentUrl = await fileToDataUrl(attachment) || fields.Notes.attachment;
-    const attachmentName = attachment ? attachment.name : fields.Notes.attachment ? "uploaded-file" : null;
+    // Convert attachment to data URL with fallback
+    const attachmentUrl = await fileToDataUrl(attachment) || fields?.Notes?.attachment || null;
+    const attachmentName = attachment ? attachment.name : fields?.Notes?.attachment ? "uploaded-file" : null;
 
     // Prepare form data
     const formData = {
@@ -73,7 +73,6 @@ const AccessRequestMain = () => {
       reviewComment: "",
     };
 
-    // Submit the request via accessRequestStore
     submitRequest(formData);
 
     Swal.fire("Access Request Submitted", "", "success");

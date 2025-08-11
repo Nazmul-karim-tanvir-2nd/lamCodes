@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import useReviewDashboardStore from '../store/useReviewDashboardStore'; // Adjust path as needed
+import useReviewDashboardStore from '../store/useReviewDashboardStore'; 
 
 const empty = {
   software: { name: '', justification: '', attachment: null, notes: '' },
@@ -31,17 +31,17 @@ export default create((set, get) => ({
     }
     const reader = new FileReader();
     reader.onloadend = () => {
-      const dataUrl = reader.result; // Base64 data URL
+      const dataUrl = reader.result; 
       set((s) => ({
         fields: { ...s.fields, Notes: { ...s.fields.Notes, attachment: dataUrl } },
       }));
     };
-    reader.readAsDataURL(file); // Convert file to data URL
+    reader.readAsDataURL(file); 
   },
 
   submitRequest: (formData) => {
     const reviewStore = useReviewDashboardStore.getState();
-    reviewStore.addRequest(formData); // Use the new addRequest method
+    reviewStore.addRequest(formData); 
   },
 
   reset: () => set({ cif: '', showForm: false, selectedTypes: [], fields: structuredClone(empty) }),

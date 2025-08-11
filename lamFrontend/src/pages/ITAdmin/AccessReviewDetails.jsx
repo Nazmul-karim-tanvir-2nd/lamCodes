@@ -1,8 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import useReviewDashboardStore from "../../store/useReviewDashboardStore";
-import { IoMdCloseCircleOutline } from "react-icons/io";
-
 
 const TYPE_KEY = {
   "Software Access": "Software",
@@ -49,20 +47,21 @@ const Row = ({ label, value }) => (
   </div>
 );
 
-const isImageUrl = (url) => {
-  return /\.(jpg|jpeg|png|gif|bmp)$/i.test(url) || /^data:image\/[a-z]+;base64,/.test(url);
-};
+const isImageUrl = (url) =>
+  /\.(jpg|jpeg|png|gif|bmp)$/i.test(url) || /^data:image\/[a-z]+;base64,/.test(url);
 
 export default function AccessReviewDetails() {
   const { id } = useParams();
-  const { requests } = useReviewDashboardStore();
+  const { requests, loadRequests, approveRequest, rejectRequest } = useReviewDashboardStore();
   const request = requests.find((r) => r.id === id);
-  const approveRequest = useReviewDashboardStore((s) => s.approveRequest);
-  const rejectRequest = useReviewDashboardStore((s) => s.rejectRequest);
 
   const [comment, setComment] = useState(request?.reviewComment || "");
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedImageUrl, setSelectedImageUrl] = useState(null);
+
+  useEffect(() => {
+    if (!request) loadRequests();
+  }, [request, loadRequests]);
 
   const visibleTypes = useMemo(
     () => (request?.selectedTypes || []).filter((type) => allTypes.includes(type)),
@@ -91,9 +90,36 @@ export default function AccessReviewDetails() {
     setSelectedImageUrl(null);
   };
 
-  if (!request) {
-    return <p className="text-center text-gray-500">Request not found.</p>;
-  }
+  const handleSafeDownload = (url, name) => {
+    if (!url) return;
+    if (url.startsWith("data:")) {
+      const [meta, b64] = url.split(",");
+      const mime = meta.slice(meta.indexOf(":") + 1, meta.indexOf(";"));
+      const bin = atob(b64);
+      const bytes = new Uint8Array(bin.length);
+      for (let i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
+      const blob = new Blob([bytes], { type: mime });
+      const objUrl = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = objUrl;
+      a.download = name || "attachment";
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(objUrl);
+    } else {
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = name || "attachment";
+      a.target = "_blank";
+      a.rel = "noreferrer";
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+    }
+  };
+
+  if (!request) return <p className="text-center text-gray-500">Request not found.</p>;
 
   return (
     <div className="p-4 mx-auto">
@@ -103,9 +129,11 @@ export default function AccessReviewDetails() {
       <Link to="/dashboard" className="text-blue-600 hover:text-blue-800 underline mb-4 block">
         Back to Dashboard
       </Link>
+
       <div className="rounded border border-gray-200 bg-white p-4 space-y-14">
         <div>
           <h3 className="font-semibold text-gray-800 mb-3">Access details</h3>
+
           <div className="space-y-6">
             {visibleTypes.map((displayType) => {
               const key = TYPE_KEY[displayType];
@@ -136,25 +164,17 @@ export default function AccessReviewDetails() {
                 value={
                   request.attachmentUrl ? (
                     isImageUrl(request.attachmentUrl) ? (
-                      <div className="relative">
-                        <img
-                          src={request.attachmentUrl}
-                          alt={request.attachmentName || "Attachment"}
-                          className="max-w-full h-auto rounded cursor-pointer"
-                          style={{ maxHeight: "200px" }}
-                          onClick={() => openModal(request.attachmentUrl)}
-                        />
-                      </div>
+                      <span className="text-blue-600 underline cursor-pointer" onClick={() => openModal(request.attachmentUrl)}>
+                        {request.attachmentName || "View Image"}
+                      </span>
                     ) : (
-                      <a
-                        href={request.attachmentUrl}
-                        download={request.attachmentName || "attachment"}
-                        target="_blank"
-                        rel="noreferrer"
+                      <button
+                        type="button"
                         className="text-blue-600 underline"
+                        onClick={() => handleSafeDownload(request.attachmentUrl, request.attachmentName)}
                       >
                         {request.attachmentName || "View / Download"}
-                      </a>
+                      </button>
                     )
                   ) : (
                     "—"
@@ -190,6 +210,7 @@ export default function AccessReviewDetails() {
               Reject
             </button>
           </div>
+
           {!isLineManagerApproved && !isFinalized && (
             <div className="text-sm text-gray-500 mt-2">Waiting for Line Manager approval.</div>
           )}
@@ -204,26 +225,14 @@ export default function AccessReviewDetails() {
           )}
         </div>
 
-        {/* Modal for larger image */}
         {isModalOpen && selectedImageUrl && (
-          <div
-            className="fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center z-50"
-            onClick={closeModal}
-            
-          >
-            
+          <div className="fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center z-50" onClick={closeModal}>
             <div
-              className="relative bg-transparent p-4 rounded-lg w-full h-1/2 overflow-auto "
-              style={{ backgroundImage: `url(${selectedImageUrl})`, backgroundSize: 'contain', backgroundRepeat: 'no-repeat', backgroundPosition: 'center' }}
+              className="relative bg-transparent p-4 rounded-lg w-11/12 md:w-3/4 lg:w-1/2 h-1/2"
+              style={{ backgroundImage: `url(${selectedImageUrl})`, backgroundSize: "contain", backgroundRepeat: "no-repeat", backgroundPosition: "center" }}
               onClick={(e) => e.stopPropagation()}
-              
             >
-             
-          < IoMdCloseCircleOutline
-              className="absolute text-white text-2xl cursor-pointer hover:text-gray-300"
-              onClick={closeModal}
-            />
-             
+              <button className="absolute top-2 right-2 text-white text-2xl" onClick={closeModal}>×</button>
             </div>
           </div>
         )}

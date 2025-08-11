@@ -2,15 +2,11 @@ import React, { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import useReviewDashboardStore from "../../store/useReviewDashboardStore";
 import dummyUsers2 from "../../data/dummyUser2";
-import FloatingCheckbox from "../../components/custom/FloatingCheckbox"; // Assume path is correct
+import FloatingCheckbox from "../../components/custom/FloatingCheckbox";
 import Swal from "sweetalert2";
-import { IoMdCloseCircleOutline } from "react-icons/io";
 
-
-// Function to check if the URL is an image
-const isImageUrl = (url) => {
-  return /\.(jpg|jpeg|png|gif|bmp)$/i.test(url) || /^data:image\/[a-z]+;base64,/.test(url);
-};
+const isImageUrl = (url) =>
+  /\.(jpg|jpeg|png|gif|bmp)$/i.test(url) || /^data:image\/[a-z]+;base64,/.test(url);
 
 const Badge = ({ children }) => (
   <span className="inline-block px-2 py-0.5 text-[11px] rounded-full bg-gray-200 text-gray-800 mr-1 mb-1">
@@ -45,23 +41,41 @@ export default function AccessReviewDashboard() {
     });
   }, [requests, filters]);
 
-  const eligibleRequests = filtered.filter((r) => r.lineManagerStatus === "Successful" && !r.isFinalized);
+  const eligibleRequests = useMemo(
+    () =>
+      filtered.filter(
+        (r) => r.lineManagerStatus === "Successful" && !(r.reviewStatus === "Approved" || r.reviewStatus === "Rejected")
+      ),
+    [filtered]
+  );
+
+  useEffect(() => {
+    setSelectedIds((prev) => prev.filter((id) => eligibleRequests.some((r) => r.id === id)));
+    setSelectAll(
+      eligibleRequests.length > 0 && eligibleRequests.every((r) => selectedIds.includes(r.id))
+    );
+  }, [eligibleRequests]);
+
+  useEffect(() => {
+    setSelectedIds([]);
+    setSelectAll(false);
+  }, [filters.department, filters.accessType, requests.length]);
 
   const toggleSelectAll = () => {
     if (selectAll) {
       setSelectedIds([]);
+      setSelectAll(false);
     } else {
-      setSelectedIds(eligibleRequests.map((r) => r.id));
+      const ids = eligibleRequests.map((r) => r.id);
+      setSelectedIds(ids);
+      setSelectAll(true);
     }
-    setSelectAll(!selectAll);
   };
 
   const toggleSelect = (id) => {
-    if (selectedIds.includes(id)) {
-      setSelectedIds(selectedIds.filter((selectedId) => selectedId !== id));
-    } else {
-      setSelectedIds([...selectedIds, id]);
-    }
+    setSelectedIds((prev) =>
+      prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id]
+    );
   };
 
   const handleBulkApprove = async () => {
@@ -70,9 +84,6 @@ export default function AccessReviewDashboard() {
       input: "textarea",
       inputLabel: "Reviewer Comment (required)",
       inputPlaceholder: "Enter your comment...",
-      inputAttributes: {
-        "aria-label": "Reviewer comment",
-      },
       showCancelButton: true,
       confirmButtonText: "Approve",
     });
@@ -91,9 +102,6 @@ export default function AccessReviewDashboard() {
       input: "textarea",
       inputLabel: "Reviewer Comment (required)",
       inputPlaceholder: "Enter your comment...",
-      inputAttributes: {
-        "aria-label": "Reviewer comment",
-      },
       showCancelButton: true,
       confirmButtonText: "Reject",
     });
@@ -116,16 +124,45 @@ export default function AccessReviewDashboard() {
     setSelectedImageUrl(null);
   };
 
+  const handleSafeDownload = (url, name) => {
+    if (!url) return;
+    if (url.startsWith("data:")) {
+      const [meta, b64] = url.split(",");
+      const mime = meta.slice(meta.indexOf(":") + 1, meta.indexOf(";"));
+      const bin = atob(b64);
+      const bytes = new Uint8Array(bin.length);
+      for (let i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
+      const blob = new Blob([bytes], { type: mime });
+      const objUrl = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = objUrl;
+      a.download = name || "attachment";
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(objUrl);
+    } else {
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = name || "attachment";
+      a.target = "_blank";
+      a.rel = "noreferrer";
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+    }
+  };
+
   return (
     <div className="p-4 mx-auto">
       <h1 className="text-xl font-bold text-center text-blue-800 mb-6 underline underline-offset-8 decoration-gray-500/80">
         Access Review Dashboard
       </h1>
-      {/* Filters */}
+
       <div className="flex gap-4 mb-6 flex-wrap">
         <select
           onChange={(e) => setFilter("department", e.target.value)}
-          className="border rounded-md border border-red-200 p-2 "
+          className="border rounded-md border-red-200 p-2"
           value={filters.department}
         >
           <option value="">All Departments</option>
@@ -138,7 +175,7 @@ export default function AccessReviewDashboard() {
 
         <select
           onChange={(e) => setFilter("accessType", e.target.value)}
-          className="border rounded-md border border-red-200 p-2"
+          className="border rounded-md border-red-200 p-2"
           value={filters.accessType}
         >
           <option value="">All Access Types</option>
@@ -151,19 +188,12 @@ export default function AccessReviewDashboard() {
         </select>
       </div>
 
-      {/* Bulk Actions */}
       {selectedIds.length > 0 && (
         <div className="flex gap-4 mb-4">
-          <button
-            className="px-4 py-2 rounded bg-green-600 text-white disabled:opacity-50"
-            onClick={handleBulkApprove}
-          >
+          <button className="px-4 py-2 rounded bg-green-600 text-white" onClick={handleBulkApprove}>
             Approve Selected
           </button>
-          <button
-            className="px-4 py-2 rounded bg-red-600 text-white disabled:opacity-50"
-            onClick={handleBulkReject}
-          >
+          <button className="px-4 py-2 rounded bg-red-600 text-white" onClick={handleBulkReject}>
             Reject Selected
           </button>
         </div>
@@ -176,9 +206,10 @@ export default function AccessReviewDashboard() {
           <table className="min-w-full text-sm">
             <thead className="bg-gray-50 text-gray-700">
               <tr className="text-left">
-                <th className="px-4 py-3 border-b border-red-200 text-red-600 hover:underline cursor-pointer " checked={selectAll} onClick={toggleSelectAll}>
-               Select All
-                 
+                <th className="px-4 py-3 border-b border-red-200">
+                  
+                    <span className="px-4 py-3  text-red-600 hover:underline cursor-pointer" checked={selectAll} onChange={toggleSelectAll} disabled={eligibleRequests.length === 0} >Select All</span>
+                  
                 </th>
                 <th className="px-4 py-3 border-b border-red-200">CIF</th>
                 <th className="px-4 py-3 border-b border-red-200">Name</th>
@@ -201,11 +232,7 @@ export default function AccessReviewDashboard() {
                 return (
                   <tr key={req.id} className="hover:bg-gray-50">
                     <td className="px-4 py-3 border-b border-red-200">
-                      <FloatingCheckbox
-                        checked={isSelected}
-                        onChange={() => toggleSelect(req.id)}
-                        disabled={!isEligible}
-                      />
+                      <FloatingCheckbox checked={isSelected} onChange={() => toggleSelect(req.id)} disabled={!isEligible} />
                     </td>
                     <td className="px-4 py-3 border-b border-red-200">{req.cif}</td>
                     <td className="px-4 py-3 border-b border-red-200">{user?.name || "N/A"}</td>
@@ -217,7 +244,9 @@ export default function AccessReviewDashboard() {
                         ))}
                       </div>
                     </td>
-                    <td className="px-4 py-3 border-b border-red-200">{req.submittedAt ? new Date(req.submittedAt).toLocaleString() : "—"}</td>
+                    <td className="px-4 py-3 border-b border-red-200">
+                      {req.submittedAt ? new Date(req.submittedAt).toLocaleString() : "—"}
+                    </td>
                     <td className="px-4 py-3 border-b border-red-200">
                       <span className={`inline-block px-2 py-0.5 border rounded ${statusClass(req.lineManagerStatus)}`}>
                         {req.lineManagerStatus || "—"}
@@ -228,30 +257,25 @@ export default function AccessReviewDashboard() {
                         {req.reviewStatus || "—"}
                       </span>
                     </td>
-                     <td className="px-4 py-3 border-b border-red-200">
-                        {req.attachmentUrl ? (
-                          isImageUrl(req.attachmentUrl) ? (
-                            <span
-                              className="text-blue-600 underline cursor-pointer"
-                              onClick={() => openModal(req.attachmentUrl)}
-                            >
-                              {req.attachmentName || "View Image"}
-                            </span>
-                          ) : (
-                            <a
-                              href={req.attachmentUrl}
-                              download={req.attachmentName || "attachment"}
-                              target="_blank"
-                              rel="noreferrer"
-                              className="text-blue-600 underline"
-                            >
-                              {req.attachmentName || "View / Download"}
-                            </a>
-                          )
+                    <td className="px-4 py-3 border-b border-red-200">
+                      {req.attachmentUrl ? (
+                        isImageUrl(req.attachmentUrl) ? (
+                          <span className="text-blue-600 underline cursor-pointer" onClick={() => openModal(req.attachmentUrl)}>
+                            {req.attachmentName || "View Image"}
+                          </span>
                         ) : (
-                          "—"
-                        )}
-                      </td>
+                          <button
+                            type="button"
+                            className="text-blue-600 underline"
+                            onClick={() => handleSafeDownload(req.attachmentUrl, req.attachmentName)}
+                          >
+                            {req.attachmentName || "View / Download"}
+                          </button>
+                        )
+                      ) : (
+                        "—"
+                      )}
+                    </td>
                     <td className="px-4 py-3 border-b border-red-200">
                       <Link to={`/access-review-details/${req.id}`} className="text-blue-600 hover:text-blue-800 underline">
                         Review
@@ -265,22 +289,14 @@ export default function AccessReviewDashboard() {
         </div>
       )}
 
-      {/* Modal for larger image */}
       {isModalOpen && selectedImageUrl && (
-        <div
-          className="fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center z-50"
-          onClick={closeModal}
-        >
+        <div className="fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center z-50" onClick={closeModal}>
           <div
-            className="relative bg-transparent p-4 rounded-lg w-1/2 h-1/2 overflow-auto"
-            style={{ backgroundImage: `url(${selectedImageUrl})`, backgroundSize: 'contain', backgroundRepeat: 'no-repeat', backgroundPosition: 'center' }}
-            onClick={(e) => e.stopPropagation()} 
+            className="relative bg-transparent p-4 rounded-lg w-11/12 md:w-3/4 lg:w-1/2 h-1/2"
+            style={{ backgroundImage: `url(${selectedImageUrl})`, backgroundSize: "contain", backgroundRepeat: "no-repeat", backgroundPosition: "center" }}
+            onClick={(e) => e.stopPropagation()}
           >
-            < IoMdCloseCircleOutline
-                          className="absolute text-white text-2xl cursor-pointer hover:text-gray-300"
-                          onClick={closeModal}
-                        />
-           
+            <button className="absolute top-2 right-2 text-white text-2xl" onClick={closeModal}>×</button>
           </div>
         </div>
       )}

@@ -15,15 +15,18 @@ namespace LogicalAccessMgmt.Controllers
         private readonly AppDbContext _context;
         private readonly IExternalApiService _externalApiService;
         private readonly IBranchService _branchService;
+        private readonly IDivisionService _divisionService;
 
         public EmployeeController(
             AppDbContext context,
             IExternalApiService externalApiService,
-            IBranchService branchService)
+            IBranchService branchService,
+            IDivisionService divisionService)
         {
             _context = context;
             _externalApiService = externalApiService;
             _branchService = branchService;
+            _divisionService = divisionService;
         }
 
         [HttpPost("create")]
@@ -73,6 +76,13 @@ namespace LogicalAccessMgmt.Controllers
             return Ok(branches);
         }
 
-        
+        [HttpGet("divisions")]
+        public async Task<IActionResult> GetDivisions()
+        {
+            var divisions = await _divisionService.GetDivisionsAsync();
+            return Ok(divisions);
+        }
+
+
     }
 }

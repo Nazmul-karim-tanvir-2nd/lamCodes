@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "qB1/JxY2z38=",
+  "dgSpecHash": "rKpC0Cat8bU=",
   "success": true,
-  "projectFilePath": "C:\\Users\\nafisam\\source\\repos\\LogicalAccessMgmt\\lamCodes\\LogicalAccessMgmt\\LogicalAccessMgmt\\LogicalAccessMgmt.csproj",
+  "projectFilePath": "D:\\LAM\\lamCodes\\LogicalAccessMgmt\\LogicalAccessMgmt\\LogicalAccessMgmt.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\nafisam\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\nafisam\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",

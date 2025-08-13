@@ -5694,11 +5694,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\nafisam\\source\\repos\\LogicalAccessMgmt\\lamCodes\\LogicalAccessMgmt\\Data\\Data.csproj",
+      "projectUniqueName": "D:\\LAM\\lamCodes\\LogicalAccessMgmt\\Data\\Data.csproj",
       "projectName": "Data",
-      "projectPath": "C:\\Users\\nafisam\\source\\repos\\LogicalAccessMgmt\\lamCodes\\LogicalAccessMgmt\\Data\\Data.csproj",
+      "projectPath": "D:\\LAM\\lamCodes\\LogicalAccessMgmt\\Data\\Data.csproj",
       "packagesPath": "C:\\Users\\nafisam\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\nafisam\\source\\repos\\LogicalAccessMgmt\\lamCodes\\LogicalAccessMgmt\\Data\\obj\\",
+      "outputPath": "D:\\LAM\\lamCodes\\LogicalAccessMgmt\\Data\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",

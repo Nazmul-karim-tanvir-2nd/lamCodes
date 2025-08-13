@@ -15,6 +15,8 @@ namespace LogicalAccessMgmt.Data.DBContexts
 
         public DbSet<BranchInfoRequest> Branches { get; set; }
 
+        public DbSet<DivisionInfoRequest> Divisions { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -23,13 +25,13 @@ namespace LogicalAccessMgmt.Data.DBContexts
             modelBuilder.Entity<LATeamMember>(entity =>
             {
                 entity.ToTable("LATeamMember");
-
-                // Define the primary key as a shadow property by name
                 entity.HasKey("TeamMemberID");
             });
 
             // BranchInfoRequest is keyless
             modelBuilder.Entity<BranchInfoRequest>().HasNoKey();
+
+            modelBuilder.Entity<DivisionInfoRequest>().ToTable("LADivision").HasNoKey(); ;
         }
 
     }

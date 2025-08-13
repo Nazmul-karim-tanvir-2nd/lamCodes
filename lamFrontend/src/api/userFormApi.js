@@ -1,20 +1,14 @@
-const BASE_URL = "http://localhost:5162/api/ExternalApi";
+// src/api/userFormApi.js
+
+const BASE_EMPLOYEE_URL = "http://localhost:5162/api/employee";
 
 export const checkCIF = async (cif) => {
   try {
-    console.log("🔍 Fetching for CIF:", cif);
-
-    const response = await fetch(`${BASE_URL}/employee/${cif}`);
-    console.log("🌐 Response status:", response.status);
-
+    const response = await fetch(`http://localhost:5162/api/ExternalApi/employee/${cif}`);
     if (!response.ok) throw new Error("CIF fetch failed");
 
     const data = await response.json();
-    console.log("📦 Raw API data:", data);
-
     const employee = data.employees?.[0];
-    console.log("👤 Extracted Employee:", employee);
-
     if (!employee) return null;
 
     return {
@@ -26,4 +20,16 @@ export const checkCIF = async (cif) => {
     console.error("❌ Error checking CIF:", error);
     return null;
   }
+};
+
+export const fetchBranches = async () => {
+  const res = await fetch(`${BASE_EMPLOYEE_URL}/branches/all`);
+  if (!res.ok) throw new Error("Failed to fetch branches");
+  return res.json();
+};
+
+export const fetchDivisions = async () => {
+  const res = await fetch(`${BASE_EMPLOYEE_URL}/divisions`);
+  if (!res.ok) throw new Error("Failed to fetch divisions");
+  return res.json();
 };

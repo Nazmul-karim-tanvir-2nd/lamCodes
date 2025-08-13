@@ -6,7 +6,7 @@ import EmployeeTransfer from './pages/employeeTransfer/EmployeeTransfer.jsx';
 import EmployeeClearance from './pages/employeeClearance/EmployeeClearance.jsx';
 import Layout from './layout/Layout.jsx';
 import LoginPopup from './components/auth/LoginPopup.jsx';
-import AccessReviewDashboard from './pages/ITAdmin/AccessReviewDashboard';
+import AccessReviewDashboard from './pages/ITAdmin/accessReview/AccessReviewDashboard.jsx';
 import AccessReviewDetails from "./pages/ITAdmin/AccessReviewDetails";
 import AdminDashboard from './pages/ITAdmin/AdminDashboard.jsx';
 

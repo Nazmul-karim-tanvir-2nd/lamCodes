@@ -1,8 +1,8 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
-import useReviewDashboardStore from "../../store/useReviewDashboardStore";
-import dummyUsers2 from "../../data/dummyUser2";
-import FloatingCheckbox from "../../components/custom/FloatingCheckbox";
+import useReviewDashboardStore from "../../../store/useReviewDashboardStore";
+import dummyUsers2 from "../../../data/dummyUser2";
+import FloatingCheckbox from "../../../components/custom/FloatingCheckbox";
 import Swal from "sweetalert2";
 
 const isImageUrl = (url) =>
@@ -210,7 +210,7 @@ export default function AccessReviewDashboard() {
                   <div className="flex items-center ">
                     <span className="text-red-600 p-2 text-center">Select All</span>
                     <FloatingCheckbox checked={selectAll} onChange={toggleSelectAll} disabled={eligibleRequests.length === 0} />
-                    
+
                   </div>
                 </th>
                 <th className="px-4 py-3 border-b border-red-200">CIF</th>

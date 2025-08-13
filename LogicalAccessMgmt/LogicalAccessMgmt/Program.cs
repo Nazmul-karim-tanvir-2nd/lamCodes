@@ -8,6 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services
 builder.Services.AddScoped<IExternalApiService, ExternalApiService>();
+builder.Services.AddScoped<IBranchService, BranchService>();
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>

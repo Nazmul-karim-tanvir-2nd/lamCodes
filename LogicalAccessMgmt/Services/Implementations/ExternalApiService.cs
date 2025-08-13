@@ -87,7 +87,7 @@ namespace LogicalAccessMgmt.Services.implementations
             return extApiResponse ?? new ExtApiResponse { Data = string.Empty };
         }
 
-        public async Task<EmployeeInfo?> GetEmployeeInfoByCIFAsync(string cif)
+        public async Task<EmployeeInfo> GetEmployeeInfoByCIFAsync(string cif)
         {
             var cookies = await LoginAndGetCookiesAsync();
             var apiResponse = await GetEmployeeInfoAsync(cif, cookies);

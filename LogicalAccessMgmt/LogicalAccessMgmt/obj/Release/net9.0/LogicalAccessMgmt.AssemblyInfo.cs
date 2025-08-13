@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("LogicalAccessMgmt")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+709e048770685d337dfd06280f0c005d37dd5224")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+41d83366f726fcc9bf760a89c54cb1ade85298b9")]
 [assembly: System.Reflection.AssemblyProductAttribute("LogicalAccessMgmt")]
 [assembly: System.Reflection.AssemblyTitleAttribute("LogicalAccessMgmt")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

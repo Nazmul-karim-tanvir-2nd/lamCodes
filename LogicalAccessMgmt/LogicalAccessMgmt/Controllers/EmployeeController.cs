@@ -2,6 +2,9 @@
 using LogicalAccessMgmt.Data.Models;
 using LogicalAccessMgmt.Services.interfaces;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace LogicalAccessMgmt.Controllers
 {
@@ -11,11 +14,16 @@ namespace LogicalAccessMgmt.Controllers
     {
         private readonly AppDbContext _context;
         private readonly IExternalApiService _externalApiService;
+        private readonly IBranchService _branchService;
 
-        public EmployeeController(AppDbContext context, IExternalApiService externalApiService)
+        public EmployeeController(
+            AppDbContext context,
+            IExternalApiService externalApiService,
+            IBranchService branchService)
         {
             _context = context;
             _externalApiService = externalApiService;
+            _branchService = branchService;
         }
 
         [HttpPost("create")]
@@ -33,7 +41,7 @@ namespace LogicalAccessMgmt.Controllers
                 return NotFound($"No data found for CIF {request.CIFNo}");
 
             // Step 2: Check for duplicates
-            bool exists = _context.LATeamMembers.Any(e => e.CIFNo == request.CIFNo);
+            bool exists = await _context.LATeamMembers.AnyAsync(e => e.CIFNo == request.CIFNo);
             if (exists)
                 return Conflict("Employee with this CIF already exists.");
 
@@ -56,7 +64,15 @@ namespace LogicalAccessMgmt.Controllers
             await _context.SaveChangesAsync();
 
             return Ok(new { message = "Employee created successfully." });
+        }
 
+        [HttpGet("branches/all")]
+        public async Task<IActionResult> GetAllBranches()
+        {
+            var branches = await _branchService.GetAllBranchesAsync();
+            return Ok(branches);
+        }
+
+        
     }
-}
 }

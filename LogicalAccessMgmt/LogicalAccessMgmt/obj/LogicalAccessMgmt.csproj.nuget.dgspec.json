@@ -1,20 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "D:\\tanvir all files\\LAM2\\lamCodes\\LogicalAccessMgmt\\LogicalAccessMgmt\\LogicalAccessMgmt.csproj": {}
+    "C:\\Users\\nafisam\\source\\repos\\LogicalAccessMgmt\\lamCodes\\LogicalAccessMgmt\\LogicalAccessMgmt\\LogicalAccessMgmt.csproj": {}
   },
   "projects": {
-    "D:\\tanvir all files\\LAM2\\lamCodes\\LogicalAccessMgmt\\Data\\Data.csproj": {
+    "C:\\Users\\nafisam\\source\\repos\\LogicalAccessMgmt\\lamCodes\\LogicalAccessMgmt\\Data\\Data.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\tanvir all files\\LAM2\\lamCodes\\LogicalAccessMgmt\\Data\\Data.csproj",
+        "projectUniqueName": "C:\\Users\\nafisam\\source\\repos\\LogicalAccessMgmt\\lamCodes\\LogicalAccessMgmt\\Data\\Data.csproj",
         "projectName": "Data",
-        "projectPath": "D:\\tanvir all files\\LAM2\\lamCodes\\LogicalAccessMgmt\\Data\\Data.csproj",
-        "packagesPath": "C:\\Users\\NKTanvir\\.nuget\\packages\\",
-        "outputPath": "D:\\tanvir all files\\LAM2\\lamCodes\\LogicalAccessMgmt\\Data\\obj\\",
+        "projectPath": "C:\\Users\\nafisam\\source\\repos\\LogicalAccessMgmt\\lamCodes\\LogicalAccessMgmt\\Data\\Data.csproj",
+        "packagesPath": "C:\\Users\\nafisam\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\nafisam\\source\\repos\\LogicalAccessMgmt\\lamCodes\\LogicalAccessMgmt\\Data\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
         "configFilePaths": [
-          "C:\\Users\\NKTanvir\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\nafisam\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -22,6 +27,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -40,7 +46,7 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "9.0.300"
+        "SdkAnalysisLevel": "9.0.100"
       },
       "frameworks": {
         "net9.0": {
@@ -131,21 +137,26 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.304/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.103/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\tanvir all files\\LAM2\\lamCodes\\LogicalAccessMgmt\\LogicalAccessMgmt\\LogicalAccessMgmt.csproj": {
+    "C:\\Users\\nafisam\\source\\repos\\LogicalAccessMgmt\\lamCodes\\LogicalAccessMgmt\\LogicalAccessMgmt\\LogicalAccessMgmt.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\tanvir all files\\LAM2\\lamCodes\\LogicalAccessMgmt\\LogicalAccessMgmt\\LogicalAccessMgmt.csproj",
+        "projectUniqueName": "C:\\Users\\nafisam\\source\\repos\\LogicalAccessMgmt\\lamCodes\\LogicalAccessMgmt\\LogicalAccessMgmt\\LogicalAccessMgmt.csproj",
         "projectName": "LogicalAccessMgmt",
-        "projectPath": "D:\\tanvir all files\\LAM2\\lamCodes\\LogicalAccessMgmt\\LogicalAccessMgmt\\LogicalAccessMgmt.csproj",
-        "packagesPath": "C:\\Users\\NKTanvir\\.nuget\\packages\\",
-        "outputPath": "D:\\tanvir all files\\LAM2\\lamCodes\\LogicalAccessMgmt\\LogicalAccessMgmt\\obj\\",
+        "projectPath": "C:\\Users\\nafisam\\source\\repos\\LogicalAccessMgmt\\lamCodes\\LogicalAccessMgmt\\LogicalAccessMgmt\\LogicalAccessMgmt.csproj",
+        "packagesPath": "C:\\Users\\nafisam\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\nafisam\\source\\repos\\LogicalAccessMgmt\\lamCodes\\LogicalAccessMgmt\\LogicalAccessMgmt\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
         "configFilePaths": [
-          "C:\\Users\\NKTanvir\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\nafisam\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -153,17 +164,18 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net9.0": {
             "targetAlias": "net9.0",
             "projectReferences": {
-              "D:\\tanvir all files\\LAM2\\lamCodes\\LogicalAccessMgmt\\Data\\Data.csproj": {
-                "projectPath": "D:\\tanvir all files\\LAM2\\lamCodes\\LogicalAccessMgmt\\Data\\Data.csproj"
+              "C:\\Users\\nafisam\\source\\repos\\LogicalAccessMgmt\\lamCodes\\LogicalAccessMgmt\\Data\\Data.csproj": {
+                "projectPath": "C:\\Users\\nafisam\\source\\repos\\LogicalAccessMgmt\\lamCodes\\LogicalAccessMgmt\\Data\\Data.csproj"
               },
-              "D:\\tanvir all files\\LAM2\\lamCodes\\LogicalAccessMgmt\\Services\\Services.csproj": {
-                "projectPath": "D:\\tanvir all files\\LAM2\\lamCodes\\LogicalAccessMgmt\\Services\\Services.csproj"
+              "C:\\Users\\nafisam\\source\\repos\\LogicalAccessMgmt\\lamCodes\\LogicalAccessMgmt\\Services\\Services.csproj": {
+                "projectPath": "C:\\Users\\nafisam\\source\\repos\\LogicalAccessMgmt\\lamCodes\\LogicalAccessMgmt\\Services\\Services.csproj"
               }
             }
           }
@@ -178,7 +190,7 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "9.0.300"
+        "SdkAnalysisLevel": "9.0.100"
       },
       "frameworks": {
         "net9.0": {
@@ -276,21 +288,26 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.304/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.103/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\tanvir all files\\LAM2\\lamCodes\\LogicalAccessMgmt\\Services\\Services.csproj": {
+    "C:\\Users\\nafisam\\source\\repos\\LogicalAccessMgmt\\lamCodes\\LogicalAccessMgmt\\Services\\Services.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\tanvir all files\\LAM2\\lamCodes\\LogicalAccessMgmt\\Services\\Services.csproj",
+        "projectUniqueName": "C:\\Users\\nafisam\\source\\repos\\LogicalAccessMgmt\\lamCodes\\LogicalAccessMgmt\\Services\\Services.csproj",
         "projectName": "Services",
-        "projectPath": "D:\\tanvir all files\\LAM2\\lamCodes\\LogicalAccessMgmt\\Services\\Services.csproj",
-        "packagesPath": "C:\\Users\\NKTanvir\\.nuget\\packages\\",
-        "outputPath": "D:\\tanvir all files\\LAM2\\lamCodes\\LogicalAccessMgmt\\Services\\obj\\",
+        "projectPath": "C:\\Users\\nafisam\\source\\repos\\LogicalAccessMgmt\\lamCodes\\LogicalAccessMgmt\\Services\\Services.csproj",
+        "packagesPath": "C:\\Users\\nafisam\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\nafisam\\source\\repos\\LogicalAccessMgmt\\lamCodes\\LogicalAccessMgmt\\Services\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
         "configFilePaths": [
-          "C:\\Users\\NKTanvir\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\nafisam\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -298,14 +315,15 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net9.0": {
             "targetAlias": "net9.0",
             "projectReferences": {
-              "D:\\tanvir all files\\LAM2\\lamCodes\\LogicalAccessMgmt\\Data\\Data.csproj": {
-                "projectPath": "D:\\tanvir all files\\LAM2\\lamCodes\\LogicalAccessMgmt\\Data\\Data.csproj"
+              "C:\\Users\\nafisam\\source\\repos\\LogicalAccessMgmt\\lamCodes\\LogicalAccessMgmt\\Data\\Data.csproj": {
+                "projectPath": "C:\\Users\\nafisam\\source\\repos\\LogicalAccessMgmt\\lamCodes\\LogicalAccessMgmt\\Data\\Data.csproj"
               }
             }
           }
@@ -320,7 +338,7 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "9.0.300"
+        "SdkAnalysisLevel": "9.0.100"
       },
       "frameworks": {
         "net9.0": {
@@ -407,7 +425,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.304/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.103/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

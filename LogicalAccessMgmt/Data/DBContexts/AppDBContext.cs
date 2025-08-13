@@ -1,26 +1,36 @@
-﻿using System.Collections.Generic;
-using System.Reflection.Emit;
-using LogicalAccessMgmt.Data.Models;
+﻿using LogicalAccessMgmt.Data.Models;
 using Microsoft.EntityFrameworkCore;
+
 
 namespace LogicalAccessMgmt.Data.DBContexts
 {
     public class AppDbContext : DbContext
     {
         public AppDbContext(DbContextOptions<AppDbContext> options)
-        : base(options)
+            : base(options)
         {
         }
 
         public DbSet<LATeamMember> LATeamMembers { get; set; }
 
-        // Optional: Fluent API configurations or override OnModelCreating
+        public DbSet<BranchInfoRequest> Branches { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
-            // Example if you need to configure the LATeamMember table manually
-            modelBuilder.Entity<Models.LATeamMember>().ToTable("LATeamMember");
+            // Map LATeamMember table
+            modelBuilder.Entity<LATeamMember>(entity =>
+            {
+                entity.ToTable("LATeamMember");
+
+                // Define the primary key as a shadow property by name
+                entity.HasKey("TeamMemberID");
+            });
+
+            // BranchInfoRequest is keyless
+            modelBuilder.Entity<BranchInfoRequest>().HasNoKey();
         }
+
     }
 }

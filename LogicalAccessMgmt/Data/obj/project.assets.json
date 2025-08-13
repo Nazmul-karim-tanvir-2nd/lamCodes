@@ -5687,24 +5687,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Fariya\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\NKTanvir\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Fariya\\Desktop\\LAM\\lamCodes\\LogicalAccessMgmt\\Data\\Data.csproj",
+      "projectUniqueName": "D:\\tanvir all files\\LAM2\\lamCodes\\LogicalAccessMgmt\\Data\\Data.csproj",
       "projectName": "Data",
-      "projectPath": "C:\\Users\\Fariya\\Desktop\\LAM\\lamCodes\\LogicalAccessMgmt\\Data\\Data.csproj",
-      "packagesPath": "C:\\Users\\Fariya\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Fariya\\Desktop\\LAM\\lamCodes\\LogicalAccessMgmt\\Data\\obj\\",
+      "projectPath": "D:\\tanvir all files\\LAM2\\lamCodes\\LogicalAccessMgmt\\Data\\Data.csproj",
+      "packagesPath": "C:\\Users\\NKTanvir\\.nuget\\packages\\",
+      "outputPath": "D:\\tanvir all files\\LAM2\\lamCodes\\LogicalAccessMgmt\\Data\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\Fariya\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Users\\NKTanvir\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

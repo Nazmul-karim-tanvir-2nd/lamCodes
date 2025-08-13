@@ -20,7 +20,6 @@ export const checkCIF = async (cif) => {
     return {
       name: employee.name ?? "",
       mobile: employee.mobilePhone ?? "",
-      gender: employee.gender ?? "",
       biometricStatus: "Verified",
     };
   } catch (error) {

@@ -11,14 +11,14 @@ import { ShieldUser } from 'lucide-react';
 
 import idlclogo from "../../assets/idlclogo.jpg";
 import useSidebarStore from "../../store/useSidebarStore";
+import { MdDashboard } from "react-icons/md";
 
 const navItems = [
-    { to: "/", label: "Account Creation", icon: <User size={22} aria-hidden="true" /> },
+    { to: "/", label: "Admin Dashboard", icon: <MdDashboard size={22} aria-hidden="true" /> },
+    { to: "/account-creation", label: "Account Creation", icon: <User size={22} aria-hidden="true" /> },
     { to: "/access-request", label: "Access Request", icon: <Key size={22} aria-hidden="true" /> },
     { to: "/employee-transfer", label: "Employee Transfer", icon: <RefreshCcw size={22} aria-hidden="true" /> },
     { to: "/employee-clearance", label: "Employee Clearance", icon: <CheckCircle size={22} aria-hidden="true" /> },
-     { to: "/dashboard", label: "Access Review", icon: <ShieldUser size={22} aria-hidden="true" /> },
-     
 ];
 
 const Sidebar = () => {

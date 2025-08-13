@@ -17,6 +17,9 @@ namespace LogicalAccessMgmt.Data.DBContexts
 
         public DbSet<DivisionInfoRequest> Divisions { get; set; }
 
+        public DbSet<DesignationRequest> Designations { get; set; }
+
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -31,7 +34,9 @@ namespace LogicalAccessMgmt.Data.DBContexts
             // BranchInfoRequest is keyless
             modelBuilder.Entity<BranchInfoRequest>().HasNoKey();
 
-            modelBuilder.Entity<DivisionInfoRequest>().ToTable("LADivision").HasNoKey(); ;
+            modelBuilder.Entity<DivisionInfoRequest>().ToTable("LADivision").HasNoKey();
+
+            modelBuilder.Entity<DesignationRequest>().ToTable("LicEmpCodesDesignationType").HasNoKey();
         }
 
     }

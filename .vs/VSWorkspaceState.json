@@ -3,7 +3,7 @@
     "",
     "\\LogicalAccessMgmt",
     "\\LogicalAccessMgmt\\Data",
-    "\\LogicalAccessMgmt\\Data\\Models",
+    "\\LogicalAccessMgmt\\Data\\DBContexts",
     "\\LogicalAccessMgmt\\LogicalAccessMgmt",
     "\\LogicalAccessMgmt\\LogicalAccessMgmt\\bin",
     "\\LogicalAccessMgmt\\LogicalAccessMgmt\\bin\\Debug",
@@ -12,6 +12,6 @@
     "\\LogicalAccessMgmt\\Services\\Implementations",
     "\\LogicalAccessMgmt\\Services\\Interfaces"
   ],
-  "SelectedNode": "\\LogicalAccessMgmt\\LogicalAccessMgmt\\Program.cs",
+  "SelectedNode": "\\LogicalAccessMgmt\\Data\\DBContexts\\AppDBContext.cs",
   "PreviewInSolutionExplorer": false
 }

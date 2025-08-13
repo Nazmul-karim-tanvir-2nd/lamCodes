@@ -9,6 +9,7 @@ import LoginPopup from './components/auth/LoginPopup.jsx';
 import AccessReviewDashboard from './pages/ITAdmin/accessReviewDashboard/AccessReviewDashboard.jsx';
 import AdminDashboard from './pages/ITAdmin/AdminDashboard.jsx';
 import AccessReviewDetails from './pages/ITAdmin/accessReviewDashboard/AccessReviewDetails.jsx';
+import UserAccountReview from './pages/ITAdmin/userAccountDashboard/UserAccountReview.jsx';
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
           <Route path="dashboard" element={<AdminDashboard />} />
           <Route path="access-review-dashboard" element={<AccessReviewDashboard />} />
           <Route path="access-review-details/:id" element={<AccessReviewDetails />} />
+          <Route path="useraccount-review-dashboard" element={<UserAccountReview />} />
         </Route>
 
         {/* Login route outside layout */}

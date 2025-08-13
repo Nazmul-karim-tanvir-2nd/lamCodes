@@ -17,7 +17,7 @@ import {
 const requests = [
     {
         label: "New User Account Opening",
-        path: "/",
+        path: "/useraccount-review-dashboard",
         count: 8,
         icon: <UserPlus size={40} className="text-blue-500" />,
         color: "bg-blue-100",

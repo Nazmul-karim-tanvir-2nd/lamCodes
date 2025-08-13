@@ -24,7 +24,7 @@ const requests = [
     },
     {
         label: "Access Request",
-        path: "/access-request",
+        path: "/access-review-dashboard",
         count: 5,
         icon: <Key size={40} className="text-green-500" />,
         color: "bg-green-100",

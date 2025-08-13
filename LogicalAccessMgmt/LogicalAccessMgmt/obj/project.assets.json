@@ -5787,25 +5787,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\nafisam\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+    "C:\\Users\\Fariya\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\LAM\\lamCodes\\LogicalAccessMgmt\\LogicalAccessMgmt\\LogicalAccessMgmt.csproj",
+      "projectUniqueName": "C:\\Users\\Fariya\\Desktop\\LAM\\lamCodes\\LogicalAccessMgmt\\LogicalAccessMgmt\\LogicalAccessMgmt.csproj",
       "projectName": "LogicalAccessMgmt",
-      "projectPath": "D:\\LAM\\lamCodes\\LogicalAccessMgmt\\LogicalAccessMgmt\\LogicalAccessMgmt.csproj",
-      "packagesPath": "C:\\Users\\nafisam\\.nuget\\packages\\",
-      "outputPath": "D:\\LAM\\lamCodes\\LogicalAccessMgmt\\LogicalAccessMgmt\\obj\\",
+      "projectPath": "C:\\Users\\Fariya\\Desktop\\LAM\\lamCodes\\LogicalAccessMgmt\\LogicalAccessMgmt\\LogicalAccessMgmt.csproj",
+      "packagesPath": "C:\\Users\\Fariya\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Fariya\\Desktop\\LAM\\lamCodes\\LogicalAccessMgmt\\LogicalAccessMgmt\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\nafisam\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Fariya\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -5814,18 +5812,17 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net9.0": {
           "targetAlias": "net9.0",
           "projectReferences": {
-            "D:\\LAM\\lamCodes\\LogicalAccessMgmt\\Data\\Data.csproj": {
-              "projectPath": "D:\\LAM\\lamCodes\\LogicalAccessMgmt\\Data\\Data.csproj"
+            "C:\\Users\\Fariya\\Desktop\\LAM\\lamCodes\\LogicalAccessMgmt\\Data\\Data.csproj": {
+              "projectPath": "C:\\Users\\Fariya\\Desktop\\LAM\\lamCodes\\LogicalAccessMgmt\\Data\\Data.csproj"
             },
-            "D:\\LAM\\lamCodes\\LogicalAccessMgmt\\Services\\Services.csproj": {
-              "projectPath": "D:\\LAM\\lamCodes\\LogicalAccessMgmt\\Services\\Services.csproj"
+            "C:\\Users\\Fariya\\Desktop\\LAM\\lamCodes\\LogicalAccessMgmt\\Services\\Services.csproj": {
+              "projectPath": "C:\\Users\\Fariya\\Desktop\\LAM\\lamCodes\\LogicalAccessMgmt\\Services\\Services.csproj"
             }
           }
         }
@@ -5840,7 +5837,7 @@
         "auditLevel": "low",
         "auditMode": "direct"
       },
-      "SdkAnalysisLevel": "9.0.100"
+      "SdkAnalysisLevel": "9.0.300"
     },
     "frameworks": {
       "net9.0": {
@@ -5938,7 +5935,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.103/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.304/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

@@ -35,3 +35,22 @@ C:\Users\Fariya\Desktop\LAM\lamCodes\LogicalAccessMgmt\Services\obj\Debug\net9.0
 C:\Users\Fariya\Desktop\LAM\lamCodes\LogicalAccessMgmt\Services\obj\Debug\net9.0\Services.pdb
 C:\Users\Fariya\Desktop\LAM\lamCodes\LogicalAccessMgmt\Services\obj\Debug\net9.0\Services.genruntimeconfig.cache
 C:\Users\Fariya\Desktop\LAM\lamCodes\LogicalAccessMgmt\Services\obj\Debug\net9.0\ref\Services.dll
+D:\tanvir all files\LAM2\lamCodes\LogicalAccessMgmt\Services\bin\Debug\net9.0\Services.deps.json
+D:\tanvir all files\LAM2\lamCodes\LogicalAccessMgmt\Services\bin\Debug\net9.0\Services.runtimeconfig.json
+D:\tanvir all files\LAM2\lamCodes\LogicalAccessMgmt\Services\bin\Debug\net9.0\Services.dll
+D:\tanvir all files\LAM2\lamCodes\LogicalAccessMgmt\Services\bin\Debug\net9.0\Services.pdb
+D:\tanvir all files\LAM2\lamCodes\LogicalAccessMgmt\Services\bin\Debug\net9.0\Data.dll
+D:\tanvir all files\LAM2\lamCodes\LogicalAccessMgmt\Services\bin\Debug\net9.0\Data.pdb
+D:\tanvir all files\LAM2\lamCodes\LogicalAccessMgmt\Services\obj\Debug\net9.0\Services.csproj.AssemblyReference.cache
+D:\tanvir all files\LAM2\lamCodes\LogicalAccessMgmt\Services\obj\Debug\net9.0\Services.GeneratedMSBuildEditorConfig.editorconfig
+D:\tanvir all files\LAM2\lamCodes\LogicalAccessMgmt\Services\obj\Debug\net9.0\Services.AssemblyInfoInputs.cache
+D:\tanvir all files\LAM2\lamCodes\LogicalAccessMgmt\Services\obj\Debug\net9.0\Services.AssemblyInfo.cs
+D:\tanvir all files\LAM2\lamCodes\LogicalAccessMgmt\Services\obj\Debug\net9.0\Services.csproj.CoreCompileInputs.cache
+D:\tanvir all files\LAM2\lamCodes\LogicalAccessMgmt\Services\obj\Debug\net9.0\EFCoreSqlServerNetTopologySuite.cs
+D:\tanvir all files\LAM2\lamCodes\LogicalAccessMgmt\Services\obj\Debug\net9.0\Services.sourcelink.json
+D:\tanvir all files\LAM2\lamCodes\LogicalAccessMgmt\Services\obj\Debug\net9.0\Services.csproj.Up2Date
+D:\tanvir all files\LAM2\lamCodes\LogicalAccessMgmt\Services\obj\Debug\net9.0\Services.dll
+D:\tanvir all files\LAM2\lamCodes\LogicalAccessMgmt\Services\obj\Debug\net9.0\refint\Services.dll
+D:\tanvir all files\LAM2\lamCodes\LogicalAccessMgmt\Services\obj\Debug\net9.0\Services.pdb
+D:\tanvir all files\LAM2\lamCodes\LogicalAccessMgmt\Services\obj\Debug\net9.0\Services.genruntimeconfig.cache
+D:\tanvir all files\LAM2\lamCodes\LogicalAccessMgmt\Services\obj\Debug\net9.0\ref\Services.dll

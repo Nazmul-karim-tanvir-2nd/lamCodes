@@ -5,5 +5,7 @@ export const api = axios.create({
   timeout: 8000,
 });
 
-export const getEmployeeByCif = (cif) =>
-  api.get(`/employees/${encodeURIComponent(cif)}`).then(r => r.data);
+export const getEmployeeByCif = async (cif) => {
+  const res = await api.get(`/employees/${encodeURIComponent(cif)}`);
+  return res.data; // { name, department, lineManager }
+};

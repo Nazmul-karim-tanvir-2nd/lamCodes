@@ -22,31 +22,32 @@ const FloatingInput = ({
 
     return (
         <div className="relative w-full min-h-[60px]">
-            <input
-                id={name}
-                name={name}
-                type={type}
-                value={value}
-                onChange={onChange}
-                disabled={disabled}
-                placeholder={placeholder}
-                onFocus={() => setIsFocused(true)}
-                onBlur={() => setIsFocused(false)}
-                autoComplete="off"
-                className={classNames(
-                    "w-full bg-transparent text-gray-800 dark:text-white outline-none pt-6 pb-1 px-2",
-                    "text-sm sm:text-base border-b transition-all duration-300 ease-in-out",
-                    {
-                        "border-dashed border-gray-400": !isFocused && !disabled,
-                        "hover:border-gray-600 hover:border-b": !isFocused && !disabled,
-                        "border-b-2 border-blue-500": isFocused && !disabled,
-                        "bg-gray-100 text-gray-500 cursor-not-allowed border-gray-300": disabled,
-                    }
-                )}
-                style={{
-                    transition: "all 0.3s ease",
-                }}
-            />
+           <input
+    id={name}
+    name={name}
+    type={type}
+    value={value ?? ""}
+    onChange={onChange}
+    disabled={disabled}
+    placeholder={placeholder}
+    onFocus={() => setIsFocused(true)}
+    onBlur={() => setIsFocused(false)}
+    autoComplete="off"
+    className={classNames(
+        "w-full bg-transparent text-gray-800 dark:text-white outline-none pt-6 pb-1 px-2",
+        "text-sm sm:text-base border-b transition-all duration-300 ease-in-out",
+        {
+            "border-dashed border-gray-400": !isFocused && !disabled,
+            "hover:border-gray-600 hover:border-b": !isFocused && !disabled,
+            "border-b-2 border-blue-500": isFocused && !disabled,
+            "bg-gray-100 text-gray-500 cursor-not-allowed border-gray-300": disabled,
+        }
+    )}
+    style={{
+        transition: "all 0.3s ease",
+    }}
+/>
+
             <label
                 htmlFor={name}
                 className={classNames(

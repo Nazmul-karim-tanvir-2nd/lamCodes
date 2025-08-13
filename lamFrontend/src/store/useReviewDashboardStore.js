@@ -1,17 +1,20 @@
 import { create } from "zustand";
 
+//Checks if each request has ID
 const ensureIds = (arr = []) =>
   arr.map((r, i) => ({
     ...r,
     id: r.id ?? `${r.cif}-${r.submittedAt ?? ""}-${i}`,
   }));
 
+  //Saves the request in localstorage
 const persist = (requests) => localStorage.setItem("accessRequests", JSON.stringify(requests));
 
 const useReviewDashboardStore = create((set, get) => ({
   requests: [],
   filters: { department: "", accessType: "" },
 
+  //Loads requests from localStorage, normalizes IDs with ensureIds, updates the state, and persists the normalized data.
   loadRequests: () => {
     const stored = JSON.parse(localStorage.getItem("accessRequests")) || [];
     const normalized = ensureIds(stored);

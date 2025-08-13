@@ -4,6 +4,7 @@ import FloatingSelect from '../../components/custom/FloatingSelect';
 import { Button } from '../../components/ui/Button';
 import { Check, Info, Search, User } from 'lucide-react';
 
+
 const RequiredLabel = ({ children }) => (
     <span>{children} <span className="text-red-600">*</span></span>
 );

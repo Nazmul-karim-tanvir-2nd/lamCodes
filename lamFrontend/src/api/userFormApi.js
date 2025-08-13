@@ -1,16 +1,30 @@
-// src/api/userFormApi.js
-
-const BASE_URL = "http://localhost:5000/api/UserForm"; // or from env
+const BASE_URL = "http://localhost:5162/api/ExternalApi";
 
 export const checkCIF = async (cif) => {
-    try {
-        const response = await fetch(`${BASE_URL}/check-cif?cif=${cif}`);
-        if (!response.ok) throw new Error("CIF check failed");
+  try {
+    console.log("🔍 Fetching for CIF:", cif);
 
-        const data = await response.json();
-        return data;
-    } catch (error) {
-        console.error("Error checking CIF:", error);
-        return { exists: false }; // fallback
-    }
+    const response = await fetch(`${BASE_URL}/employee/${cif}`);
+    console.log("🌐 Response status:", response.status);
+
+    if (!response.ok) throw new Error("CIF fetch failed");
+
+    const data = await response.json();
+    console.log("📦 Raw API data:", data);
+
+    const employee = data.employees?.[0];
+    console.log("👤 Extracted Employee:", employee);
+
+    if (!employee) return null;
+
+    return {
+      name: employee.name ?? "",
+      mobile: employee.mobilePhone ?? "",
+      gender: employee.gender ?? "",
+      biometricStatus: "Verified",
+    };
+  } catch (error) {
+    console.error("❌ Error checking CIF:", error);
+    return null;
+  }
 };

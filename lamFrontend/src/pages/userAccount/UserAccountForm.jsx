@@ -34,7 +34,7 @@ const UserAccountForm = () => {
     };
 
 
-    const handleCIFSearch = async () => {
+   {/* const handleCIFSearch = async () => {
         const sanitizedCIF = formData.cif.trim().replace(/[^\w\s\-]/gi, '');
         if (!sanitizedCIF) {
             Swal.fire({ title: "Enter a valid CIF", icon: "warning" });
@@ -51,7 +51,27 @@ const UserAccountForm = () => {
         } else {
             Swal.fire({ title: "CIF Not Found", icon: "error" });
         }
-    };
+    }; */}
+
+    const handleCIFSearch = async () => {
+  const sanitizedCIF = formData.cif.trim();
+  if (!sanitizedCIF) {
+    Swal.fire({ title: "Enter a valid CIF", icon: "warning" });
+    return;
+  }
+
+  const result = await checkCIF(sanitizedCIF);
+
+  if (result) {
+    updateField("name", result.name);
+    updateField("mobile", result.mobile);
+    updateField("gender", result.gender);
+    updateField("biometricStatus", result.biometricStatus);
+    Swal.fire("Success", `CIF found: ${result.name}`, "success");
+  } else {
+    Swal.fire("Not Found", "CIF not found in external API", "error");
+  }
+};
 
 
     const handleSubmit = (e) => {

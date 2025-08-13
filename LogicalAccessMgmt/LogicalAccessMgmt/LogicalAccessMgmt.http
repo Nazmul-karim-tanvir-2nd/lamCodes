@@ -1,0 +1,6 @@
+@LogicalAccessMgmt_HostAddress = http://localhost:5162
+
+GET {{LogicalAccessMgmt_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

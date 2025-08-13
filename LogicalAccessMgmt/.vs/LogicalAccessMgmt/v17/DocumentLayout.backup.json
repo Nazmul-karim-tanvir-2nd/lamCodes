@@ -1,0 +1,275 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\nafisam\\source\\repos\\LogicalAccessMgmt\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{AD16072C-C14F-4766-BAA4-3A069F42E9C4}|Data\\Data.csproj|c:\\users\\nafisam\\source\\repos\\logicalaccessmgmt\\data\\models\\employeeinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AD16072C-C14F-4766-BAA4-3A069F42E9C4}|Data\\Data.csproj|solutionrelative:data\\models\\employeeinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CC7175CE-340B-4125-B637-B9CC778BC615}|LogicalAccessMgmt\\LogicalAccessMgmt.csproj|c:\\users\\nafisam\\source\\repos\\logicalaccessmgmt\\logicalaccessmgmt\\controllers\\employeecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CC7175CE-340B-4125-B637-B9CC778BC615}|LogicalAccessMgmt\\LogicalAccessMgmt.csproj|solutionrelative:logicalaccessmgmt\\controllers\\employeecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CC7175CE-340B-4125-B637-B9CC778BC615}|LogicalAccessMgmt\\LogicalAccessMgmt.csproj|c:\\users\\nafisam\\source\\repos\\logicalaccessmgmt\\logicalaccessmgmt\\controllers\\externalapicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CC7175CE-340B-4125-B637-B9CC778BC615}|LogicalAccessMgmt\\LogicalAccessMgmt.csproj|solutionrelative:logicalaccessmgmt\\controllers\\externalapicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AD16072C-C14F-4766-BAA4-3A069F42E9C4}|Data\\Data.csproj|c:\\users\\nafisam\\source\\repos\\logicalaccessmgmt\\data\\dtos\\teammemberformdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AD16072C-C14F-4766-BAA4-3A069F42E9C4}|Data\\Data.csproj|solutionrelative:data\\dtos\\teammemberformdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AD16072C-C14F-4766-BAA4-3A069F42E9C4}|Data\\Data.csproj|c:\\users\\nafisam\\source\\repos\\logicalaccessmgmt\\data\\dbcontexts\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AD16072C-C14F-4766-BAA4-3A069F42E9C4}|Data\\Data.csproj|solutionrelative:data\\dbcontexts\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AD16072C-C14F-4766-BAA4-3A069F42E9C4}|Data\\Data.csproj|c:\\users\\nafisam\\source\\repos\\logicalaccessmgmt\\data\\models\\lateammember.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AD16072C-C14F-4766-BAA4-3A069F42E9C4}|Data\\Data.csproj|solutionrelative:data\\models\\lateammember.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AD16072C-C14F-4766-BAA4-3A069F42E9C4}|Data\\Data.csproj|c:\\users\\nafisam\\source\\repos\\logicalaccessmgmt\\data\\models\\extapiresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AD16072C-C14F-4766-BAA4-3A069F42E9C4}|Data\\Data.csproj|solutionrelative:data\\models\\extapiresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2B68AAAC-13D0-4DAF-BCA1-1B95F855AF71}|Services\\Services.csproj|c:\\users\\nafisam\\source\\repos\\logicalaccessmgmt\\services\\interfaces\\iexternalapiservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2B68AAAC-13D0-4DAF-BCA1-1B95F855AF71}|Services\\Services.csproj|solutionrelative:services\\interfaces\\iexternalapiservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CC7175CE-340B-4125-B637-B9CC778BC615}|LogicalAccessMgmt\\LogicalAccessMgmt.csproj|c:\\users\\nafisam\\source\\repos\\logicalaccessmgmt\\logicalaccessmgmt\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{CC7175CE-340B-4125-B637-B9CC778BC615}|LogicalAccessMgmt\\LogicalAccessMgmt.csproj|solutionrelative:logicalaccessmgmt\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CC7175CE-340B-4125-B637-B9CC778BC615}|LogicalAccessMgmt\\LogicalAccessMgmt.csproj|c:\\users\\nafisam\\source\\repos\\logicalaccessmgmt\\logicalaccessmgmt\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CC7175CE-340B-4125-B637-B9CC778BC615}|LogicalAccessMgmt\\LogicalAccessMgmt.csproj|solutionrelative:logicalaccessmgmt\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2B68AAAC-13D0-4DAF-BCA1-1B95F855AF71}|Services\\Services.csproj|c:\\users\\nafisam\\source\\repos\\logicalaccessmgmt\\services\\implementations\\employeeservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2B68AAAC-13D0-4DAF-BCA1-1B95F855AF71}|Services\\Services.csproj|solutionrelative:services\\implementations\\employeeservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2B68AAAC-13D0-4DAF-BCA1-1B95F855AF71}|Services\\Services.csproj|c:\\users\\nafisam\\source\\repos\\logicalaccessmgmt\\services\\interfaces\\iemployeeservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2B68AAAC-13D0-4DAF-BCA1-1B95F855AF71}|Services\\Services.csproj|solutionrelative:services\\interfaces\\iemployeeservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2B68AAAC-13D0-4DAF-BCA1-1B95F855AF71}|Services\\Services.csproj|c:\\users\\nafisam\\source\\repos\\logicalaccessmgmt\\services\\implementations\\externalapiservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2B68AAAC-13D0-4DAF-BCA1-1B95F855AF71}|Services\\Services.csproj|solutionrelative:services\\implementations\\externalapiservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2B68AAAC-13D0-4DAF-BCA1-1B95F855AF71}|Services\\Services.csproj|c:\\users\\nafisam\\source\\repos\\logicalaccessmgmt\\services\\services.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{2B68AAAC-13D0-4DAF-BCA1-1B95F855AF71}|Services\\Services.csproj|solutionrelative:services\\services.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AD16072C-C14F-4766-BAA4-3A069F42E9C4}|Data\\Data.csproj|c:\\users\\nafisam\\source\\repos\\logicalaccessmgmt\\data\\data.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{AD16072C-C14F-4766-BAA4-3A069F42E9C4}|Data\\Data.csproj|solutionrelative:data\\data.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 5,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "ExtApiResponse.cs",
+              "DocumentMoniker": "C:\\Users\\nafisam\\source\\repos\\LogicalAccessMgmt\\Data\\Models\\ExtApiResponse.cs",
+              "RelativeDocumentMoniker": "Data\\Models\\ExtApiResponse.cs",
+              "ToolTip": "C:\\Users\\nafisam\\source\\repos\\LogicalAccessMgmt\\Data\\Models\\ExtApiResponse.cs",
+              "RelativeToolTip": "Data\\Models\\ExtApiResponse.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-07T06:04:55.044Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "IExternalApiService.cs",
+              "DocumentMoniker": "C:\\Users\\nafisam\\source\\repos\\LogicalAccessMgmt\\Services\\Interfaces\\IExternalApiService.cs",
+              "RelativeDocumentMoniker": "Services\\Interfaces\\IExternalApiService.cs",
+              "ToolTip": "C:\\Users\\nafisam\\source\\repos\\LogicalAccessMgmt\\Services\\Interfaces\\IExternalApiService.cs",
+              "RelativeToolTip": "Services\\Interfaces\\IExternalApiService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAEwAoAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-06T11:06:32.565Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\nafisam\\source\\repos\\LogicalAccessMgmt\\LogicalAccessMgmt\\appsettings.json",
+              "RelativeDocumentMoniker": "LogicalAccessMgmt\\appsettings.json",
+              "ToolTip": "C:\\Users\\nafisam\\source\\repos\\LogicalAccessMgmt\\LogicalAccessMgmt\\appsettings.json",
+              "RelativeToolTip": "LogicalAccessMgmt\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAADAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-08-07T08:43:39.438Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "ExternalApiService.cs",
+              "DocumentMoniker": "C:\\Users\\nafisam\\source\\repos\\LogicalAccessMgmt\\Services\\Implementations\\ExternalApiService.cs",
+              "RelativeDocumentMoniker": "Services\\Implementations\\ExternalApiService.cs",
+              "ToolTip": "C:\\Users\\nafisam\\source\\repos\\LogicalAccessMgmt\\Services\\Implementations\\ExternalApiService.cs",
+              "RelativeToolTip": "Services\\Implementations\\ExternalApiService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEUAAAAzAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-06T11:04:49.214Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "Data.csproj",
+              "DocumentMoniker": "C:\\Users\\nafisam\\source\\repos\\LogicalAccessMgmt\\Data\\Data.csproj",
+              "RelativeDocumentMoniker": "Data\\Data.csproj",
+              "ToolTip": "C:\\Users\\nafisam\\source\\repos\\LogicalAccessMgmt\\Data\\Data.csproj",
+              "RelativeToolTip": "Data\\Data.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-08-06T11:45:01.034Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "EmployeeInfo.cs",
+              "DocumentMoniker": "C:\\Users\\nafisam\\source\\repos\\LogicalAccessMgmt\\Data\\Models\\EmployeeInfo.cs",
+              "RelativeDocumentMoniker": "Data\\Models\\EmployeeInfo.cs",
+              "ToolTip": "C:\\Users\\nafisam\\source\\repos\\LogicalAccessMgmt\\Data\\Models\\EmployeeInfo.cs",
+              "RelativeToolTip": "Data\\Models\\EmployeeInfo.cs",
+              "ViewState": "AgIAAA4AAAAAAAAAAAA7wB4AAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-07T04:18:05.704Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "LATeamMember.cs",
+              "DocumentMoniker": "C:\\Users\\nafisam\\source\\repos\\LogicalAccessMgmt\\Data\\Models\\LATeamMember.cs",
+              "RelativeDocumentMoniker": "Data\\Models\\LATeamMember.cs",
+              "ToolTip": "C:\\Users\\nafisam\\source\\repos\\LogicalAccessMgmt\\Data\\Models\\LATeamMember.cs",
+              "RelativeToolTip": "Data\\Models\\LATeamMember.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-07T08:30:18.698Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "EmployeeController.cs",
+              "DocumentMoniker": "C:\\Users\\nafisam\\source\\repos\\LogicalAccessMgmt\\LogicalAccessMgmt\\Controllers\\EmployeeController.cs",
+              "RelativeDocumentMoniker": "LogicalAccessMgmt\\Controllers\\EmployeeController.cs",
+              "ToolTip": "C:\\Users\\nafisam\\source\\repos\\LogicalAccessMgmt\\LogicalAccessMgmt\\Controllers\\EmployeeController.cs",
+              "RelativeToolTip": "LogicalAccessMgmt\\Controllers\\EmployeeController.cs",
+              "ViewState": "AgIAABwAAAAAAAAAAAAIwDEAAAArAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-07T11:45:26.674Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "AppDBContext.cs",
+              "DocumentMoniker": "C:\\Users\\nafisam\\source\\repos\\LogicalAccessMgmt\\Data\\DBContexts\\AppDBContext.cs",
+              "RelativeDocumentMoniker": "Data\\DBContexts\\AppDBContext.cs",
+              "ToolTip": "C:\\Users\\nafisam\\source\\repos\\LogicalAccessMgmt\\Data\\DBContexts\\AppDBContext.cs",
+              "RelativeToolTip": "Data\\DBContexts\\AppDBContext.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAABFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-07T08:23:55.424Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "TeamMemberFormDto.cs",
+              "DocumentMoniker": "C:\\Users\\nafisam\\source\\repos\\LogicalAccessMgmt\\Data\\Dtos\\TeamMemberFormDto.cs",
+              "RelativeDocumentMoniker": "Data\\Dtos\\TeamMemberFormDto.cs",
+              "ToolTip": "C:\\Users\\nafisam\\source\\repos\\LogicalAccessMgmt\\Data\\Dtos\\TeamMemberFormDto.cs",
+              "RelativeToolTip": "Data\\Dtos\\TeamMemberFormDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAIBJwA8AAABEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-07T11:35:26.364Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ExternalApiController.cs",
+              "DocumentMoniker": "C:\\Users\\nafisam\\source\\repos\\LogicalAccessMgmt\\LogicalAccessMgmt\\Controllers\\ExternalApiController.cs",
+              "RelativeDocumentMoniker": "LogicalAccessMgmt\\Controllers\\ExternalApiController.cs",
+              "ToolTip": "C:\\Users\\nafisam\\source\\repos\\LogicalAccessMgmt\\LogicalAccessMgmt\\Controllers\\ExternalApiController.cs",
+              "RelativeToolTip": "LogicalAccessMgmt\\Controllers\\ExternalApiController.cs",
+              "ViewState": "AgIAABUAAAAAAAAAAAAowCUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-06T11:02:01.275Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "EmployeeService.cs",
+              "DocumentMoniker": "C:\\Users\\nafisam\\source\\repos\\LogicalAccessMgmt\\Services\\Implementations\\EmployeeService.cs",
+              "RelativeDocumentMoniker": "Services\\Implementations\\EmployeeService.cs",
+              "ToolTip": "C:\\Users\\nafisam\\source\\repos\\LogicalAccessMgmt\\Services\\Implementations\\EmployeeService.cs",
+              "RelativeToolTip": "Services\\Implementations\\EmployeeService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAIBJwBUAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-07T08:31:49.994Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\nafisam\\source\\repos\\LogicalAccessMgmt\\LogicalAccessMgmt\\Program.cs",
+              "RelativeDocumentMoniker": "LogicalAccessMgmt\\Program.cs",
+              "ToolTip": "C:\\Users\\nafisam\\source\\repos\\LogicalAccessMgmt\\LogicalAccessMgmt\\Program.cs",
+              "RelativeToolTip": "LogicalAccessMgmt\\Program.cs",
+              "ViewState": "AgIAAA8AAAAAAAAAAIBJwBsAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-06T11:09:55.302Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "IEmployeeService.cs",
+              "DocumentMoniker": "C:\\Users\\nafisam\\source\\repos\\LogicalAccessMgmt\\Services\\Interfaces\\IEmployeeService.cs",
+              "RelativeDocumentMoniker": "Services\\Interfaces\\IEmployeeService.cs",
+              "ToolTip": "C:\\Users\\nafisam\\source\\repos\\LogicalAccessMgmt\\Services\\Interfaces\\IEmployeeService.cs",
+              "RelativeToolTip": "Services\\Interfaces\\IEmployeeService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-07T08:31:23.316Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "Services.csproj",
+              "DocumentMoniker": "C:\\Users\\nafisam\\source\\repos\\LogicalAccessMgmt\\Services\\Services.csproj",
+              "RelativeDocumentMoniker": "Services\\Services.csproj",
+              "ToolTip": "C:\\Users\\nafisam\\source\\repos\\LogicalAccessMgmt\\Services\\Services.csproj",
+              "RelativeToolTip": "Services\\Services.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-08-06T11:02:58.651Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

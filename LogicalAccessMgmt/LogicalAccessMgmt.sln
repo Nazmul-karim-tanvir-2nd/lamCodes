@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogicalAccessMgmt", "LogicalAccessMgmt\LogicalAccessMgmt.csproj", "{CC7175CE-340B-4125-B637-B9CC778BC615}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services", "Services\Services.csproj", "{2B68AAAC-13D0-4DAF-BCA1-1B95F855AF71}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data", "Data\Data.csproj", "{AD16072C-C14F-4766-BAA4-3A069F42E9C4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CC7175CE-340B-4125-B637-B9CC778BC615}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC7175CE-340B-4125-B637-B9CC778BC615}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC7175CE-340B-4125-B637-B9CC778BC615}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC7175CE-340B-4125-B637-B9CC778BC615}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2B68AAAC-13D0-4DAF-BCA1-1B95F855AF71}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2B68AAAC-13D0-4DAF-BCA1-1B95F855AF71}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2B68AAAC-13D0-4DAF-BCA1-1B95F855AF71}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2B68AAAC-13D0-4DAF-BCA1-1B95F855AF71}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AD16072C-C14F-4766-BAA4-3A069F42E9C4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD16072C-C14F-4766-BAA4-3A069F42E9C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD16072C-C14F-4766-BAA4-3A069F42E9C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD16072C-C14F-4766-BAA4-3A069F42E9C4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,17 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\LogicalAccessMgmt",
+    "\\LogicalAccessMgmt\\Data",
+    "\\LogicalAccessMgmt\\Data\\Models",
+    "\\LogicalAccessMgmt\\LogicalAccessMgmt",
+    "\\LogicalAccessMgmt\\LogicalAccessMgmt\\bin",
+    "\\LogicalAccessMgmt\\LogicalAccessMgmt\\bin\\Debug",
+    "\\LogicalAccessMgmt\\LogicalAccessMgmt\\Controllers",
+    "\\LogicalAccessMgmt\\Services",
+    "\\LogicalAccessMgmt\\Services\\Implementations",
+    "\\LogicalAccessMgmt\\Services\\Interfaces"
+  ],
+  "SelectedNode": "\\LogicalAccessMgmt\\LogicalAccessMgmt\\Program.cs",
+  "PreviewInSolutionExplorer": false
+}

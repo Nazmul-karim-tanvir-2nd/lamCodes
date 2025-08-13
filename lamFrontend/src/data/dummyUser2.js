@@ -26,7 +26,7 @@ const dummyUsers2 = [
     lineManager: "Md. Nurul Alam Jewel",
     emergencyContact: "01724448106",
     biometricStatus: "Verified",
-    lineManagerStatus: "Pending"
+    lineManagerStatus: "Successful"
   },
   {
     cif: "123459",

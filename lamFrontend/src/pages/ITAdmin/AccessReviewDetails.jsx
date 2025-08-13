@@ -232,7 +232,7 @@ export default function AccessReviewDetails() {
               style={{ backgroundImage: `url(${selectedImageUrl})`, backgroundSize: "contain", backgroundRepeat: "no-repeat", backgroundPosition: "center" }}
               onClick={(e) => e.stopPropagation()}
             >
-              <button className="absolute top-2 right-2 text-white text-2xl" onClick={closeModal}>×</button>
+              <button className="absolute top-2 right-2 text-white text-2xl cursor-pointer" onClick={closeModal}>×</button>
             </div>
           </div>
         )}

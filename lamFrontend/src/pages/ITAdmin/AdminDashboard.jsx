@@ -17,28 +17,28 @@ import {
 const requests = [
     {
         label: "New User Account Opening",
-        path: "/new-user",
+        path: "/",
         count: 8,
         icon: <UserPlus size={40} className="text-blue-500" />,
         color: "bg-blue-100",
     },
     {
         label: "Access Request",
-        path: "/access-request",
+        path: "/access-review-dashboard",
         count: 5,
         icon: <Key size={40} className="text-green-500" />,
         color: "bg-green-100",
     },
     {
         label: "Employee Transfer",
-        path: "/employee-transfer",
+        path: "/",
         count: 3,
         icon: <Repeat size={40} className="text-yellow-500" />,
         color: "bg-yellow-100",
     },
     {
         label: "Employee Clearance",
-        path: "/employee-clearance",
+        path: "/",
         count: 2,
         icon: <LogOut size={40} className="text-red-500" />,
         color: "bg-red-100",

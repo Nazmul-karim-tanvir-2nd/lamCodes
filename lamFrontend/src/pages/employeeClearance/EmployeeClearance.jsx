@@ -90,12 +90,21 @@ const EmployeeClearance = () => {
   const { departments, reset } = useClearanceTrackerStore();
   const [submitted, setSubmitted] = useState(false);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    localStorage.setItem("employeeClearanceData", JSON.stringify(departments));
-    setSubmitted(true);
-    reset();
-  };
+ const handleSubmit = (e) => {
+  e.preventDefault();
+
+  const simplifiedData = Object.entries(departments).reduce((acc, [dept, data]) => {
+    acc[dept] = {
+      ...data,
+      attachment: data.attachment ? data.attachment.name : null  
+    };
+    return acc;
+  }, {});
+
+  localStorage.setItem("employeeClearanceData", JSON.stringify(simplifiedData));
+  setSubmitted(true);
+  reset();
+};
 
   return (
     <form onSubmit={handleSubmit} className="w-full p-2 sm:p-2 space-y-2">

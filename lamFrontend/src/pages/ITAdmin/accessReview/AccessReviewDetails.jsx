@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { useParams, Link } from "react-router-dom";
-import useReviewDashboardStore from "../../store/useReviewDashboardStore";
+import useReviewDashboardStore from "../../../store/useReviewDashboardStore";
 
 const TYPE_KEY = {
   "Software Access": "Software",

@@ -1,0 +1,13 @@
+# === GLOBAL IGNORE ===
+*.dll
+*.exe
+*.log
+*.tmp
+*.user
+*.suo
+*.cache
+*.pdb
+
+# === VS Code settings ===
+.vscode/
+*.code-workspace

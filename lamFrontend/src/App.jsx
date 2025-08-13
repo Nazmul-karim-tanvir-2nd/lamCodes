@@ -7,8 +7,8 @@ import EmployeeClearance from './pages/employeeClearance/EmployeeClearance.jsx';
 import Layout from './layout/Layout.jsx';
 import LoginPopup from './components/auth/LoginPopup.jsx';
 import AccessReviewDashboard from './pages/ITAdmin/accessReview/AccessReviewDashboard.jsx';
-import AccessReviewDetails from "./pages/ITAdmin/AccessReviewDetails";
 import AdminDashboard from './pages/ITAdmin/AdminDashboard.jsx';
+import AccessReviewDetails from './pages/ITAdmin/accessReview/AccessReviewDetails.jsx';
 
 function App() {
   return (
@@ -24,6 +24,7 @@ function App() {
           <Route path="employee-transfer" element={<EmployeeTransfer />} />
           <Route path="employee-clearance" element={<EmployeeClearance />} />
           <Route path="dashboard" element={<AdminDashboard />} />
+          <Route path="access-review-dashboard" element={<AccessReviewDashboard />} />
           <Route path="access-review-details/:id" element={<AccessReviewDetails />} />
         </Route>
 

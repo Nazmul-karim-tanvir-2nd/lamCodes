@@ -1,4 +1,3 @@
-// src/store/useClearanceTrackerStore.js
 import { create } from "zustand";
 
 const useClearanceTrackerStore = create((set) => ({
@@ -10,6 +9,7 @@ const useClearanceTrackerStore = create((set) => ({
       grantedBy: "",
       deviation: false,
       deviationJustification: "",
+      attachment: null,
     },
     Finance: {
       items: {
@@ -21,6 +21,7 @@ const useClearanceTrackerStore = create((set) => ({
       grantedBy: "",
       deviation: false,
       deviationJustification: "",
+      attachment: null,
     },
     Administration: {
       items: {
@@ -33,6 +34,7 @@ const useClearanceTrackerStore = create((set) => ({
       grantedBy: "",
       deviation: false,
       deviationJustification: "",
+      attachment: null,
     },
     Consumer: {
       items: {
@@ -44,6 +46,7 @@ const useClearanceTrackerStore = create((set) => ({
       grantedBy: "",
       deviation: false,
       deviationJustification: "",
+      attachment: null,
     },
     Operations: {
       items: {
@@ -54,6 +57,7 @@ const useClearanceTrackerStore = create((set) => ({
       grantedBy: "",
       deviation: false,
       deviationJustification: "",
+      attachment: null,
     },
     HR: {
       items: {
@@ -64,8 +68,10 @@ const useClearanceTrackerStore = create((set) => ({
       grantedBy: "",
       deviation: false,
       deviationJustification: "",
+      attachment: null,
     },
   },
+
   toggleItem: (dept, item) =>
     set((state) => ({
       departments: {
@@ -79,6 +85,7 @@ const useClearanceTrackerStore = create((set) => ({
         },
       },
     })),
+
   setGrantedBy: (dept, value) =>
     set((state) => ({
       departments: {
@@ -86,6 +93,7 @@ const useClearanceTrackerStore = create((set) => ({
         [dept]: { ...state.departments[dept], grantedBy: value },
       },
     })),
+
   toggleDeviation: (dept) =>
     set((state) => ({
       departments: {
@@ -96,6 +104,7 @@ const useClearanceTrackerStore = create((set) => ({
         },
       },
     })),
+
   setJustification: (dept, value) =>
     set((state) => ({
       departments: {
@@ -105,6 +114,36 @@ const useClearanceTrackerStore = create((set) => ({
           deviationJustification: value,
         },
       },
+    })),
+
+  setAttachment: (dept, file) =>
+    set((state) => ({
+      departments: {
+        ...state.departments,
+        [dept]: {
+          ...state.departments[dept],
+          attachment: file,
+        },
+      },
+    })),
+
+  reset: () =>
+    set((state) => ({
+      departments: Object.fromEntries(
+        Object.entries(state.departments).map(([dept, data]) => [
+          dept,
+          {
+            ...data,
+            grantedBy: "",
+            deviation: false,
+            deviationJustification: "",
+            attachment: null,
+            items: Object.fromEntries(
+              Object.keys(data.items).map((key) => [key, false])
+            ),
+          },
+        ])
+      ),
     })),
 }));
 

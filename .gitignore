@@ -1,7 +1,1 @@
-# .NET build output
-**/bin/
-**/obj/
-*.user
-*.suo
-*.userprefs
-*.cache
+

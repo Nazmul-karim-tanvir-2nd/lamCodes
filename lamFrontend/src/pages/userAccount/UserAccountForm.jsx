@@ -102,13 +102,14 @@ useEffect(() => {
         handleChange={handleChange}
         handleCIFSearch={handleCIFSearch}
       />
-      <DepartmentRoleSection
-        formData={formData}
-        handleChange={handleChange}
-        updateField={updateField}
-        branchOptions={branchOptions}
-        divisionOptions={divisionOptions}
-      />
+     <DepartmentRoleSection
+  formData={formData}
+  handleChange={handleChange}
+  updateField={updateField}
+  branchOptions={branchOptions}
+  divisionOptions={divisionOptions}
+  designationOptions={designationOptions}
+/>
       <AttachmentsSection formData={formData} handleChange={handleChange} />
       <MetadataSection formData={formData} handleChange={handleChange} />
 

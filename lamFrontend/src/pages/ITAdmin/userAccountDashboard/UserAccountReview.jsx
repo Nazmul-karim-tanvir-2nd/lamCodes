@@ -4,7 +4,7 @@ import FloatingSelect from "../../../components/custom/FloatingSelect";
 import FloatingInput from "../../../components/custom/FloatingInput";
 import { useNavigate } from "react-router-dom";
 
-const accountRequests = [
+const initialRequests = [
     { id: 1, name: "John Doe", department: "IT", status: "Pending", date: "2025-08-01" },
     { id: 2, name: "Jane Smith", department: "Finance", status: "Approved", date: "2025-08-02" },
     { id: 3, name: "Ali Khan", department: "HR", status: "Pending", date: "2025-08-03" },
@@ -15,26 +15,26 @@ const accountRequests = [
     { id: 8, name: "Dwight Schrute", department: "Finance", status: "Pending", date: "2025-08-08" },
     { id: 9, name: "Pam Beesly", department: "IT", status: "Approved", date: "2025-08-09" },
     { id: 10, name: "Jim Halpert", department: "Finance", status: "Pending", date: "2025-08-10" },
-    { id: 11, name: "Stanley Hudson", department: "HR", status: "Approved", date: "2025-08-11" },
+    { id: 11, name: "Stanley Hudson", department: "HR", status: "Rejected", date: "2025-08-11" },
 ];
 
 const UserAccountReview = () => {
+    const [requests, setRequests] = useState(initialRequests);
     const [filterStatus, setFilterStatus] = useState("");
     const [filterDate, setFilterDate] = useState("");
     const [currentPage, setCurrentPage] = useState(1);
     const [itemsPerPage, setItemsPerPage] = useState(10);
+    const [selectedIds, setSelectedIds] = useState([]);
     const navigate = useNavigate();
 
-    // Filtered data
     const filteredRequests = useMemo(() => {
-        return accountRequests.filter((r) => {
+        return requests.filter((r) => {
             const matchesStatus = filterStatus ? r.status === filterStatus : true;
             const matchesDate = filterDate ? r.date === filterDate : true;
             return matchesStatus && matchesDate;
         });
-    }, [filterStatus, filterDate]);
+    }, [requests, filterStatus, filterDate]);
 
-    // Pagination
     const totalPages = Math.ceil(filteredRequests.length / itemsPerPage);
     const paginatedRequests = filteredRequests.slice(
         (currentPage - 1) * itemsPerPage,
@@ -45,7 +45,50 @@ const UserAccountReview = () => {
         const base = "px-3 py-1 rounded-full text-xs font-semibold";
         if (status === "Pending") return `${base} bg-yellow-100 text-yellow-700`;
         if (status === "Approved") return `${base} bg-green-100 text-green-700`;
+        if (status === "Rejected") return `${base} bg-red-100 text-red-700`;
         return base;
+    };
+
+    const isAllSelected =
+        paginatedRequests.length > 0 &&
+        paginatedRequests.every((req) => selectedIds.includes(req.id));
+
+    const toggleSelectAll = () => {
+        if (isAllSelected) {
+            setSelectedIds((prev) =>
+                prev.filter((id) => !paginatedRequests.some((req) => req.id === id))
+            );
+        } else {
+            setSelectedIds((prev) => [
+                ...new Set([...prev, ...paginatedRequests.map((req) => req.id)]),
+            ]);
+        }
+    };
+
+    const toggleSelect = (id) => {
+        setSelectedIds((prev) =>
+            prev.includes(id)
+                ? prev.filter((selectedId) => selectedId !== id)
+                : [...prev, id]
+        );
+    };
+
+    const handleApprove = () => {
+        setRequests((prev) =>
+            prev.map((req) =>
+                selectedIds.includes(req.id) ? { ...req, status: "Approved" } : req
+            )
+        );
+        setSelectedIds([]);
+    };
+
+    const handleRemove = () => {
+        setRequests((prev) =>
+            prev.map((req) =>
+                selectedIds.includes(req.id) ? { ...req, status: "Rejected" } : req
+            )
+        );
+        setSelectedIds([]);
     };
 
     return (
@@ -54,7 +97,7 @@ const UserAccountReview = () => {
                 User Account Review
             </h1>
 
-            <div className="bg-white shadow-lg rounded-xl p-4 border border-gray-200">
+            <div className="bg-white shadow-lg rounded-xl p-4 border border-red-200">
                 {/* Filters */}
                 <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6">
                     <div className="flex flex-col sm:flex-row gap-6">
@@ -70,6 +113,7 @@ const UserAccountReview = () => {
                                 options={[
                                     { label: "Pending", value: "Pending" },
                                     { label: "Approved", value: "Approved" },
+                                    { label: "Rejected", value: "Rejected" },
                                 ]}
                             />
                         </div>
@@ -107,36 +151,71 @@ const UserAccountReview = () => {
                     </div>
                 </div>
 
+                {/* Action Bar */}
+                {selectedIds.length > 0 && (
+                    <div className="flex gap-3 mb-4">
+                        <button
+                            onClick={handleApprove}
+                            className="px-4 py-2 bg-green-600/80 text-white rounded-lg hover:bg-green-700"
+                        >
+                            Approve Selected
+                        </button>
+                        <button
+                            onClick={handleRemove}
+                            className="px-4 py-2 bg-red-600/80 text-white rounded-lg hover:bg-red-700"
+                        >
+                            Reject Selected
+                        </button>
+                    </div>
+                )}
+
                 {/* Table */}
                 <div className="overflow-x-auto">
-                    <table className="min-w-full text-sm border-separate border-spacing-0">
-                        <thead className="bg-blue-50 text-gray-700">
-                            <tr className="text-center">
-                                <th className="px-6 py-3 font-semibold text-left border-b border-gray-200">ID</th>
-                                <th className="px-6 py-3 font-semibold text-left border-b border-gray-200">Name</th>
-                                <th className="px-6 py-3 font-semibold text-left border-b border-gray-200">Department</th>
-                                <th className="px-6 py-3 font-semibold text-left border-b border-gray-200">Date</th>
-                                <th className="px-6 py-3 font-semibold text-left border-b border-gray-200">Status</th>
-                                <th className="px-6 py-3 font-semibold text-left border-b border-gray-200">Actions</th>
+                    <table className="min-w-full text-base border-separate border-spacing-0">
+                        <thead className="bg-gray-400 text-white font-bold text-center">
+                            <tr>
+                                <th className="px-4 py-4 border-b border-gray-200">
+                                    <input
+                                        type="checkbox"
+                                        checked={isAllSelected}
+                                        onChange={toggleSelectAll}
+                                    />
+                                </th>
+                                <th className="px-6 py-4 border-b border-gray-200">ID</th>
+                                <th className="px-6 py-4 border-b border-gray-200">Name</th>
+                                <th className="px-6 py-4 border-b border-gray-200">Department</th>
+                                <th className="px-6 py-4 border-b border-gray-200">Date</th>
+                                <th className="px-6 py-4 border-b border-gray-200">Status</th>
+                                <th className="px-6 py-4 border-b border-gray-200">Actions</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody className="text-center">
                             {paginatedRequests.map((req, index) => (
                                 <tr
                                     key={req.id}
-                                    className={`${index % 2 === 0 ? "bg-white" : "bg-blue-50"} hover:bg-gray-50 transition-colors`}
+                                    className={`${index % 2 === 0 ? "bg-white" : "bg-blue-50"
+                                        } hover:bg-gray-50 transition-colors`}
                                 >
-                                    <td className="px-6 py-4 border-b border-gray-100 text-left">{req.id}</td>
+                                    <td className="px-4 py-4 border-b border-gray-100">
+                                        <input
+                                            type="checkbox"
+                                            checked={selectedIds.includes(req.id)}
+                                            onChange={() => toggleSelect(req.id)}
+                                        />
+                                    </td>
+                                    <td className="px-6 py-4 border-b border-gray-100">{req.id}</td>
                                     <td className="px-6 py-4 border-b border-gray-100 font-medium text-left">{req.name}</td>
-                                    <td className="px-6 py-4 border-b border-gray-100 text-left">{req.department}</td>
-                                    <td className="px-6 py-4 border-b border-gray-100 text-left text-gray-600">{req.date}</td>
-                                    <td className="px-6 py-4 border-b border-gray-100 text-left">
+                                    <td className="px-6 py-4 border-b border-gray-100">{req.department}</td>
+                                    <td className="px-6 py-4 border-b border-gray-100 text-gray-600">{req.date}</td>
+                                    <td className="px-6 py-4 border-b border-gray-100">
                                         <span className={statusBadge(req.status)}>{req.status}</span>
                                     </td>
-                                    <td className="px-6 py-4 border-b border-gray-100 text-left">
+                                    <td className="px-6 py-4 border-b border-gray-100">
                                         <button
                                             className="text-blue-600 font-medium hover:underline"
-                                            onClick={() => navigate(`/user-account-review-details/${req.id}`)}
+                                            onClick={() =>
+                                                navigate(`/user-account-review-details/${req.id}`)
+                                            }
                                         >
                                             View Details
                                         </button>
@@ -145,7 +224,10 @@ const UserAccountReview = () => {
                             ))}
                             {paginatedRequests.length === 0 && (
                                 <tr>
-                                    <td colSpan={6} className="text-center py-6 text-gray-500">
+                                    <td
+                                        colSpan={7}
+                                        className="text-center py-6 text-gray-500"
+                                    >
                                         No requests found.
                                     </td>
                                 </tr>

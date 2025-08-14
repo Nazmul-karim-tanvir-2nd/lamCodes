@@ -3,6 +3,7 @@ import React, { useState, useMemo } from "react";
 import FloatingSelect from "../../../components/custom/FloatingSelect";
 import FloatingInput from "../../../components/custom/FloatingInput";
 import { useNavigate } from "react-router-dom";
+import Breadcrumb from "../../../components/common/Breadcrumb";
 
 const initialTransfers = [
     { id: 1, employeeName: "John Doe", fromDept: "IT", toDept: "Finance", status: "Pending", date: "2025-08-01" },
@@ -87,9 +88,15 @@ const EmployeeTransferReview = () => {
 
     return (
         <div className="min-w-full mx-auto">
-            <h1 className="text-2xl font-bold text-blue-800 mb-8 underline underline-offset-4 decoration-gray-400 text-center">
-                Employee Transfer Review
+            <h1 className="text-base sm:text-xl font-bold text-center text-blue-800 mb-4 underline underline-offset-8 decoration-gray-500/80">
+                Employee Transfer Review Dashboard
             </h1>
+            <Breadcrumb
+                items={[
+                    { label: "Dashboard", path: "/" },
+                    { label: "employee-transfer-review-dashboard" }
+                ]}
+            />
 
             <div className="bg-white shadow-lg rounded-xl p-4 border border-red-200">
                 {/* Filters */}

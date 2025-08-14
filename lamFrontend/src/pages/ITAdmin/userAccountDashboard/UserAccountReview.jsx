@@ -94,9 +94,8 @@ const UserAccountReview = () => {
 
     return (
         <div className="min-w-full mx-auto">
-
-            <h1 className="text-2xl font-bold text-blue-800 mb-8 underline underline-offset-4 decoration-gray-400 text-center">
-                User Account Review
+            <h1 className="text-base sm:text-xl font-bold text-center text-blue-800 mb-4 underline underline-offset-8 decoration-gray-500/80">
+                User Account Review Dashboard
             </h1>
             <Breadcrumb
                 items={[

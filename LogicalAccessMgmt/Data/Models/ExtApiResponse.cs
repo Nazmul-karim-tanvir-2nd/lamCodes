@@ -6,7 +6,7 @@ namespace LogicalAccessMgmt.Data.Models
     {
         public string Data { get; set; } = string.Empty;
 
-        // Add a helper method to deserialize the inner Data string
+       //helper to deserialize
         public List<LogicalAccessMgmt.Data.Models.EmployeeInfo>? GetEmployees()
         {
             if (string.IsNullOrEmpty(Data))

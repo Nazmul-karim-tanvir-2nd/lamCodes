@@ -19,6 +19,8 @@ namespace LogicalAccessMgmt.Data.DBContexts
 
         public DbSet<DesignationRequest> Designations { get; set; }
 
+        public DbSet<DepartmentRequest> Department { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -37,6 +39,8 @@ namespace LogicalAccessMgmt.Data.DBContexts
             modelBuilder.Entity<DivisionInfoRequest>().ToTable("LADivision").HasNoKey();
 
             modelBuilder.Entity<DesignationRequest>().ToTable("LicEmpCodesDesignationType").HasNoKey();
+
+            modelBuilder.Entity<DepartmentRequest>().ToTable("LATeam").HasNoKey();
         }
 
     }

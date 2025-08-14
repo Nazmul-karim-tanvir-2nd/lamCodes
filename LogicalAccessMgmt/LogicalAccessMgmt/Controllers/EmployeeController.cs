@@ -17,19 +17,22 @@ namespace LogicalAccessMgmt.Controllers
         private readonly IBranchService _branchService;
         private readonly IDivisionService _divisionService;
         private readonly IDesignationService _designationService;
+        private readonly IDepartmentService _departmentService;
 
         public EmployeeController(
             AppDbContext context,
             IExternalApiService externalApiService,
             IBranchService branchService,
             IDivisionService divisionService,
-            IDesignationService designationService)
+            IDesignationService designationService,
+            IDepartmentService departmentService)
         {
             _context = context;
             _externalApiService = externalApiService;
             _branchService = branchService;
             _divisionService = divisionService;
             _designationService = designationService;
+            _departmentService = departmentService;
         }
 
         [HttpPost("create")]
@@ -93,6 +96,34 @@ namespace LogicalAccessMgmt.Controllers
             return Ok(designation);
         }
 
+        [HttpGet("line-manager/{cifNo}")]
+        public async Task<IActionResult> GetLineManagerInfo(string cifNo)
+        {
+            if (string.IsNullOrWhiteSpace(cifNo))
+                return BadRequest("CIF number is required.");
 
+            var lineManager = await _context.LATeamMembers
+                .Where(m => m.CIFNo == cifNo)
+                .Select(m => new
+                {
+                    m.MemberName,
+                    m.Designation,
+                    m.MobileNo
+                })
+                .FirstOrDefaultAsync();
+
+            if (lineManager == null)
+                return NotFound($"No line manager found with CIF {cifNo}.");
+
+            return Ok(lineManager);
+        }
+        [HttpGet("department")]
+        public async Task<IActionResult> GetDepartment()
+        {
+            var departments = await _context.Department.ToListAsync();
+            return Ok(departments);
+
+
+        }
     }
 }

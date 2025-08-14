@@ -217,7 +217,7 @@ export default function AccessReviewDashboard() {
                 <th className="px-4 py-3 border-b border-red-200">Name</th>
                 <th className="px-4 py-3 border-b border-red-200">Department</th>
                 <th className="px-4 py-3 border-b border-red-200">Access Types</th>
-                <th className="px-4 py-3 border-b border-red-200">Submitted</th>
+                <th className="px-4 py-3 border-b border-red-200">Submitted At</th>
                 <th className="px-4 py-3 border-b border-red-200">LM Status</th>
                 <th className="px-4 py-3 border-b border-red-200">Review Status</th>
                 <th className="px-4 py-3 border-b border-red-200">Attachment</th>

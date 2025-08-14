@@ -173,7 +173,7 @@ const EmployeeTransferReview = () => {
                 {/* Table */}
                 <div className="overflow-x-auto">
                     <table className="min-w-full text-base border-separate border-spacing-0">
-                        <thead className="bg-gray-400 text-white font-bold text-center">
+                        <thead className="bg-blue-900/80 text-white font-bold text-center">
                             <tr>
                                 <th className="px-4 py-4 border-b border-gray-200">
                                     <input

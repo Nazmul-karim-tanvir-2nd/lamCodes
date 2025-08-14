@@ -13,8 +13,8 @@ import UserAccountReview from './pages/ITAdmin/userAccountDashboard/UserAccountR
 import UserAccountReviewDetails from './pages/ITAdmin/userAccountDashboard/UserAccountReviewDetails.jsx';
 import ClearanceReviewDashboard from './pages/ITAdmin/clearanceDashboard/ClearanceReviewDashboard.jsx';
 import ClearanceDetails from './pages/ITAdmin/clearanceDashboard/ClearanceDetails.jsx';
-import EmployeeTransferReview from './pages/ITAdmin/employeeTransferDashboard/employeeTransferReview.jsx';
-import EmployeeTransferReviewDetails from './pages/ITAdmin/employeeTransferDashboard/employeeTransferReviewDetails.jsx';
+import EmployeeTransferReview from './pages/ITAdmin/employeeTransferDashboard/EmployeeTransferReview.jsx';
+import EmployeeTransferReviewDetails from './pages/ITAdmin/employeeTransferDashboard/EmployeeTransferReviewDetails.jsx';
 
 function App() {
   return (

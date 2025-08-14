@@ -7,7 +7,8 @@ import BasicInfoSection from './BasicInfoSection.jsx';
 import DepartmentRoleSection from './DepartmentRoleSection.jsx';
 import AttachmentsSection from './AttachmentsSection.jsx';
 import MetadataSection from './MetadataSection.jsx';
-import { fetchBranches, fetchDivisions, fetchDesignations } from '../../api/userFormApi';
+import { checkCIF, fetchBranches, fetchDivisions, fetchDesignations } from '../../api/userFormApi';
+
 
 const UserAccountForm = () => {
   const { formData, updateField } = useUserFormStore();

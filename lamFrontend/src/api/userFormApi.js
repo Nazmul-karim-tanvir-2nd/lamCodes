@@ -45,7 +45,7 @@ export const fetchDivisions = async () => {
 };
 
 export const fetchDesignations = async () => {
-  const res = await fetch(`${BASE_EMPLOYEE_URL}/designations`);
+   const res = await fetch(`http://localhost:5162/api/designations`);
   if (!res.ok) throw new Error("Failed to fetch designations");
 
   const data = await res.json();

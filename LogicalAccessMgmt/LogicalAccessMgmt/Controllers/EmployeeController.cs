@@ -93,6 +93,28 @@ namespace LogicalAccessMgmt.Controllers
             return Ok(designation);
         }
 
+        [HttpGet("line-manager/{cifNo}")]
+        public async Task<IActionResult> GetLineManagerInfo(string cifNo)
+        {
+            if (string.IsNullOrWhiteSpace(cifNo))
+                return BadRequest("CIF number is required.");
+
+            var lineManager = await _context.LATeamMembers
+                .Where(m => m.CIFNo == cifNo)
+                .Select(m => new
+                {
+                    m.MemberName,
+                    m.Designation,
+                    m.MobileNo
+                })
+                .FirstOrDefaultAsync();
+
+            if (lineManager == null)
+                return NotFound($"No line manager found with CIF {cifNo}.");
+
+            return Ok(lineManager);
+        }
+
 
     }
 }

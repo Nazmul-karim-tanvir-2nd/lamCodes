@@ -1,50 +1,7 @@
-C:\Users\nafisam\source\repos\LogicalAccessMgmt\Data\bin\Debug\net9.0\Data.deps.json
-C:\Users\nafisam\source\repos\LogicalAccessMgmt\Data\bin\Debug\net9.0\Data.dll
-C:\Users\nafisam\source\repos\LogicalAccessMgmt\Data\bin\Debug\net9.0\Data.pdb
-C:\Users\nafisam\source\repos\LogicalAccessMgmt\Data\obj\Debug\net9.0\Data.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\nafisam\source\repos\LogicalAccessMgmt\Data\obj\Debug\net9.0\Data.AssemblyInfoInputs.cache
-C:\Users\nafisam\source\repos\LogicalAccessMgmt\Data\obj\Debug\net9.0\Data.AssemblyInfo.cs
-C:\Users\nafisam\source\repos\LogicalAccessMgmt\Data\obj\Debug\net9.0\Data.csproj.CoreCompileInputs.cache
-C:\Users\nafisam\source\repos\LogicalAccessMgmt\Data\obj\Debug\net9.0\Data.dll
-C:\Users\nafisam\source\repos\LogicalAccessMgmt\Data\obj\Debug\net9.0\refint\Data.dll
-C:\Users\nafisam\source\repos\LogicalAccessMgmt\Data\obj\Debug\net9.0\Data.pdb
-C:\Users\nafisam\source\repos\LogicalAccessMgmt\Data\obj\Debug\net9.0\ref\Data.dll
-C:\Users\nafisam\source\repos\LogicalAccessMgmt\Data\obj\Debug\net9.0\Data.csproj.AssemblyReference.cache
-C:\Users\nafisam\source\repos\LogicalAccessMgmt\Data\bin\Debug\net9.0\Data.runtimeconfig.json
-C:\Users\nafisam\source\repos\LogicalAccessMgmt\Data\obj\Debug\net9.0\EFCoreSqlServerNetTopologySuite.cs
-C:\Users\nafisam\source\repos\LogicalAccessMgmt\Data\obj\Debug\net9.0\Data.genruntimeconfig.cache
-C:\Users\Fariya\Desktop\LAM\lamCodes\LogicalAccessMgmt\Data\bin\Debug\net9.0\Data.deps.json
-C:\Users\Fariya\Desktop\LAM\lamCodes\LogicalAccessMgmt\Data\bin\Debug\net9.0\Data.runtimeconfig.json
-C:\Users\Fariya\Desktop\LAM\lamCodes\LogicalAccessMgmt\Data\bin\Debug\net9.0\Data.dll
-C:\Users\Fariya\Desktop\LAM\lamCodes\LogicalAccessMgmt\Data\bin\Debug\net9.0\Data.pdb
-C:\Users\Fariya\Desktop\LAM\lamCodes\LogicalAccessMgmt\Data\obj\Debug\net9.0\Data.csproj.AssemblyReference.cache
-C:\Users\Fariya\Desktop\LAM\lamCodes\LogicalAccessMgmt\Data\obj\Debug\net9.0\Data.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\Fariya\Desktop\LAM\lamCodes\LogicalAccessMgmt\Data\obj\Debug\net9.0\Data.AssemblyInfoInputs.cache
-C:\Users\Fariya\Desktop\LAM\lamCodes\LogicalAccessMgmt\Data\obj\Debug\net9.0\Data.AssemblyInfo.cs
-C:\Users\Fariya\Desktop\LAM\lamCodes\LogicalAccessMgmt\Data\obj\Debug\net9.0\Data.csproj.CoreCompileInputs.cache
-C:\Users\Fariya\Desktop\LAM\lamCodes\LogicalAccessMgmt\Data\obj\Debug\net9.0\EFCoreSqlServerNetTopologySuite.cs
-C:\Users\Fariya\Desktop\LAM\lamCodes\LogicalAccessMgmt\Data\obj\Debug\net9.0\Data.sourcelink.json
-C:\Users\Fariya\Desktop\LAM\lamCodes\LogicalAccessMgmt\Data\obj\Debug\net9.0\Data.dll
-C:\Users\Fariya\Desktop\LAM\lamCodes\LogicalAccessMgmt\Data\obj\Debug\net9.0\refint\Data.dll
-C:\Users\Fariya\Desktop\LAM\lamCodes\LogicalAccessMgmt\Data\obj\Debug\net9.0\Data.pdb
-C:\Users\Fariya\Desktop\LAM\lamCodes\LogicalAccessMgmt\Data\obj\Debug\net9.0\Data.genruntimeconfig.cache
-C:\Users\Fariya\Desktop\LAM\lamCodes\LogicalAccessMgmt\Data\obj\Debug\net9.0\ref\Data.dll
-C:\Users\nafisam\source\repos\LogicalAccessMgmt\lamCodes\LogicalAccessMgmt\Data\bin\Debug\net9.0\Data.deps.json
-C:\Users\nafisam\source\repos\LogicalAccessMgmt\lamCodes\LogicalAccessMgmt\Data\bin\Debug\net9.0\Data.runtimeconfig.json
-C:\Users\nafisam\source\repos\LogicalAccessMgmt\lamCodes\LogicalAccessMgmt\Data\bin\Debug\net9.0\Data.dll
-C:\Users\nafisam\source\repos\LogicalAccessMgmt\lamCodes\LogicalAccessMgmt\Data\bin\Debug\net9.0\Data.pdb
-C:\Users\nafisam\source\repos\LogicalAccessMgmt\lamCodes\LogicalAccessMgmt\Data\obj\Debug\net9.0\Data.csproj.AssemblyReference.cache
-C:\Users\nafisam\source\repos\LogicalAccessMgmt\lamCodes\LogicalAccessMgmt\Data\obj\Debug\net9.0\Data.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\nafisam\source\repos\LogicalAccessMgmt\lamCodes\LogicalAccessMgmt\Data\obj\Debug\net9.0\Data.AssemblyInfoInputs.cache
-C:\Users\nafisam\source\repos\LogicalAccessMgmt\lamCodes\LogicalAccessMgmt\Data\obj\Debug\net9.0\Data.AssemblyInfo.cs
-C:\Users\nafisam\source\repos\LogicalAccessMgmt\lamCodes\LogicalAccessMgmt\Data\obj\Debug\net9.0\Data.csproj.CoreCompileInputs.cache
-C:\Users\nafisam\source\repos\LogicalAccessMgmt\lamCodes\LogicalAccessMgmt\Data\obj\Debug\net9.0\EFCoreSqlServerNetTopologySuite.cs
-C:\Users\nafisam\source\repos\LogicalAccessMgmt\lamCodes\LogicalAccessMgmt\Data\obj\Debug\net9.0\Data.sourcelink.json
-C:\Users\nafisam\source\repos\LogicalAccessMgmt\lamCodes\LogicalAccessMgmt\Data\obj\Debug\net9.0\Data.dll
-C:\Users\nafisam\source\repos\LogicalAccessMgmt\lamCodes\LogicalAccessMgmt\Data\obj\Debug\net9.0\refint\Data.dll
-C:\Users\nafisam\source\repos\LogicalAccessMgmt\lamCodes\LogicalAccessMgmt\Data\obj\Debug\net9.0\Data.pdb
-C:\Users\nafisam\source\repos\LogicalAccessMgmt\lamCodes\LogicalAccessMgmt\Data\obj\Debug\net9.0\Data.genruntimeconfig.cache
-C:\Users\nafisam\source\repos\LogicalAccessMgmt\lamCodes\LogicalAccessMgmt\Data\obj\Debug\net9.0\ref\Data.dll
+D:\LAM\lamCodes\LogicalAccessMgmt\Data\bin\Debug\net9.0\Data.deps.json
+D:\LAM\lamCodes\LogicalAccessMgmt\Data\bin\Debug\net9.0\Data.runtimeconfig.json
+D:\LAM\lamCodes\LogicalAccessMgmt\Data\bin\Debug\net9.0\Data.dll
+D:\LAM\lamCodes\LogicalAccessMgmt\Data\bin\Debug\net9.0\Data.pdb
 D:\LAM\lamCodes\LogicalAccessMgmt\Data\obj\Debug\net9.0\Data.csproj.AssemblyReference.cache
 D:\LAM\lamCodes\LogicalAccessMgmt\Data\obj\Debug\net9.0\Data.GeneratedMSBuildEditorConfig.editorconfig
 D:\LAM\lamCodes\LogicalAccessMgmt\Data\obj\Debug\net9.0\Data.AssemblyInfoInputs.cache
@@ -55,25 +12,5 @@ D:\LAM\lamCodes\LogicalAccessMgmt\Data\obj\Debug\net9.0\Data.sourcelink.json
 D:\LAM\lamCodes\LogicalAccessMgmt\Data\obj\Debug\net9.0\Data.dll
 D:\LAM\lamCodes\LogicalAccessMgmt\Data\obj\Debug\net9.0\refint\Data.dll
 D:\LAM\lamCodes\LogicalAccessMgmt\Data\obj\Debug\net9.0\Data.pdb
-D:\LAM\lamCodes\LogicalAccessMgmt\Data\bin\Debug\net9.0\Data.deps.json
-D:\LAM\lamCodes\LogicalAccessMgmt\Data\bin\Debug\net9.0\Data.runtimeconfig.json
-D:\LAM\lamCodes\LogicalAccessMgmt\Data\bin\Debug\net9.0\Data.dll
-D:\LAM\lamCodes\LogicalAccessMgmt\Data\bin\Debug\net9.0\Data.pdb
 D:\LAM\lamCodes\LogicalAccessMgmt\Data\obj\Debug\net9.0\Data.genruntimeconfig.cache
 D:\LAM\lamCodes\LogicalAccessMgmt\Data\obj\Debug\net9.0\ref\Data.dll
-D:\tanvir all files\LAM2\lamCodes\LogicalAccessMgmt\Data\bin\Debug\net9.0\Data.deps.json
-D:\tanvir all files\LAM2\lamCodes\LogicalAccessMgmt\Data\bin\Debug\net9.0\Data.runtimeconfig.json
-D:\tanvir all files\LAM2\lamCodes\LogicalAccessMgmt\Data\bin\Debug\net9.0\Data.dll
-D:\tanvir all files\LAM2\lamCodes\LogicalAccessMgmt\Data\bin\Debug\net9.0\Data.pdb
-D:\tanvir all files\LAM2\lamCodes\LogicalAccessMgmt\Data\obj\Debug\net9.0\Data.csproj.AssemblyReference.cache
-D:\tanvir all files\LAM2\lamCodes\LogicalAccessMgmt\Data\obj\Debug\net9.0\Data.GeneratedMSBuildEditorConfig.editorconfig
-D:\tanvir all files\LAM2\lamCodes\LogicalAccessMgmt\Data\obj\Debug\net9.0\Data.AssemblyInfoInputs.cache
-D:\tanvir all files\LAM2\lamCodes\LogicalAccessMgmt\Data\obj\Debug\net9.0\Data.AssemblyInfo.cs
-D:\tanvir all files\LAM2\lamCodes\LogicalAccessMgmt\Data\obj\Debug\net9.0\Data.csproj.CoreCompileInputs.cache
-D:\tanvir all files\LAM2\lamCodes\LogicalAccessMgmt\Data\obj\Debug\net9.0\EFCoreSqlServerNetTopologySuite.cs
-D:\tanvir all files\LAM2\lamCodes\LogicalAccessMgmt\Data\obj\Debug\net9.0\Data.sourcelink.json
-D:\tanvir all files\LAM2\lamCodes\LogicalAccessMgmt\Data\obj\Debug\net9.0\Data.dll
-D:\tanvir all files\LAM2\lamCodes\LogicalAccessMgmt\Data\obj\Debug\net9.0\refint\Data.dll
-D:\tanvir all files\LAM2\lamCodes\LogicalAccessMgmt\Data\obj\Debug\net9.0\Data.pdb
-D:\tanvir all files\LAM2\lamCodes\LogicalAccessMgmt\Data\obj\Debug\net9.0\Data.genruntimeconfig.cache
-D:\tanvir all files\LAM2\lamCodes\LogicalAccessMgmt\Data\obj\Debug\net9.0\ref\Data.dll

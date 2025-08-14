@@ -1,1 +1,7 @@
+# Build folders
+bin/
+obj/
+
+# VS local settings
+.vs/
 

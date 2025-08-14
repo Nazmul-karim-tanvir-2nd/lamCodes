@@ -38,7 +38,7 @@ const requests = [
     },
     {
         label: "Employee Clearance",
-        path: "/",
+        path: "/clearance-review-dashboard",
         count: 2,
         icon: <LogOut size={40} className="text-red-500" />,
         color: "bg-red-100",

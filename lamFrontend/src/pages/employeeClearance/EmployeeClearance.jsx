@@ -1,4 +1,4 @@
-// src/pages/EmployeeClearance.jsx
+// src/pages/employeeClearance/EmployeeClearance.jsx
 import { useState } from "react";
 import useClearanceTrackerStore from "../../store/useClearanceTrackerStore";
 import FloatingInput from "../../components/custom/FloatingInput";
@@ -9,7 +9,6 @@ import { Button } from "../../components/ui/Button";
 
 // React Icons
 import { FaMoneyCheckAlt, FaBuilding, FaUsersCog, FaIndustry, FaUserShield } from "react-icons/fa";
-import { RiFilePaper2Line } from "react-icons/ri";
 
 const ClearanceSection = ({ title, deptKey, icon }) => {
   const {
@@ -31,7 +30,6 @@ const ClearanceSection = ({ title, deptKey, icon }) => {
       </SectionTitle>
 
       <div className="bg-white rounded-md border border-red-200 px-6 py-6 grid grid-cols-1 md:grid-cols-3 gap-y-2 md:gap-y-2 gap-x-4 md:gap-x-8 mb-8 shadow">
-        
         <div className="mt-2 grid grid-cols-1 sm:grid-cols-2 gap-4">
           <FloatingInput
             label="Clearance Granted By"
@@ -90,21 +88,59 @@ const EmployeeClearance = () => {
   const { departments, reset } = useClearanceTrackerStore();
   const [submitted, setSubmitted] = useState(false);
 
- const handleSubmit = (e) => {
-  e.preventDefault();
+  // Convert a File to a data URL for storage/preview later
+  const fileToDataUrl = (file) =>
+    new Promise((resolve) => {
+      if (!file) return resolve(null);
+      const reader = new FileReader();
+      reader.onload = () => resolve(reader.result);
+      reader.readAsDataURL(file);
+    });
 
-  const simplifiedData = Object.entries(departments).reduce((acc, [dept, data]) => {
-    acc[dept] = {
-      ...data,
-      attachment: data.attachment ? data.attachment.name : null  
+  // Pick a single name for the dashboard column
+  const pickOverallGrantedBy = (deptObj) => {
+    for (const key of Object.keys(deptObj)) {
+      const n = (deptObj[key]?.grantedBy || "").trim();
+      if (n) return n;
+    }
+    return "";
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    // Build per-department payload and encode attachments
+    const depts = {};
+    for (const [dept, data] of Object.entries(departments)) {
+      depts[dept] = {
+        items: { ...data.items },
+        grantedBy: data.grantedBy || "",
+        deviation: !!data.deviation,
+        deviationJustification: data.deviation ? data.deviationJustification || "" : "",
+        attachment: data.attachment
+          ? {
+              name: data.attachment.name,
+              dataUrl: await fileToDataUrl(data.attachment),
+            }
+          : null,
+      };
+    }
+
+    const request = {
+      id: `CR-${Date.now()}`,
+      submittedBy: "Maisha",
+      submittedAt: new Date().toISOString(),
+      grantedBy: pickOverallGrantedBy(depts), // used in dashboard column
+      departments: depts,
     };
-    return acc;
-  }, {});
 
-  localStorage.setItem("employeeClearanceData", JSON.stringify(simplifiedData));
-  setSubmitted(true);
-  reset();
-};
+    const existing = JSON.parse(localStorage.getItem("clearanceRequests") || "[]");
+    existing.unshift(request);
+    localStorage.setItem("clearanceRequests", JSON.stringify(existing));
+
+    setSubmitted(true);
+    reset();
+  };
 
   return (
     <form onSubmit={handleSubmit} className="w-full p-2 sm:p-2 space-y-2">
@@ -112,7 +148,6 @@ const EmployeeClearance = () => {
         Clearance Tracker
       </h1>
 
-      
       <ClearanceSection title="Finance Department" deptKey="Finance" icon={<FaMoneyCheckAlt />} />
       <ClearanceSection title="Administration Department" deptKey="Administration" icon={<FaBuilding />} />
       <ClearanceSection title="Consumer Division" deptKey="Consumer" icon={<FaUsersCog />} />
@@ -120,11 +155,7 @@ const EmployeeClearance = () => {
       <ClearanceSection title="Human Resources" deptKey="HR" icon={<FaUserShield />} />
 
       <div className="text-center">
-        <Button
-          type="submit"
-          size="lg"
-          className="px-10 bg-red-600/90 hover:bg-red-700 text-white"
-        >
+        <Button type="submit" size="lg" className="px-10 bg-red-600/90 hover:bg-red-700 text-white">
           Submit Clearance
         </Button>
       </div>

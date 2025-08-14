@@ -126,7 +126,7 @@ export default function AccessReviewDetails() {
       <h1 className="text-xl font-bold text-center text-blue-800 mb-6 underline underline-offset-8 decoration-gray-500/80">
         Access Review Details
       </h1>
-      <Link to="/dashboard" className="text-blue-600 hover:text-blue-800 underline mb-4 block">
+      <Link to="/access-review-dashboard" className="text-blue-600 hover:text-blue-800 underline mb-4 block">
         Back to Dashboard
       </Link>
 

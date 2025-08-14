@@ -1,5 +1,6 @@
 import { useMemo } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate ,Link} from "react-router-dom";
+
 
 export default function ClearanceDetails() {
   const { id } = useParams();
@@ -14,17 +15,15 @@ export default function ClearanceDetails() {
 
   return (
     <div className="p-4 space-y-6">
-      <div className="flex items-center justify-between">
-        <h1 className="text-xl font-bold text-blue-800 underline">Clearance Details</h1>
-        <button
-          onClick={() => navigate("/clearance-review-dashboard")}
-          className="px-4 py-2 bg-gray-200 hover:bg-gray-300 rounded"
-        >
-          Back to Dashboard
-        </button>
-      </div>
+      
+      <h1 className="text-xl font-bold text-center text-blue-800 mb-6 underline underline-offset-8 decoration-gray-500/80">
+        Clearance Details
+      </h1>
+      <Link to="/clearance-review-dashboard" className="text-blue-600 hover:text-blue-800 underline mb-4 block">
+        Back to Dashboard
+      </Link>
 
-      <div className="bg-white border rounded p-4 space-y-1">
+      <div className="bg-white border  rounded-md border-red-200 rounded p-4 space-y-1">
         <div><b>ID:</b> {request.id}</div>
         <div><b>Clearance requested by:</b> {request.submittedBy}</div>
         <div><b>Clearance granted by:</b> {request.grantedBy || "—"}</div>
@@ -36,7 +35,7 @@ export default function ClearanceDetails() {
 
       <div className="space-y-6">
         {Object.entries(request.departments || {}).map(([dept, data]) => (
-          <div key={dept} className="bg-white border rounded p-4">
+          <div key={dept} className="bg-white border  rounded-md border-red-200 rounded p-4">
             <div className="text-red-600 font-semibold mb-2">{dept}</div>
 
             <div className="grid md:grid-cols-2 gap-4">

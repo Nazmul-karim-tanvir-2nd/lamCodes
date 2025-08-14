@@ -1,25 +1,17 @@
 // src/pages/employeeClearance/EmployeeClearance.jsx
 import { useState } from "react";
+import Swal from "sweetalert2";
 import useClearanceTrackerStore from "../../store/useClearanceTrackerStore";
 import FloatingInput from "../../components/custom/FloatingInput";
 import FloatingTextarea from "../../components/custom/FloatingTextarea";
 import FloatingCheckbox from "../../components/custom/FloatingCheckbox";
 import { SectionTitle } from "../../components/SectionTitle";
 import { Button } from "../../components/ui/Button";
-
-// React Icons
 import { FaMoneyCheckAlt, FaBuilding, FaUsersCog, FaIndustry, FaUserShield } from "react-icons/fa";
 
 const ClearanceSection = ({ title, deptKey, icon }) => {
-  const {
-    departments,
-    toggleItem,
-    setGrantedBy,
-    toggleDeviation,
-    setJustification,
-    setAttachment,
-  } = useClearanceTrackerStore();
-
+  const { departments, toggleItem, setGrantedBy, toggleDeviation, setJustification, setAttachment } =
+    useClearanceTrackerStore();
   const data = departments[deptKey];
 
   return (
@@ -69,9 +61,7 @@ const ClearanceSection = ({ title, deptKey, icon }) => {
         </div>
 
         <div className="mt-6">
-          <label className="text-sm font-medium text-gray-700 mb-1 block">
-            Upload Clearance Attachment
-          </label>
+          <label className="text-sm font-medium text-gray-700 mb-1 block">Upload Clearance Attachment</label>
           <input
             type="file"
             accept=".pdf,.doc,.docx,.jpg,.jpeg,.png"
@@ -88,7 +78,6 @@ const EmployeeClearance = () => {
   const { departments, reset } = useClearanceTrackerStore();
   const [submitted, setSubmitted] = useState(false);
 
-  // Convert a File to a data URL for storage/preview later
   const fileToDataUrl = (file) =>
     new Promise((resolve) => {
       if (!file) return resolve(null);
@@ -97,7 +86,6 @@ const EmployeeClearance = () => {
       reader.readAsDataURL(file);
     });
 
-  // Pick a single name for the dashboard column
   const pickOverallGrantedBy = (deptObj) => {
     for (const key of Object.keys(deptObj)) {
       const n = (deptObj[key]?.grantedBy || "").trim();
@@ -106,10 +94,31 @@ const EmployeeClearance = () => {
     return "";
   };
 
+  const validateDepartments = (deptState) => {
+    for (const [dept, data] of Object.entries(deptState)) {
+      if (data.deviation) {
+        if (!data.deviationJustification?.trim()) {
+          return { ok: false, message: `Provide deviation justification for ${dept}.` };
+        }
+      } else {
+        const hasChecked = Object.values(data.items || {}).some(Boolean);
+        if (!hasChecked) {
+          return { ok: false, message: `Select at least one item in ${dept} or mark Deviation with reason.` };
+        }
+      }
+    }
+    return { ok: true };
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Build per-department payload and encode attachments
+    const v = validateDepartments(departments);
+    if (!v.ok) {
+      Swal.fire("Validation error", v.message, "error");
+      return;
+    }
+
     const depts = {};
     for (const [dept, data] of Object.entries(departments)) {
       depts[dept] = {
@@ -130,7 +139,7 @@ const EmployeeClearance = () => {
       id: `CR-${Date.now()}`,
       submittedBy: "Maisha",
       submittedAt: new Date().toISOString(),
-      grantedBy: pickOverallGrantedBy(depts), // used in dashboard column
+      grantedBy: pickOverallGrantedBy(depts),
       departments: depts,
     };
 
@@ -138,6 +147,7 @@ const EmployeeClearance = () => {
     existing.unshift(request);
     localStorage.setItem("clearanceRequests", JSON.stringify(existing));
 
+    Swal.fire("Submitted", "Clearance data saved successfully.", "success");
     setSubmitted(true);
     reset();
   };
@@ -160,9 +170,7 @@ const EmployeeClearance = () => {
         </Button>
       </div>
 
-      {submitted && (
-        <p className="text-green-600 text-center mt-4">Clearance data saved successfully.</p>
-      )}
+      {submitted && <p className="text-green-600 text-center mt-4">Clearance data saved successfully.</p>}
     </form>
   );
 };

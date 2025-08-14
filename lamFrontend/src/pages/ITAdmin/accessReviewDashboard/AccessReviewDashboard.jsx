@@ -159,6 +159,10 @@ export default function AccessReviewDashboard() {
         Access Review Dashboard
       </h1>
 
+      <Link to="/dashboard" className="text-blue-600 hover:text-blue-800 underline mb-4 block">
+        Back to Admin Dashboard
+      </Link>
+
       <div className="flex gap-4 mb-6 flex-wrap">
         <select
           onChange={(e) => setFilter("department", e.target.value)}

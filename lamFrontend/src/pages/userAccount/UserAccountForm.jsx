@@ -6,13 +6,14 @@ import BasicInfoSection from './BasicInfoSection.jsx';
 import DepartmentRoleSection from './DepartmentRoleSection.jsx';
 import AttachmentsSection from './AttachmentsSection.jsx';
 import MetadataSection from './MetadataSection.jsx';
-import { checkCIF, fetchBranches, fetchDivisions } from '../../api/userFormApi';
+import { fetchBranches, fetchDivisions, fetchDesignations } from '../../api/userFormApi';
 
 const UserAccountForm = () => {
   const { formData, updateField } = useUserFormStore();
 
   const [branchOptions, setBranchOptions] = useState([]);
   const [divisionOptions, setDivisionOptions] = useState([]);
+  const [designationOptions, setDesignationOptions] = useState([]);
 
   const handleChange = (e) => {
     const { name, value, files, type, checked } = e.target;
@@ -68,28 +69,25 @@ const UserAccountForm = () => {
     updateField("approvalStatus", "Pending");
   }, [updateField]);
 
-  useEffect(() => {
-    const loadDropdownData = async () => {
-      try {
-        const branches = await fetchBranches();
-        const divisions = await fetchDivisions();
+useEffect(() => {
+  const loadDropdownData = async () => {
+    try {
+      const [branches, divisions, designations] = await Promise.all([
+        fetchBranches(),
+        fetchDivisions(),
+        fetchDesignations()
+      ]);
 
-        setBranchOptions(branches.map((b) => ({
-          value: b.branchName,
-          label: b.branchName,
-        })));
+      setBranchOptions(branches);
+      setDivisionOptions(divisions);
+      setDesignationOptions(designations);
+    } catch (err) {
+      console.error("❌ Failed to fetch dropdown data", err);
+    }
+  };
 
-        setDivisionOptions(divisions.map((d) => ({
-          value: d.divisionName,
-          label: d.divisionName,
-        })));
-      } catch (err) {
-        console.error("❌ Failed to fetch dropdown data", err);
-      }
-    };
-
-    loadDropdownData();
-  }, []);
+  loadDropdownData();
+}, []);
 
   return (
     <form onSubmit={handleSubmit} className="w-full p-2 space-y-2">

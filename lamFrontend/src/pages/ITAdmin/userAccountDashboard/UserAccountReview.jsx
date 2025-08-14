@@ -3,6 +3,7 @@ import React, { useState, useMemo } from "react";
 import FloatingSelect from "../../../components/custom/FloatingSelect";
 import FloatingInput from "../../../components/custom/FloatingInput";
 import { useNavigate } from "react-router-dom";
+import Breadcrumb from "../../../components/common/Breadcrumb";
 
 const initialRequests = [
     { id: 1, name: "John Doe", department: "IT", status: "Pending", date: "2025-08-01" },
@@ -93,9 +94,16 @@ const UserAccountReview = () => {
 
     return (
         <div className="min-w-full mx-auto">
+
             <h1 className="text-2xl font-bold text-blue-800 mb-8 underline underline-offset-4 decoration-gray-400 text-center">
                 User Account Review
             </h1>
+            <Breadcrumb
+                items={[
+                    { label: "Dashboard", path: "/" },
+                    { label: "useraccount-review-dashboard" }
+                ]}
+            />
 
             <div className="bg-white shadow-lg rounded-xl p-4 border border-red-200">
                 {/* Filters */}

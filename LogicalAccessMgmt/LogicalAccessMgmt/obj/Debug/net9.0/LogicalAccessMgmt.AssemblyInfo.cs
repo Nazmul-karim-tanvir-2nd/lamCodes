@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("LogicalAccessMgmt")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a814f81d55a5634ee349eafd8deb948ec54ef69f")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3e7cb602e2082cf05e1f228b210ac2bbbf9c7f88")]
 [assembly: System.Reflection.AssemblyProductAttribute("LogicalAccessMgmt")]
 [assembly: System.Reflection.AssemblyTitleAttribute("LogicalAccessMgmt")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

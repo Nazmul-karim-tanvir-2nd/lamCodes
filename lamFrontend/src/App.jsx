@@ -13,6 +13,7 @@ import UserAccountReview from './pages/ITAdmin/userAccountDashboard/UserAccountR
 import UserAccountReviewDetails from './pages/ITAdmin/userAccountDashboard/UserAccountReviewDetails.jsx';
 import ClearanceReviewDashboard from './pages/ITAdmin/clearanceDashboard/ClearanceReviewDashboard.jsx';
 import ClearanceDetails from './pages/ITAdmin/clearanceDashboard/ClearanceDetails.jsx';
+import EmployeeTransferReview from './pages/ITAdmin/employeeTransferDashboard/employeeTransferReview.jsx';
 
 
 function App() {
@@ -36,6 +37,7 @@ function App() {
           <Route path="access-review-details/:id" element={<AccessReviewDetails />} />
           <Route path="useraccount-review-dashboard" element={<UserAccountReview />} />
           <Route path="user-account-review-details/:id" element={<UserAccountReviewDetails />} />
+          <Route path="employee-transfer-review" element={<EmployeeTransferReview />} />
 
 
         </Route>

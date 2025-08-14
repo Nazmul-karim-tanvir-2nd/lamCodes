@@ -31,7 +31,7 @@ const requests = [
     },
     {
         label: "Employee Transfer",
-        path: "/",
+        path: "/employee-transfer-review",
         count: 3,
         icon: <Repeat size={40} className="text-yellow-500" />,
         color: "bg-yellow-100",

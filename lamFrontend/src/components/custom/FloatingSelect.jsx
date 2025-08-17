@@ -39,7 +39,7 @@ const FloatingSelect = ({ label, name, value, onChange, options = [], disabled =
             "border-dashed border-gray-400": !isFocused && !error && !disabled,
             "hover:border-gray-600": !isFocused && !error && !disabled,
             "border-b-2 border-blue-500": isFocused && !error && !disabled,
-            "border-b-2 border-red-500": error, // RED border when error is true
+            "border-b-2 border-red-500": error, // RED border when error is true2
             "bg-gray-100 text-gray-500 cursor-not-allowed border-gray-300": disabled,
           }
         )}

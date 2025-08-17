@@ -15,7 +15,7 @@ const UserAccountForm = () => {
   const [designationOptions, setDesignationOptions] = useState([]);
   const [errors, setErrors] = useState({});
 
-  // List of required fields including Gender, Blood Group, Joining Date
+  // List of required fields including Gender, Blood Group, Joining Date2
   const requiredFields = [
     "cif",
     "name",

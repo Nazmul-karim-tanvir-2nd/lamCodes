@@ -5,7 +5,7 @@ import FloatingInput from '../../components/custom/FloatingInput';
 import FloatingCheckbox from '../../components/custom/FloatingCheckbox';
 import { Building2 } from 'lucide-react';
 
-// Dummy Line Manager Data
+// Dummy Line Manager Data2
 const lineManagers = [
     {
         cif: '111111',

@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "D:\\LAM\\lamCodes\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\LAM\\lamCodes\\LogicalAccessMgmt\\LogicalAccessMgmt\\Controllers\\EmployeeController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:LogicalAccessMgmt\\LogicalAccessMgmt\\Controllers\\EmployeeController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\LAM\\lamCodes\\LogicalAccessMgmt\\Data\\DBContexts\\AppDBContext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:LogicalAccessMgmt\\Data\\DBContexts\\AppDBContext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -29,10 +33,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\LAM\\lamCodes\\LogicalAccessMgmt\\Data\\Models\\DesignationRequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:LogicalAccessMgmt\\Data\\Models\\DesignationRequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\LAM\\lamCodes\\LogicalAccessMgmt\\LogicalAccessMgmt\\Controllers\\EmployeeController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:LogicalAccessMgmt\\LogicalAccessMgmt\\Controllers\\EmployeeController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\LAM\\lamCodes\\LogicalAccessMgmt\\Services\\Implementations\\DepartmentService.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -150,20 +150,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "DepartmentRequest.cs",
-              "DocumentMoniker": "D:\\LAM\\lamCodes\\LogicalAccessMgmt\\Data\\Models\\DepartmentRequest.cs",
-              "RelativeDocumentMoniker": "LogicalAccessMgmt\\Data\\Models\\DepartmentRequest.cs",
-              "ToolTip": "D:\\LAM\\lamCodes\\LogicalAccessMgmt\\Data\\Models\\DepartmentRequest.cs",
-              "RelativeToolTip": "LogicalAccessMgmt\\Data\\Models\\DepartmentRequest.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-14T11:40:56.799Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "DesignationRequest.cs",
               "DocumentMoniker": "D:\\LAM\\lamCodes\\LogicalAccessMgmt\\Data\\Models\\DesignationRequest.cs",
               "RelativeDocumentMoniker": "LogicalAccessMgmt\\Data\\Models\\DesignationRequest.cs",
@@ -171,12 +158,11 @@
               "RelativeToolTip": "LogicalAccessMgmt\\Data\\Models\\DesignationRequest.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-13T10:46:52.436Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-13T10:46:52.436Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "BranchInfoRequest.cs",
               "DocumentMoniker": "D:\\LAM\\lamCodes\\LogicalAccessMgmt\\Data\\Models\\BranchInfoRequest.cs",
               "RelativeDocumentMoniker": "LogicalAccessMgmt\\Data\\Models\\BranchInfoRequest.cs",
@@ -184,12 +170,11 @@
               "RelativeToolTip": "LogicalAccessMgmt\\Data\\Models\\BranchInfoRequest.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-13T07:32:22.612Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-13T07:32:22.612Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "DivisionInfoRequest.cs",
               "DocumentMoniker": "D:\\LAM\\lamCodes\\LogicalAccessMgmt\\Data\\Models\\DivisionInfoRequest.cs",
               "RelativeDocumentMoniker": "LogicalAccessMgmt\\Data\\Models\\DivisionInfoRequest.cs",
@@ -197,12 +182,11 @@
               "RelativeToolTip": "LogicalAccessMgmt\\Data\\Models\\DivisionInfoRequest.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-13T09:27:53.179Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-13T09:27:53.179Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "EmployeeInfoRequest.cs",
               "DocumentMoniker": "D:\\LAM\\lamCodes\\LogicalAccessMgmt\\Data\\Models\\EmployeeInfoRequest.cs",
               "RelativeDocumentMoniker": "LogicalAccessMgmt\\Data\\Models\\EmployeeInfoRequest.cs",
@@ -210,12 +194,11 @@
               "RelativeToolTip": "LogicalAccessMgmt\\Data\\Models\\EmployeeInfoRequest.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-12T09:27:52.475Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-12T09:27:52.475Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "LATeamMember.cs",
               "DocumentMoniker": "D:\\LAM\\lamCodes\\LogicalAccessMgmt\\Data\\Models\\LATeamMember.cs",
               "RelativeDocumentMoniker": "LogicalAccessMgmt\\Data\\Models\\LATeamMember.cs",
@@ -223,34 +206,44 @@
               "RelativeToolTip": "LogicalAccessMgmt\\Data\\Models\\LATeamMember.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAA9AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-12T06:30:38.634Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-12T06:30:38.634Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "AppDBContext.cs",
               "DocumentMoniker": "D:\\LAM\\lamCodes\\LogicalAccessMgmt\\Data\\DBContexts\\AppDBContext.cs",
               "RelativeDocumentMoniker": "LogicalAccessMgmt\\Data\\DBContexts\\AppDBContext.cs",
               "ToolTip": "D:\\LAM\\lamCodes\\LogicalAccessMgmt\\Data\\DBContexts\\AppDBContext.cs",
               "RelativeToolTip": "LogicalAccessMgmt\\Data\\DBContexts\\AppDBContext.cs",
-              "ViewState": "AgIAABIAAAAAAAAAAAAAACgAAABnAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAC8AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-12T09:29:30.715Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-12T09:29:30.715Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 0,
               "Title": "EmployeeController.cs",
               "DocumentMoniker": "D:\\LAM\\lamCodes\\LogicalAccessMgmt\\LogicalAccessMgmt\\Controllers\\EmployeeController.cs",
               "RelativeDocumentMoniker": "LogicalAccessMgmt\\LogicalAccessMgmt\\Controllers\\EmployeeController.cs",
               "ToolTip": "D:\\LAM\\lamCodes\\LogicalAccessMgmt\\LogicalAccessMgmt\\Controllers\\EmployeeController.cs",
               "RelativeToolTip": "LogicalAccessMgmt\\LogicalAccessMgmt\\Controllers\\EmployeeController.cs",
-              "ViewState": "AgIAAG8AAAAAAAAAAAAAAH8AAAAFAAAAAAAAAA==",
+              "ViewState": "AgIAAFoAAAAAAAAAAAAAAG8AAAASAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-08-12T06:17:54.718Z",
               "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "DepartmentRequest.cs",
+              "DocumentMoniker": "D:\\LAM\\lamCodes\\LogicalAccessMgmt\\Data\\Models\\DepartmentRequest.cs",
+              "RelativeDocumentMoniker": "LogicalAccessMgmt\\Data\\Models\\DepartmentRequest.cs",
+              "ToolTip": "D:\\LAM\\lamCodes\\LogicalAccessMgmt\\Data\\Models\\DepartmentRequest.cs",
+              "RelativeToolTip": "LogicalAccessMgmt\\Data\\Models\\DepartmentRequest.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-14T11:40:56.799Z"
             },
             {
               "$type": "Document",

@@ -108,7 +108,7 @@ namespace LogicalAccessMgmt.Controllers
                 {
                     m.MemberName,
                     m.Designation,
-                    m.MobileNo
+                    MobileNo = m.MobileNo != null ? m.MobileNo : "N/A"
                 })
                 .FirstOrDefaultAsync();
 

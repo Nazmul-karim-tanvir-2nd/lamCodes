@@ -23,33 +23,36 @@ const FloatingSelect = ({ label, name, value, onChange, options = [], disabled =
       >
         {label}
       </label>
-      <select
-        id={name}
-        name={name}
-        aria-label={name}
-        value={value || ""}
-        onChange={onChange}
-        onFocus={() => setIsFocused(true)}
-        onBlur={() => setIsFocused(false)}
-        disabled={disabled}
-        className={classNames(
-          "w-full appearance-none bg-transparent pt-6 pb-2 px-2 text-sm sm:text-base outline-none border-b",
-          "transition-all duration-300 ease-in-out",
-          {
-            "border-dashed border-gray-400": !isFocused && !disabled,
-            "hover:border-gray-600": !isFocused && !disabled,
-            "border-b-2 border-blue-500": isFocused && !disabled,
-            "bg-gray-100 text-gray-500 cursor-not-allowed border-gray-300": disabled,
-          }
-        )}
-      >
-        <option value="" disabled>-- Select --</option>
-        {options.map((opt) => (
-          <option key={opt.value} value={opt.value}>
-            {opt.label}
-          </option>
-        ))}
-      </select>
+     <select
+  id={name}
+  name={name}
+  aria-label={name}
+  value={value || ""}
+  onChange={onChange}
+  onFocus={() => setIsFocused(true)}
+  onBlur={() => setIsFocused(false)}
+  disabled={disabled}
+  className={classNames(
+    "w-full appearance-none bg-transparent pt-6 pb-2 px-2 text-sm sm:text-base outline-none border-b",
+    "transition-all duration-300 ease-in-out",
+    {
+      "border-dashed border-gray-400": !isFocused && !disabled,
+      "hover:border-gray-600": !isFocused && !disabled,
+      "border-b-2 border-blue-500": isFocused && !disabled,
+      "bg-gray-100 text-gray-500 cursor-not-allowed border-gray-300": disabled,
+    }
+  )}
+>
+  <option value="" disabled>
+    -- Select --
+  </option>
+  {options.map((opt, idx) => (
+    <option key={`${opt.value}-${idx}`} value={opt.value}>
+      {opt.label}
+    </option>
+  ))}
+</select>
+
     </div>
   );
 };

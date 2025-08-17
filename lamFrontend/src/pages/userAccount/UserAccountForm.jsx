@@ -6,13 +6,15 @@ import BasicInfoSection from './BasicInfoSection.jsx';
 import DepartmentRoleSection from './DepartmentRoleSection.jsx';
 import AttachmentsSection from './AttachmentsSection.jsx';
 import MetadataSection from './MetadataSection.jsx';
-import { checkCIF, fetchBranches, fetchDivisions } from '../../api/userFormApi';
+import { checkCIF, fetchBranches, fetchDivisions, fetchDesignations, fetchDepartments } from '../../api/userFormApi';
 
 const UserAccountForm = () => {
   const { formData, updateField } = useUserFormStore();
 
   const [branchOptions, setBranchOptions] = useState([]);
   const [divisionOptions, setDivisionOptions] = useState([]);
+  const [designationOptions, setDesignationOptions] = useState([]);
+  const [departmentOptions, setDepartmentOptions] = useState([]);
 
   const handleChange = (e) => {
     const { name, value, files, type, checked } = e.target;
@@ -30,12 +32,15 @@ const UserAccountForm = () => {
         return;
       }
       updateField(name, file);
-    } else if (type === 'checkbox') updateField(name, checked);
-    else updateField(name, value);
+    } else if (type === 'checkbox') {
+      updateField(name, checked);
+    } else {
+      updateField(name, value);
+    }
   };
 
   const handleCIFSearch = async () => {
-    const sanitizedCIF = formData.cif.trim();
+    const sanitizedCIF = formData.cif?.trim();
     if (!sanitizedCIF) {
       Swal.fire({ title: "Enter a valid CIF", icon: "warning" });
       return;
@@ -62,27 +67,31 @@ const UserAccountForm = () => {
     });
   };
 
+  // Set request date and approval status
   useEffect(() => {
     const today = new Date().toISOString().split("T")[0];
     updateField("requestDate", today);
     updateField("approvalStatus", "Pending");
   }, [updateField]);
 
+  // Load all dropdowns
   useEffect(() => {
     const loadDropdownData = async () => {
       try {
-        const branches = await fetchBranches();
-        const divisions = await fetchDivisions();
+        const [branches, divisions, designations, departments] = await Promise.all([
+          fetchBranches(),
+          fetchDivisions(),
+          fetchDesignations(),
+          fetchDepartments(),
+        ]);
 
-        setBranchOptions(branches.map((b) => ({
-          value: b.branchName,
-          label: b.branchName,
-        })));
+        // Set dropdown options
+        setBranchOptions(branches);
+        setDivisionOptions(divisions);
+        setDesignationOptions(designations);
+        setDepartmentOptions(departments);
 
-        setDivisionOptions(divisions.map((d) => ({
-          value: d.divisionName,
-          label: d.divisionName,
-        })));
+        console.log("Dropdown data loaded:", { branches, divisions, designations, departments });
       } catch (err) {
         console.error("❌ Failed to fetch dropdown data", err);
       }
@@ -108,6 +117,8 @@ const UserAccountForm = () => {
         updateField={updateField}
         branchOptions={branchOptions}
         divisionOptions={divisionOptions}
+        designationOptions={designationOptions}
+        departmentOptions={departmentOptions}
       />
       <AttachmentsSection formData={formData} handleChange={handleChange} />
       <MetadataSection formData={formData} handleChange={handleChange} />

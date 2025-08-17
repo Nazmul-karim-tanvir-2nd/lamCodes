@@ -1,6 +1,6 @@
 // src/api/userFormApi.js
 
-const BASE_EMPLOYEE_URL = "http://localhost:5000/api/cd%20Employee"; // space encoded as %20
+const BASE_EMPLOYEE_URL = "http://localhost:5000/api/Employee";
 const BASE_EXTERNAL_API_URL = "http://localhost:5000/api/ExternalApi";
 
 export const checkCIF = async (cif) => {
@@ -53,5 +53,16 @@ export const fetchDesignations = async () => {
   return data.map(designation => ({
     value: designation.empDesignation,
     label: designation.empDesignation,
+  }));
+};
+
+export const fetchDepartments = async () => {
+  const res = await fetch(`${BASE_EMPLOYEE_URL}/department`);
+  if (!res.ok) throw new Error("Failed to fetch departments");
+
+  const data = await res.json();
+  return data.map(department => ({
+    value: department.departmentName,
+    label: department.departmentName,
   }));
 };

@@ -6,16 +6,23 @@ import BasicInfoSection from './BasicInfoSection.jsx';
 import DepartmentRoleSection from './DepartmentRoleSection.jsx';
 import AttachmentsSection from './AttachmentsSection.jsx';
 import MetadataSection from './MetadataSection.jsx';
-import { checkCIF, fetchBranches, fetchDivisions, fetchDesignations } from '../../api/userFormApi';
+import {
+  checkCIF,
+  fetchBranches,
+  fetchDivisions,
+  fetchDesignations,
+  fetchDepartments
+} from '../../api/userFormApi';
 
 const UserAccountForm = () => {
   const { formData, updateField } = useUserFormStore();
   const [branchOptions, setBranchOptions] = useState([]);
   const [divisionOptions, setDivisionOptions] = useState([]);
   const [designationOptions, setDesignationOptions] = useState([]);
+  const [departmentOptions, setDepartmentOptions] = useState([]);
   const [errors, setErrors] = useState({});
 
-  // List of required fields including Gender, Blood Group, Joining Date2
+  // List of required fields
   const requiredFields = [
     "cif",
     "name",
@@ -25,7 +32,8 @@ const UserAccountForm = () => {
     "joiningDate",
     "branch",
     "division",
-    "designation"
+    "designation",
+    "department"
   ];
 
   const handleChange = (e) => {
@@ -79,7 +87,6 @@ const UserAccountForm = () => {
     }
   };
 
-
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -116,15 +123,17 @@ const UserAccountForm = () => {
   useEffect(() => {
     const loadDropdownData = async () => {
       try {
-        const [branches, divisions, designations] = await Promise.all([
+        const [branches, divisions, designations, departments] = await Promise.all([
           fetchBranches(),
           fetchDivisions(),
-          fetchDesignations()
+          fetchDesignations(),
+          fetchDepartments()
         ]);
 
         setBranchOptions(branches);
         setDivisionOptions(divisions);
         setDesignationOptions(designations);
+        setDepartmentOptions(departments);
       } catch (err) {
         console.error("❌ Failed to fetch dropdown data", err);
       }
@@ -153,7 +162,8 @@ const UserAccountForm = () => {
         branchOptions={branchOptions}
         divisionOptions={divisionOptions}
         designationOptions={designationOptions}
-        errors={errors} // pass errors
+        departmentOptions={departmentOptions}
+        errors={errors}
       />
 
       <AttachmentsSection

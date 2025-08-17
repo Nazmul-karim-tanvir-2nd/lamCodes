@@ -60,8 +60,8 @@ export const fetchDepartments = async () => {
 
   const data = await res.json();
   return data.map(department => ({
-    value: department.departmentName,
-    label: department.departmentName,
+    value: department.teamName,
+    label: department.teamName,
   }));
 };
 

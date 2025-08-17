@@ -4,13 +4,13 @@
     "\\LogicalAccessMgmt",
     "\\LogicalAccessMgmt\\Data",
     "\\LogicalAccessMgmt\\Data\\DBContexts",
-    "\\LogicalAccessMgmt\\Data\\Models",
+    "\\LogicalAccessMgmt\\Data\\Dtos",
     "\\LogicalAccessMgmt\\LogicalAccessMgmt",
     "\\LogicalAccessMgmt\\LogicalAccessMgmt\\Controllers",
     "\\LogicalAccessMgmt\\Services",
     "\\LogicalAccessMgmt\\Services\\Implementations",
     "\\LogicalAccessMgmt\\Services\\Interfaces"
   ],
-  "SelectedNode": "\\LogicalAccessMgmt\\LogicalAccessMgmt\\Controllers\\EmployeeController.cs",
+  "SelectedNode": "\\LogicalAccessMgmt\\Data\\DBContexts\\AppDBContext.cs",
   "PreviewInSolutionExplorer": false
 }

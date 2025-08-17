@@ -5,3 +5,7 @@ obj/
 # VS local settings
 .vs/
 
+LogicalAccessMgmt/LogicalAccessMgmt/bin/Debug/net9.0/Data.dll
+LogicalAccessMgmt/LogicalAccessMgmt/bin/Debug/net9.0/LogicalAccessMgmt.exe
+LogicalAccessMgmt/LogicalAccessMgmt/bin/Debug/net9.0/Services.dll
+LogicalAccessMgmt/LogicalAccessMgmt/bin/Debug/net9.0/LogicalAccessMgmt.dll

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace LogicalAccessMgmt.Controllers
 {
     [ApiController]
-    [Route("api/cd [controller]")]
+    [Route("api/[controller]")]
     public class EmployeeController : ControllerBase
     {
         private readonly AppDbContext _context;

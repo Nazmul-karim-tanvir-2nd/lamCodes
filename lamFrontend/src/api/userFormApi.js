@@ -1,7 +1,7 @@
 // src/api/userFormApi.js
 
-const BASE_EMPLOYEE_URL = "http://localhost:5162/api/cd%20Employee"; // space encoded as %20
-const BASE_EXTERNAL_API_URL = "http://localhost:5162/api/ExternalApi";
+const BASE_EMPLOYEE_URL = "http://localhost:5000/api/cd%20Employee"; // space encoded as %20
+const BASE_EXTERNAL_API_URL = "http://localhost:5000/api/ExternalApi";
 
 export const checkCIF = async (cif) => {
   try {

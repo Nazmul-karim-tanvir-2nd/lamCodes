@@ -4,22 +4,7 @@ import FloatingSelect from '../../components/custom/FloatingSelect';
 import FloatingInput from '../../components/custom/FloatingInput';
 import FloatingCheckbox from '../../components/custom/FloatingCheckbox';
 import { Building2 } from 'lucide-react';
-
-// Dummy Line Manager Data2
-const lineManagers = [
-    {
-        cif: '111111',
-        name: 'Jishan Rahman',
-        mobile: '01900112233',
-        designation: 'Senior Manager',
-    },
-    {
-        cif: '222222',
-        name: 'Tahsin Ahmed',
-        mobile: '01711223344',
-        designation: 'Assistant Manager',
-    },
-];
+import { fetchLineManagerByCIF } from '../../api/userFormApi';
 
 const RequiredLabel = ({ children }) => (
     <span>
@@ -39,20 +24,30 @@ const DepartmentRoleSection = ({
 }) => {
     const isEditable = formData.biometricStatus?.toLowerCase() === 'verified';
 
-    // Auto-fill fields based on Line Manager CIF
+    // Auto-fill Line Manager info from API
     useEffect(() => {
-        const manager = lineManagers.find((m) => m.cif === formData.lineManagerCIF);
-        if (manager) {
-            updateField('lineManagerName', manager.name);
-            updateField('lineManagerMobile', manager.mobile);
-            updateField('lineManagerDesignation', manager.designation);
-        } else {
-            // Clear fields if no match
-            updateField('lineManagerName', '');
-            updateField('lineManagerMobile', '');
-            updateField('lineManagerDesignation', '');
-        }
-    }, [formData.lineManagerCIF]);
+        const loadLineManager = async () => {
+            if (!formData.lineManagerCIF) {
+                updateField('lineManagerName', '');
+                updateField('lineManagerMobile', '');
+                updateField('lineManagerDesignation', '');
+                return;
+            }
+
+            const manager = await fetchLineManagerByCIF(formData.lineManagerCIF);
+            if (manager) {
+                updateField('lineManagerName', manager.name);
+                updateField('lineManagerMobile', manager.mobile);
+                updateField('lineManagerDesignation', manager.designation);
+            } else {
+                updateField('lineManagerName', '');
+                updateField('lineManagerMobile', '');
+                updateField('lineManagerDesignation', '');
+            }
+        };
+
+        loadLineManager();
+    }, [formData.lineManagerCIF, updateField]);
 
     return (
         <>
@@ -104,7 +99,7 @@ const DepartmentRoleSection = ({
                 <div className="md:col-span-3">
                     <h3
                         className={`inline-block px-3 py-1 rounded mb-2
-      ${formData.employmentStatus ? 'text-blue-600 font-medium' : 'text-gray-700'}`}
+              ${formData.employmentStatus ? 'text-blue-600 font-medium' : 'text-gray-700'}`}
                     >
                         Select Employment Type
                     </h3>

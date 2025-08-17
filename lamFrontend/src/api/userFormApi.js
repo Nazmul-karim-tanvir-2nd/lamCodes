@@ -1,5 +1,3 @@
-// src/api/userFormApi.js
-
 const BASE_EMPLOYEE_URL = "http://localhost:5000/api/Employee";
 const BASE_EXTERNAL_API_URL = "http://localhost:5000/api/ExternalApi";
 
@@ -65,4 +63,23 @@ export const fetchDepartments = async () => {
     value: department.departmentName,
     label: department.departmentName,
   }));
+};
+
+export const fetchLineManagerByCIF = async (cif) => {
+  if (!cif) return null;
+  try {
+    const res = await fetch(`${BASE_EMPLOYEE_URL}/line-manager/${cif}`);
+    if (!res.ok) throw new Error("Failed to fetch line manager");
+
+    const data = await res.json();
+    // assume backend returns { name, mobile, designation }
+    return {
+      name: data.name ?? "",
+      mobile: data.mobile ?? "",
+      designation: data.designation ?? "",
+    };
+  } catch (err) {
+    console.error("❌ Error fetching line manager:", err);
+    return null;
+  }
 };

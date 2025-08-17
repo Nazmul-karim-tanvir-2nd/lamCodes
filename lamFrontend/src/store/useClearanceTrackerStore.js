@@ -2,15 +2,7 @@ import { create } from "zustand";
 
 const useClearanceTrackerStore = create((set) => ({
   departments: {
-    Files: {
-      items: {
-        "Files & Documents": false,
-      },
-      grantedBy: "",
-      deviation: false,
-      deviationJustification: "",
-      attachment: null,
-    },
+   
     Finance: {
       items: {
         Advance: false,

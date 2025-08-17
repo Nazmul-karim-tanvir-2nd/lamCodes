@@ -31,14 +31,14 @@ const requests = [
     },
     {
         label: "Employee Transfer",
-        path: "/",
+        path: "/employee-transfer-review",
         count: 3,
         icon: <Repeat size={40} className="text-yellow-500" />,
         color: "bg-yellow-100",
     },
     {
         label: "Employee Clearance",
-        path: "/",
+        path: "/clearance-review-dashboard",
         count: 2,
         icon: <LogOut size={40} className="text-red-500" />,
         color: "bg-red-100",

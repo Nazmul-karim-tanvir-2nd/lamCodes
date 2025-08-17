@@ -11,6 +11,10 @@ import AccessReviewDashboard from './pages/ITAdmin/accessReviewDashboard/AccessR
 import AccessReviewDetails from './pages/ITAdmin/accessReviewDashboard/AccessReviewDetails.jsx';
 import UserAccountReview from './pages/ITAdmin/userAccountDashboard/UserAccountReview.jsx';
 import UserAccountReviewDetails from './pages/ITAdmin/userAccountDashboard/UserAccountReviewDetails.jsx';
+import ClearanceReviewDashboard from './pages/ITAdmin/clearanceDashboard/ClearanceReviewDashboard.jsx';
+import ClearanceDetails from './pages/ITAdmin/clearanceDashboard/ClearanceDetails.jsx';
+import EmployeeTransferReview from './pages/ITAdmin/employeeTransferDashboard/EmployeeTransferReview.jsx';
+import EmployeeTransferReviewDetails from './pages/ITAdmin/employeeTransferDashboard/EmployeeTransferReviewDetails.jsx';
 
 function App() {
   return (
@@ -27,9 +31,15 @@ function App() {
           <Route path="employee-clearance" element={<EmployeeClearance />} />
           <Route path="dashboard" element={<AdminDashboard />} />
           <Route path="access-review-dashboard" element={<AccessReviewDashboard />} />
+          <Route path="clearance-review-dashboard" element={<ClearanceReviewDashboard />} />
+          <Route path="clearance-details/:id" element={<ClearanceDetails />} />
+
           <Route path="access-review-details/:id" element={<AccessReviewDetails />} />
           <Route path="useraccount-review-dashboard" element={<UserAccountReview />} />
           <Route path="user-account-review-details/:id" element={<UserAccountReviewDetails />} />
+          <Route path="employee-transfer-review" element={<EmployeeTransferReview />} />
+          <Route path="employee-transfer-review-details/:id" element={<EmployeeTransferReviewDetails />} />
+
         </Route>
 
         {/* Login route outside layout */}

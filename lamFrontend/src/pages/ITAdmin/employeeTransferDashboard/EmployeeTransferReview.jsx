@@ -1,26 +1,20 @@
-// src/pages/ITAdmin/UserAccountReview.jsx
+// src/pages/HR/EmployeeTransferReview.jsx
 import React, { useState, useMemo } from "react";
 import FloatingSelect from "../../../components/custom/FloatingSelect";
 import FloatingInput from "../../../components/custom/FloatingInput";
 import { useNavigate } from "react-router-dom";
 import Breadcrumb from "../../../components/common/Breadcrumb";
 
-const initialRequests = [
-    { id: 1, name: "John Doe", department: "IT", status: "Pending", date: "2025-08-01" },
-    { id: 2, name: "Jane Smith", department: "Finance", status: "Approved", date: "2025-08-02" },
-    { id: 3, name: "Ali Khan", department: "HR", status: "Pending", date: "2025-08-03" },
-    { id: 4, name: "Maria Lopez", department: "IT", status: "Approved", date: "2025-08-04" },
-    { id: 5, name: "David Chen", department: "Finance", status: "Pending", date: "2025-08-05" },
-    { id: 6, name: "Sarah Lee", department: "IT", status: "Pending", date: "2025-08-06" },
-    { id: 7, name: "Michael Scott", department: "HR", status: "Approved", date: "2025-08-07" },
-    { id: 8, name: "Dwight Schrute", department: "Finance", status: "Pending", date: "2025-08-08" },
-    { id: 9, name: "Pam Beesly", department: "IT", status: "Approved", date: "2025-08-09" },
-    { id: 10, name: "Jim Halpert", department: "Finance", status: "Pending", date: "2025-08-10" },
-    { id: 11, name: "Stanley Hudson", department: "HR", status: "Rejected", date: "2025-08-11" },
+const initialTransfers = [
+    { id: 1, employeeName: "John Doe", fromDept: "IT", toDept: "Finance", status: "Pending", date: "2025-08-01" },
+    { id: 2, employeeName: "Jane Smith", fromDept: "Finance", toDept: "HR", status: "Approved", date: "2025-08-02" },
+    { id: 3, employeeName: "Ali Khan", fromDept: "HR", toDept: "IT", status: "Pending", date: "2025-08-03" },
+    { id: 4, employeeName: "Maria Lopez", fromDept: "IT", toDept: "Finance", status: "Approved", date: "2025-08-04" },
+    { id: 5, employeeName: "David Chen", fromDept: "Finance", toDept: "IT", status: "Rejected", date: "2025-08-05" },
 ];
 
-const UserAccountReview = () => {
-    const [requests, setRequests] = useState(initialRequests);
+const EmployeeTransferReview = () => {
+    const [transfers, setTransfers] = useState(initialTransfers);
     const [filterStatus, setFilterStatus] = useState("");
     const [filterDate, setFilterDate] = useState("");
     const [currentPage, setCurrentPage] = useState(1);
@@ -28,16 +22,16 @@ const UserAccountReview = () => {
     const [selectedIds, setSelectedIds] = useState([]);
     const navigate = useNavigate();
 
-    const filteredRequests = useMemo(() => {
-        return requests.filter((r) => {
-            const matchesStatus = filterStatus ? r.status === filterStatus : true;
-            const matchesDate = filterDate ? r.date === filterDate : true;
+    const filteredTransfers = useMemo(() => {
+        return transfers.filter((t) => {
+            const matchesStatus = filterStatus ? t.status === filterStatus : true;
+            const matchesDate = filterDate ? t.date === filterDate : true;
             return matchesStatus && matchesDate;
         });
-    }, [requests, filterStatus, filterDate]);
+    }, [transfers, filterStatus, filterDate]);
 
-    const totalPages = Math.ceil(filteredRequests.length / itemsPerPage);
-    const paginatedRequests = filteredRequests.slice(
+    const totalPages = Math.ceil(filteredTransfers.length / itemsPerPage);
+    const paginatedTransfers = filteredTransfers.slice(
         (currentPage - 1) * itemsPerPage,
         currentPage * itemsPerPage
     );
@@ -51,17 +45,17 @@ const UserAccountReview = () => {
     };
 
     const isAllSelected =
-        paginatedRequests.length > 0 &&
-        paginatedRequests.every((req) => selectedIds.includes(req.id));
+        paginatedTransfers.length > 0 &&
+        paginatedTransfers.every((t) => selectedIds.includes(t.id));
 
     const toggleSelectAll = () => {
         if (isAllSelected) {
             setSelectedIds((prev) =>
-                prev.filter((id) => !paginatedRequests.some((req) => req.id === id))
+                prev.filter((id) => !paginatedTransfers.some((t) => t.id === id))
             );
         } else {
             setSelectedIds((prev) => [
-                ...new Set([...prev, ...paginatedRequests.map((req) => req.id)]),
+                ...new Set([...prev, ...paginatedTransfers.map((t) => t.id)]),
             ]);
         }
     };
@@ -75,18 +69,18 @@ const UserAccountReview = () => {
     };
 
     const handleApprove = () => {
-        setRequests((prev) =>
-            prev.map((req) =>
-                selectedIds.includes(req.id) ? { ...req, status: "Approved" } : req
+        setTransfers((prev) =>
+            prev.map((t) =>
+                selectedIds.includes(t.id) ? { ...t, status: "Approved" } : t
             )
         );
         setSelectedIds([]);
     };
 
-    const handleRemove = () => {
-        setRequests((prev) =>
-            prev.map((req) =>
-                selectedIds.includes(req.id) ? { ...req, status: "Rejected" } : req
+    const handleReject = () => {
+        setTransfers((prev) =>
+            prev.map((t) =>
+                selectedIds.includes(t.id) ? { ...t, status: "Rejected" } : t
             )
         );
         setSelectedIds([]);
@@ -95,12 +89,12 @@ const UserAccountReview = () => {
     return (
         <div className="min-w-full mx-auto">
             <h1 className="text-base sm:text-xl font-bold text-center text-blue-800 mb-4 underline underline-offset-8 decoration-gray-500/80">
-                User Account Review Dashboard
+                Employee Transfer Review Dashboard
             </h1>
             <Breadcrumb
                 items={[
                     { label: "Admin-dashboard", path: "/" },
-                    { label: "Useraccount-review-dashboard" }
+                    { label: "Employee-transfer-review-dashboard" }
                 ]}
             />
 
@@ -168,7 +162,7 @@ const UserAccountReview = () => {
                             Approve Selected
                         </button>
                         <button
-                            onClick={handleRemove}
+                            onClick={handleReject}
                             className="px-4 py-2 bg-red-600/80 text-white rounded-lg hover:bg-red-700"
                         >
                             Reject Selected
@@ -180,6 +174,7 @@ const UserAccountReview = () => {
                 <div className="overflow-x-auto">
                     <table className="min-w-full text-base border-separate border-spacing-0">
                         <thead className="bg-blue-900/80 text-white font-bold text-center">
+
                             <tr>
                                 <th className="px-4 py-4 border-b border-gray-200">
                                     <input
@@ -189,39 +184,40 @@ const UserAccountReview = () => {
                                     />
                                 </th>
                                 <th className="px-6 py-4 border-b border-gray-200">ID</th>
-                                <th className="px-6 py-4 border-b border-gray-200">Name</th>
-                                <th className="px-6 py-4 border-b border-gray-200">Department</th>
+                                <th className="px-6 py-4 border-b border-gray-200">Employee</th>
+                                <th className="px-6 py-4 border-b border-gray-200">From Dept</th>
+                                <th className="px-6 py-4 border-b border-gray-200">To Dept</th>
                                 <th className="px-6 py-4 border-b border-gray-200">Date</th>
                                 <th className="px-6 py-4 border-b border-gray-200">Status</th>
                                 <th className="px-6 py-4 border-b border-gray-200">Actions</th>
                             </tr>
                         </thead>
                         <tbody className="text-center">
-                            {paginatedRequests.map((req, index) => (
+                            {paginatedTransfers.map((t, index) => (
                                 <tr
-                                    key={req.id}
-                                    className={`${index % 2 === 0 ? "bg-white" : "bg-blue-50"
-                                        } hover:bg-gray-50 transition-colors`}
+                                    key={t.id}
+                                    className={`${index % 2 === 0 ? "bg-white" : "bg-blue-50"} hover:bg-gray-50 transition-colors`}
                                 >
                                     <td className="px-4 py-4 border-b border-gray-100">
                                         <input
                                             type="checkbox"
-                                            checked={selectedIds.includes(req.id)}
-                                            onChange={() => toggleSelect(req.id)}
+                                            checked={selectedIds.includes(t.id)}
+                                            onChange={() => toggleSelect(t.id)}
                                         />
                                     </td>
-                                    <td className="px-6 py-4 border-b border-gray-100">{req.id}</td>
-                                    <td className="px-6 py-4 border-b border-gray-100 font-medium text-left">{req.name}</td>
-                                    <td className="px-6 py-4 border-b border-gray-100">{req.department}</td>
-                                    <td className="px-6 py-4 border-b border-gray-100 text-gray-600">{req.date}</td>
+                                    <td className="px-6 py-4 border-b border-gray-100">{t.id}</td>
+                                    <td className="px-6 py-4 border-b border-gray-100 font-medium text-left">{t.employeeName}</td>
+                                    <td className="px-6 py-4 border-b border-gray-100">{t.fromDept}</td>
+                                    <td className="px-6 py-4 border-b border-gray-100">{t.toDept}</td>
+                                    <td className="px-6 py-4 border-b border-gray-100 text-gray-600">{t.date}</td>
                                     <td className="px-6 py-4 border-b border-gray-100">
-                                        <span className={statusBadge(req.status)}>{req.status}</span>
+                                        <span className={statusBadge(t.status)}>{t.status}</span>
                                     </td>
                                     <td className="px-6 py-4 border-b border-gray-100">
                                         <button
                                             className="text-blue-600 font-medium hover:underline"
                                             onClick={() =>
-                                                navigate(`/user-account-review-details/${req.id}`)
+                                                navigate(`/employee-transfer-review-details/${t.id}`)
                                             }
                                         >
                                             View Details
@@ -229,13 +225,10 @@ const UserAccountReview = () => {
                                     </td>
                                 </tr>
                             ))}
-                            {paginatedRequests.length === 0 && (
+                            {paginatedTransfers.length === 0 && (
                                 <tr>
-                                    <td
-                                        colSpan={7}
-                                        className="text-center py-6 text-gray-500"
-                                    >
-                                        No requests found.
+                                    <td colSpan={8} className="text-center py-6 text-gray-500">
+                                        No transfers found.
                                     </td>
                                 </tr>
                             )}
@@ -268,4 +261,4 @@ const UserAccountReview = () => {
     );
 };
 
-export default UserAccountReview;
+export default EmployeeTransferReview;

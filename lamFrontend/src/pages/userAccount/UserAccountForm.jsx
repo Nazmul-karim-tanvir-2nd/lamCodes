@@ -6,13 +6,27 @@ import BasicInfoSection from './BasicInfoSection.jsx';
 import DepartmentRoleSection from './DepartmentRoleSection.jsx';
 import AttachmentsSection from './AttachmentsSection.jsx';
 import MetadataSection from './MetadataSection.jsx';
-import { checkCIF, fetchBranches, fetchDivisions } from '../../api/userFormApi';
+import { checkCIF, fetchBranches, fetchDivisions, fetchDesignations } from '../../api/userFormApi';
 
 const UserAccountForm = () => {
   const { formData, updateField } = useUserFormStore();
-
   const [branchOptions, setBranchOptions] = useState([]);
   const [divisionOptions, setDivisionOptions] = useState([]);
+  const [designationOptions, setDesignationOptions] = useState([]);
+  const [errors, setErrors] = useState({});
+
+  // List of required fields including Gender, Blood Group, Joining Date
+  const requiredFields = [
+    "cif",
+    "name",
+    "mobile",
+    "gender",
+    "bloodgroup",
+    "joiningDate",
+    "branch",
+    "division",
+    "designation"
+  ];
 
   const handleChange = (e) => {
     const { name, value, files, type, checked } = e.target;
@@ -32,29 +46,60 @@ const UserAccountForm = () => {
       updateField(name, file);
     } else if (type === 'checkbox') updateField(name, checked);
     else updateField(name, value);
+
+    // Clear error for this field when user types/selects
+    if (errors[name]) {
+      setErrors((prev) => ({ ...prev, [name]: false }));
+    }
   };
 
   const handleCIFSearch = async () => {
-    const sanitizedCIF = formData.cif.trim();
+    const sanitizedCIF = formData.cif?.trim();
     if (!sanitizedCIF) {
       Swal.fire({ title: "Enter a valid CIF", icon: "warning" });
       return;
     }
 
     const result = await checkCIF(sanitizedCIF);
-
     if (result) {
       updateField("name", result.name);
       updateField("mobile", result.mobile);
       updateField("biometricStatus", result.biometricStatus);
+
+      // Clear errors for autofilled fields
+      setErrors((prev) => ({
+        ...prev,
+        name: false,
+        mobile: false,
+      }));
+
       Swal.fire("Success", `CIF found: ${result.name}`, "success");
     } else {
       Swal.fire("Not Found", "CIF not found in external API", "error");
     }
   };
 
+
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    const newErrors = {};
+    requiredFields.forEach((field) => {
+      if (!formData[field] || formData[field].toString().trim() === "") {
+        newErrors[field] = true;
+      }
+    });
+
+    setErrors(newErrors);
+
+    if (Object.keys(newErrors).length > 0) {
+      Swal.fire({
+        title: "Please fill all required fields",
+        icon: "error",
+      });
+      return;
+    }
+
     console.log("Submitted Data:", formData);
     Swal.fire({
       title: "Form Submitted Successfully!",
@@ -71,18 +116,15 @@ const UserAccountForm = () => {
   useEffect(() => {
     const loadDropdownData = async () => {
       try {
-        const branches = await fetchBranches();
-        const divisions = await fetchDivisions();
+        const [branches, divisions, designations] = await Promise.all([
+          fetchBranches(),
+          fetchDivisions(),
+          fetchDesignations()
+        ]);
 
-        setBranchOptions(branches.map((b) => ({
-          value: b.branchName,
-          label: b.branchName,
-        })));
-
-        setDivisionOptions(divisions.map((d) => ({
-          value: d.divisionName,
-          label: d.divisionName,
-        })));
+        setBranchOptions(branches);
+        setDivisionOptions(divisions);
+        setDesignationOptions(designations);
       } catch (err) {
         console.error("❌ Failed to fetch dropdown data", err);
       }
@@ -101,16 +143,30 @@ const UserAccountForm = () => {
         formData={formData}
         handleChange={handleChange}
         handleCIFSearch={handleCIFSearch}
+        errors={errors}
       />
+
       <DepartmentRoleSection
         formData={formData}
         handleChange={handleChange}
         updateField={updateField}
         branchOptions={branchOptions}
         divisionOptions={divisionOptions}
+        designationOptions={designationOptions}
+        errors={errors} // pass errors
       />
-      <AttachmentsSection formData={formData} handleChange={handleChange} />
-      <MetadataSection formData={formData} handleChange={handleChange} />
+
+      <AttachmentsSection
+        formData={formData}
+        handleChange={handleChange}
+        errors={errors}
+      />
+
+      <MetadataSection
+        formData={formData}
+        handleChange={handleChange}
+        errors={errors}
+      />
 
       <div className="text-center">
         <Button

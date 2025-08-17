@@ -159,6 +159,10 @@ export default function AccessReviewDashboard() {
         Access Review Dashboard
       </h1>
 
+      <Link to="/dashboard" className="text-blue-600 hover:text-blue-800 underline mb-4 block">
+        Back to Admin Dashboard
+      </Link>
+
       <div className="flex gap-4 mb-6 flex-wrap">
         <select
           onChange={(e) => setFilter("department", e.target.value)}
@@ -217,7 +221,7 @@ export default function AccessReviewDashboard() {
                 <th className="px-4 py-3 border-b border-red-200">Name</th>
                 <th className="px-4 py-3 border-b border-red-200">Department</th>
                 <th className="px-4 py-3 border-b border-red-200">Access Types</th>
-                <th className="px-4 py-3 border-b border-red-200">Submitted</th>
+                <th className="px-4 py-3 border-b border-red-200">Submitted At</th>
                 <th className="px-4 py-3 border-b border-red-200">LM Status</th>
                 <th className="px-4 py-3 border-b border-red-200">Review Status</th>
                 <th className="px-4 py-3 border-b border-red-200">Attachment</th>

@@ -1,7 +1,7 @@
-// src/api/userFormApi.js
+// src/api/userFormApi.js/push
 
-const BASE_EMPLOYEE_URL = "http://localhost:5162/api/cd%20Employee"; // space encoded as %20
-const BASE_EXTERNAL_API_URL = "http://localhost:5162/api/ExternalApi";
+const BASE_EMPLOYEE_URL = "/api/Employee";
+const BASE_EXTERNAL_API_URL = "/api/ExternalApi";
 
 export const checkCIF = async (cif) => {
   try {
@@ -24,34 +24,61 @@ export const checkCIF = async (cif) => {
 };
 
 export const fetchBranches = async () => {
-  const res = await fetch(`${BASE_EMPLOYEE_URL}/branches/all`);
-  if (!res.ok) throw new Error("Failed to fetch branches");
+  try {
+    const res = await fetch(`${BASE_EMPLOYEE_URL}/branches/all`);
+    if (!res.ok) throw new Error("Failed to fetch branches");
 
-  const data = await res.json();
-  return data.map(branch => ({
-    value: branch.branchName,
-    label: branch.branchName,
-  }));
+    const data = await res.json();
+    console.log("Branches fetched:", data);
+    return data.map((branch) => ({
+      value: branch.branchName,
+      label: branch.branchName,
+    }));
+  } catch (err) {
+    console.error("❌ fetchBranches error:", err);
+    return [];
+  }
 };
 
 export const fetchDivisions = async () => {
-  const res = await fetch(`${BASE_EMPLOYEE_URL}/divisions`);
-  if (!res.ok) throw new Error("Failed to fetch divisions");
+  try {
+    const res = await fetch(`${BASE_EMPLOYEE_URL}/divisions`);
+    if (!res.ok) throw new Error("Failed to fetch divisions");
 
-  const data = await res.json();
-  return data.map(division => ({
-    value: division.divisionName,
-    label: division.divisionName,
-  }));
+    const data = await res.json();
+    console.log("Divisions fetched:", data);
+    return data.map((division) => ({
+      value: division.divisionName,
+      label: division.divisionName,
+    }));
+  } catch (err) {
+    console.error("❌ fetchDivisions error:", err);
+    return [];
+  }
 };
 
 export const fetchDesignations = async () => {
-  const res = await fetch(`${BASE_EMPLOYEE_URL}/designation`);
-  if (!res.ok) throw new Error("Failed to fetch designations");
+  try {
+    const res = await fetch(`${BASE_EMPLOYEE_URL}/designation`);
+    if (!res.ok) throw new Error("Failed to fetch designations");
 
+    const data = await res.json();
+    console.log("Designations fetched:", data);
+    return data.map((designation) => ({
+      value: designation.empDesignation,
+      label: designation.empDesignation,
+    }));
+  } catch (err) {
+    console.error("❌ fetchDesignations error:", err);
+    return [];
+  }
+};
+
+export const fetchDepartments = async () => {
+  const res = await fetch('/api/Employee/department');
   const data = await res.json();
-  return data.map(designation => ({
-    value: designation.empDesignation,
-    label: designation.empDesignation,
+  return data.map(dep => ({
+    value: dep.teamName || '', // <-- map teamName
+    label: dep.teamName || '', // <-- map teamName
   }));
 };

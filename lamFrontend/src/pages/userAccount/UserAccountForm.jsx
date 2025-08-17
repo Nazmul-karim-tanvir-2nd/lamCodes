@@ -1,3 +1,4 @@
+//push
 import { useState, useEffect } from 'react';
 import useUserFormStore from '../../store/useUserFormStore';
 import { Button } from '../../components/ui/Button.jsx';
@@ -6,27 +7,15 @@ import BasicInfoSection from './BasicInfoSection.jsx';
 import DepartmentRoleSection from './DepartmentRoleSection.jsx';
 import AttachmentsSection from './AttachmentsSection.jsx';
 import MetadataSection from './MetadataSection.jsx';
-import { checkCIF, fetchBranches, fetchDivisions, fetchDesignations } from '../../api/userFormApi';
+import { checkCIF, fetchBranches, fetchDivisions, fetchDesignations, fetchDepartments } from '../../api/userFormApi';
 
 const UserAccountForm = () => {
   const { formData, updateField } = useUserFormStore();
+
   const [branchOptions, setBranchOptions] = useState([]);
   const [divisionOptions, setDivisionOptions] = useState([]);
   const [designationOptions, setDesignationOptions] = useState([]);
-  const [errors, setErrors] = useState({});
-
-  // List of required fields including Gender, Blood Group, Joining Date
-  const requiredFields = [
-    "cif",
-    "name",
-    "mobile",
-    "gender",
-    "bloodgroup",
-    "joiningDate",
-    "branch",
-    "division",
-    "designation"
-  ];
+  const [departmentOptions, setDepartmentOptions] = useState([]);
 
   const handleChange = (e) => {
     const { name, value, files, type, checked } = e.target;
@@ -44,12 +33,10 @@ const UserAccountForm = () => {
         return;
       }
       updateField(name, file);
-    } else if (type === 'checkbox') updateField(name, checked);
-    else updateField(name, value);
-
-    // Clear error for this field when user types/selects
-    if (errors[name]) {
-      setErrors((prev) => ({ ...prev, [name]: false }));
+    } else if (type === 'checkbox') {
+      updateField(name, checked);
+    } else {
+      updateField(name, value);
     }
   };
 
@@ -61,45 +48,19 @@ const UserAccountForm = () => {
     }
 
     const result = await checkCIF(sanitizedCIF);
+
     if (result) {
       updateField("name", result.name);
       updateField("mobile", result.mobile);
       updateField("biometricStatus", result.biometricStatus);
-
-      // Clear errors for autofilled fields
-      setErrors((prev) => ({
-        ...prev,
-        name: false,
-        mobile: false,
-      }));
-
       Swal.fire("Success", `CIF found: ${result.name}`, "success");
     } else {
       Swal.fire("Not Found", "CIF not found in external API", "error");
     }
   };
 
-
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    const newErrors = {};
-    requiredFields.forEach((field) => {
-      if (!formData[field] || formData[field].toString().trim() === "") {
-        newErrors[field] = true;
-      }
-    });
-
-    setErrors(newErrors);
-
-    if (Object.keys(newErrors).length > 0) {
-      Swal.fire({
-        title: "Please fill all required fields",
-        icon: "error",
-      });
-      return;
-    }
-
     console.log("Submitted Data:", formData);
     Swal.fire({
       title: "Form Submitted Successfully!",
@@ -107,24 +68,31 @@ const UserAccountForm = () => {
     });
   };
 
+  // Set request date and approval status
   useEffect(() => {
     const today = new Date().toISOString().split("T")[0];
     updateField("requestDate", today);
     updateField("approvalStatus", "Pending");
   }, [updateField]);
 
+  // Load all dropdowns
   useEffect(() => {
     const loadDropdownData = async () => {
       try {
-        const [branches, divisions, designations] = await Promise.all([
+        const [branches, divisions, designations, departments] = await Promise.all([
           fetchBranches(),
           fetchDivisions(),
-          fetchDesignations()
+          fetchDesignations(),
+          fetchDepartments(),
         ]);
 
+        // Set dropdown options
         setBranchOptions(branches);
         setDivisionOptions(divisions);
         setDesignationOptions(designations);
+        setDepartmentOptions(departments);
+
+        console.log("Dropdown data loaded:", { branches, divisions, designations, departments });
       } catch (err) {
         console.error("❌ Failed to fetch dropdown data", err);
       }
@@ -143,9 +111,7 @@ const UserAccountForm = () => {
         formData={formData}
         handleChange={handleChange}
         handleCIFSearch={handleCIFSearch}
-        errors={errors}
       />
-
       <DepartmentRoleSection
         formData={formData}
         handleChange={handleChange}
@@ -153,20 +119,10 @@ const UserAccountForm = () => {
         branchOptions={branchOptions}
         divisionOptions={divisionOptions}
         designationOptions={designationOptions}
-        errors={errors} // pass errors
+        departmentOptions={departmentOptions}
       />
-
-      <AttachmentsSection
-        formData={formData}
-        handleChange={handleChange}
-        errors={errors}
-      />
-
-      <MetadataSection
-        formData={formData}
-        handleChange={handleChange}
-        errors={errors}
-      />
+      <AttachmentsSection formData={formData} handleChange={handleChange} />
+      <MetadataSection formData={formData} handleChange={handleChange} />
 
       <div className="text-center">
         <Button

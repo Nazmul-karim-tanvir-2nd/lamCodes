@@ -1,39 +1,11 @@
-###############
-# .NET backend
-###############
+# Build folders
 bin/
 obj/
-out/
-*.dll
-*.exe
-*.pdb
-*.cache
 
-# User-specific configs
-launchSettings.json
-appsettings.Development.json
-
-###############
-# IDE settings
-###############
+# VS local settings
 .vs/
-.vscode/
-*.user
-*.userosscache
-*.suo
-*.sln.docstates
 
-###############
-# Frontend (React/Vite)
-###############
-node_modules/
-dist/
-build/
-wwwroot/dist/
-wwwroot/lib/
-
-###############
-# Logs / publish
-###############
-*.log
-publish/
+LogicalAccessMgmt/LogicalAccessMgmt/bin/Debug/net9.0/Data.dll
+LogicalAccessMgmt/LogicalAccessMgmt/bin/Debug/net9.0/LogicalAccessMgmt.exe
+LogicalAccessMgmt/LogicalAccessMgmt/bin/Debug/net9.0/Services.dll
+LogicalAccessMgmt/LogicalAccessMgmt/bin/Debug/net9.0/LogicalAccessMgmt.dll

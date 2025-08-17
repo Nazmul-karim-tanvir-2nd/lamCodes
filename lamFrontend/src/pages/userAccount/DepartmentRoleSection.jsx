@@ -31,6 +31,7 @@ const DepartmentRoleSection = ({
     formData,
     handleChange,
     updateField,
+    errors,
     departmentOptions = [],
     divisionOptions = [],
     branchOptions = [],
@@ -78,6 +79,7 @@ const DepartmentRoleSection = ({
                     onChange={handleChange}
                     options={divisionOptions}
                     disabled={!isEditable}
+                    error={errors?.division}
                 />
                 <FloatingSelect
                     label={<RequiredLabel>Branch</RequiredLabel>}
@@ -86,6 +88,7 @@ const DepartmentRoleSection = ({
                     onChange={handleChange}
                     options={branchOptions}
                     disabled={!isEditable}
+                    error={errors?.branch}
                 />
                 <FloatingSelect
                     label={<RequiredLabel>Designation</RequiredLabel>}
@@ -94,6 +97,7 @@ const DepartmentRoleSection = ({
                     onChange={handleChange}
                     options={designationOptions}
                     disabled={!isEditable}
+                    error={errors?.designation}
                 />
 
                 {/* Employment Type */}

@@ -93,8 +93,8 @@ const EmployeeTransferReview = () => {
             </h1>
             <Breadcrumb
                 items={[
-                    { label: "Dashboard", path: "/" },
-                    { label: "employee-transfer-review-dashboard" }
+                    { label: "Admin-dashboard", path: "/" },
+                    { label: "Employee-transfer-review-dashboard" }
                 ]}
             />
 

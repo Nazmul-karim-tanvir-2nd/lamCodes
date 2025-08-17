@@ -99,8 +99,8 @@ const UserAccountReview = () => {
             </h1>
             <Breadcrumb
                 items={[
-                    { label: "Dashboard", path: "/" },
-                    { label: "useraccount-review-dashboard" }
+                    { label: "Admin-dashboard", path: "/" },
+                    { label: "Useraccount-review-dashboard" }
                 ]}
             />
 

@@ -65,11 +65,20 @@ const UserAccountForm = () => {
       updateField("name", result.name);
       updateField("mobile", result.mobile);
       updateField("biometricStatus", result.biometricStatus);
+
+      // Clear errors for autofilled fields
+      setErrors((prev) => ({
+        ...prev,
+        name: false,
+        mobile: false,
+      }));
+
       Swal.fire("Success", `CIF found: ${result.name}`, "success");
     } else {
       Swal.fire("Not Found", "CIF not found in external API", "error");
     }
   };
+
 
   const handleSubmit = (e) => {
     e.preventDefault();

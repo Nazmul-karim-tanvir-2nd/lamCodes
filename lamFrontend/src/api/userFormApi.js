@@ -74,8 +74,8 @@ export const fetchLineManagerByCIF = async (cif) => {
     const data = await res.json();
     // assume backend returns { name, mobile, designation }
     return {
-      name: data.name ?? "",
-      mobile: data.mobile ?? "",
+      name: data.memberName ?? "",
+      mobile: data.mobileNo ?? "",
       designation: data.designation ?? "",
     };
   } catch (err) {

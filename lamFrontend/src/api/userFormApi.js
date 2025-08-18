@@ -1,4 +1,4 @@
-const BASE_EMPLOYEE_URL = "https://localhost:7162/api/Employee";
+const BASE_EMPLOYEE_URL = "http://localhost:5162/api/Employee";
 //const BASE_EXTERNAL_API_URL = "http://localhost:5162/api/ExternalApi";
 
 export const checkCIF = async (cifOrNid) => {

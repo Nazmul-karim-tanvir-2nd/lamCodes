@@ -23,7 +23,7 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowFrontend", policy =>
     {
-        policy.AllowAnyOrigin()  
+        policy.WithOrigins("http://localhost:5173")
               .AllowAnyHeader()
               .AllowAnyMethod();
     });
@@ -32,7 +32,7 @@ builder.Services.AddCors(options =>
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-builder.WebHost.UseUrls("http://localhost:5162", "https://localhost:7162");
+builder.WebHost.UseUrls("http://localhost:5162");
 var app = builder.Build();
 
 // Middleware
@@ -45,7 +45,7 @@ if (app.Environment.IsDevelopment())
     });
 }
 app.UseCors("AllowFrontend"); 
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();

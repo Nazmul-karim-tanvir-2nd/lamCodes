@@ -35,7 +35,7 @@ namespace LogicalAccessMgmt.Controllers
             _departmentService = departmentService;
         }
 
-        [HttpGet("{cifOrNid}")]
+        [HttpGet("search/{cifOrNid}")]
         public async Task<IActionResult> GetEmployeeInfo(string cifOrNid)
         {
             if (string.IsNullOrWhiteSpace(cifOrNid))

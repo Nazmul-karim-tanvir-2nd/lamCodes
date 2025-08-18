@@ -84,9 +84,9 @@ export const fetchLineManagerByCIF = async (cifNo) => {
 
     const data = await res.json();
     return {
-      name: data.MemberName ?? "",
-      mobile: data.MobileNo ?? "",
-      designation: data.Designation ?? "",
+      name: data.memberName ?? "",
+      mobile: data.mobileNo ?? "",
+      designation: data.designation ?? "",
     };
   } catch (err) {
     // Network failure or fetch itself failed

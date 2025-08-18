@@ -58,9 +58,9 @@ namespace LogicalAccessMgmt.Controllers
                         .FirstOrDefaultAsync(b => b.CIFNo == cif);
 
                     if (biometric != null &&
-                        biometric.NIDVerificationStatus == 1 &&
-                        biometric.FingerVerificationStatus == 1 &&
-                        biometric.FaceVerificationStatus == 1)
+                        biometric.NIDVerificationStatus == true &&
+                        biometric.FingerVerificationStatus == true &&
+                        biometric.FaceVerificationStatus == true)
                     {
                         isBiometricVerified = true;
                     }

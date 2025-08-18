@@ -78,7 +78,7 @@ const AdminDashboard = () => {
                 {requests.map((req, index) => (
                     <div
                         key={index}
-                        className="bg-white rounded-2xl shadow-lg p-6 flex flex-col items-center justify-center cursor-pointer transform hover:-translate-y-1 hover:shadow-2xl transition-all"
+                        className="bg-white hover:bg-blue-200 rounded-2xl shadow-lg p-6 flex flex-col items-center justify-center cursor-pointer transform hover:-translate-y-1 hover:shadow-2xl transition-all"
                         onClick={() => navigate(req.path)}
                     >
                         <div

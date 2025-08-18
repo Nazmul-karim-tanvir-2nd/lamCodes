@@ -35,45 +35,51 @@ namespace LogicalAccessMgmt.Controllers
             _departmentService = departmentService;
         }
 
-        [HttpPost("create")]
-        public async Task<IActionResult> CreateEmployee([FromBody] EmployeeInfoRequest request)
+        [HttpGet("employee/{cifOrNid}")]
+        public async Task<IActionResult> GetEmployeeInfo(string cifOrNid)
         {
-            if (!ModelState.IsValid)
-                return BadRequest(ModelState);
+            if (string.IsNullOrWhiteSpace(cifOrNid))
+                return BadRequest("CIF or NID must be provided.");
 
-            // Step 1: Authenticate and fetch data
-            var cookies = await _externalApiService.LoginAndGetCookiesAsync();
-            var extApiResponse = await _externalApiService.GetEmployeeInfoAsync(request.CIFNo, cookies);
-            var apiResponse = extApiResponse.GetEmployees()?.FirstOrDefault();
-
-            if (apiResponse == null)
-                return NotFound($"No data found for CIF {request.CIFNo}");
-
-            // Step 2: Check for duplicates
-            bool exists = await _context.LATeamMembers.AnyAsync(e => e.CIFNo == request.CIFNo);
-            if (exists)
-                return Conflict("Employee with this CIF already exists.");
-
-            // Step 3: Map and save
-            var employee = new LATeamMember
+            try
             {
-                CIFNo = apiResponse.CIF,
-                MemberName = apiResponse.Name,
-                MobileNo = apiResponse.MobilePhone,
-                Branch = request.Branch,
-                Designation = request.Designation,
-                EmpStatus = request.EmpStatus,
-                UserStatus = request.UserStatus,
-                ExpiryDate = request.ExpiryDate,
-                LineManagerCIF = request.LineManagerCIF,
-                JoinDate = request.JoinDate
-            };
+                var cookies = await _externalApiService.LoginAndGetCookiesAsync();
+                var extApiResponse = await _externalApiService.GetEmployeeInfoAsync(cifOrNid, cookies);
+                var employees = extApiResponse.GetEmployees();
 
-            _context.LATeamMembers.Add(employee);
-            await _context.SaveChangesAsync();
+                // get CIF from the external API response
+                var cif = employees?.FirstOrDefault()?.CIF;
 
-            return Ok(new { message = "Employee created successfully." });
+                bool isBiometricVerified = false;
+
+                if (!string.IsNullOrEmpty(cif))
+                {
+                    var biometric = await _context.Biometric
+                        .FirstOrDefaultAsync(b => b.CIFNo == cif);
+
+                    if (biometric != null &&
+                        biometric.NIDVerificationStatus == 1 &&
+                        biometric.FingerVerificationStatus == 1 &&
+                        biometric.FaceVerificationStatus == 1)
+                    {
+                        isBiometricVerified = true;
+                    }
+                }
+
+                return Ok(new
+                {
+                    RawData = extApiResponse.Data,
+                    Employees = employees,
+                    BiometricVerified = isBiometricVerified
+                });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { Error = ex.Message });
+            }
         }
+
+
 
         [HttpGet("branches/all")]
         public async Task<IActionResult> GetAllBranches()

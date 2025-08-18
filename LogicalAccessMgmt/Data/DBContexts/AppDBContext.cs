@@ -21,6 +21,8 @@ namespace LogicalAccessMgmt.Data.DBContexts
 
         public DbSet<DepartmentRequest> Department { get; set; }
 
+        public DbSet<BiometricVerificationStatus> Biometric { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -41,6 +43,11 @@ namespace LogicalAccessMgmt.Data.DBContexts
             modelBuilder.Entity<DesignationRequest>().ToTable("LicEmpCodesDesignationType").HasNoKey();
 
             modelBuilder.Entity<DepartmentRequest>().ToTable("LATeam").HasNoKey();
+
+            modelBuilder.Entity<BiometricVerificationStatus>(entity =>
+            {
+                entity.ToTable("LABiometricVerificationRequest").HasNoKey();
+            });
         }
 
     }

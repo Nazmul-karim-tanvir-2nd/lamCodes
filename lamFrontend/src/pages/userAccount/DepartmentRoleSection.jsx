@@ -1,9 +1,9 @@
-import { useEffect } from 'react';
 import { SectionTitle } from '../../components/SectionTitle';
 import FloatingSelect from '../../components/custom/FloatingSelect';
 import FloatingInput from '../../components/custom/FloatingInput';
 import FloatingCheckbox from '../../components/custom/FloatingCheckbox';
-import { Building2 } from 'lucide-react';
+import { Building2, Search } from 'lucide-react';
+import { Button } from '../../components/ui/Button';
 import { fetchLineManagerByCIF } from '../../api/userFormApi';
 
 const RequiredLabel = ({ children }) => (
@@ -24,30 +24,21 @@ const DepartmentRoleSection = ({
 }) => {
     const isEditable = formData.biometricStatus?.toLowerCase() === 'verified';
 
-    // Auto-fill Line Manager info from API
-    useEffect(() => {
-        const loadLineManager = async () => {
-            if (!formData.lineManagerCIF) {
-                updateField('lineManagerName', '');
-                updateField('lineManagerMobile', '');
-                updateField('lineManagerDesignation', '');
-                return;
-            }
+    // 🔎 Manual search trigger
+    const handleLineManagerSearch = async () => {
+        if (!formData.lineManagerCIF) return;
 
-            const manager = await fetchLineManagerByCIF(formData.lineManagerCIF);
-            if (manager) {
-                updateField('lineManagerName', manager.name);
-                updateField('lineManagerMobile', manager.mobile);
-                updateField('lineManagerDesignation', manager.designation);
-            } else {
-                updateField('lineManagerName', '');
-                updateField('lineManagerMobile', '');
-                updateField('lineManagerDesignation', '');
-            }
-        };
-
-        loadLineManager();
-    }, [formData.lineManagerCIF, updateField]);
+        const manager = await fetchLineManagerByCIF(formData.lineManagerCIF);
+        if (manager) {
+            updateField('lineManagerName', manager.name);
+            updateField('lineManagerMobile', manager.mobile);
+            updateField('lineManagerDesignation', manager.designation);
+        } else {
+            updateField('lineManagerName', '');
+            updateField('lineManagerMobile', '');
+            updateField('lineManagerDesignation', '');
+        }
+    };
 
     return (
         <>
@@ -57,7 +48,6 @@ const DepartmentRoleSection = ({
             </SectionTitle>
 
             <div className="bg-white rounded-md border border-red-200 px-6 py-6 grid grid-cols-1 md:grid-cols-3 gap-y-2 md:gap-y-2 gap-x-4 md:gap-x-8 mb-8 shadow">
-
                 {/* Select fields */}
                 <FloatingSelect
                     label={<RequiredLabel>Department</RequiredLabel>}
@@ -138,13 +128,24 @@ const DepartmentRoleSection = ({
                 )}
 
                 {/* Line Manager CIF + Auto fields */}
-                <FloatingInput
-                    label="Line Manager CIF"
-                    name="lineManagerCIF"
-                    value={formData.lineManagerCIF}
-                    onChange={handleChange}
-                    disabled={!isEditable}
-                />
+                <div className="md:col-span-1 flex gap-4 items-end">
+                    <FloatingInput
+                        label="Line Manager CIF"
+                        name="lineManagerCIF"
+                        value={formData.lineManagerCIF}
+                        onChange={handleChange}
+                        disabled={!isEditable}
+                    />
+                    <Button
+                        type="button"
+                        onClick={handleLineManagerSearch}
+                        className="bg-red-600/80 hover:bg-red-700 text-white px-4 py-2 rounded-md transition"
+                        disabled={!isEditable}
+                    >
+                        <Search className="mr-1" />
+                    </Button>
+                </div>
+
                 <FloatingInput
                     label="Line Manager Name"
                     name="lineManagerName"

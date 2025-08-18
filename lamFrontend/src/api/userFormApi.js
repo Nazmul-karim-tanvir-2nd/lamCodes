@@ -66,11 +66,11 @@ export const fetchDepartments = async () => {
   }));
 };
 
-export const fetchLineManagerByCIF = async (cif) => {
-  if (!cif) return null;
+export const fetchLineManagerByCIF = async (cifNo) => {
+  if (!cifNo) return null;
 
   try {
-    const res = await fetch(`${BASE_EMPLOYEE_URL}/line-manager/${cif}`);
+    const res = await fetch(`${BASE_EMPLOYEE_URL}/linemanager/${cifNo}`);
 
     if (res.status === 404) {
       // Line manager not found for this CIF
@@ -84,9 +84,9 @@ export const fetchLineManagerByCIF = async (cif) => {
 
     const data = await res.json();
     return {
-      name: data.memberName ?? "",
-      mobile: data.mobileNo ?? "",
-      designation: data.designation ?? "",
+      name: data.MemberName ?? "",
+      mobile: data.MobileNo ?? "",
+      designation: data.Designation ?? "",
     };
   } catch (err) {
     // Network failure or fetch itself failed

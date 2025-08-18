@@ -102,7 +102,7 @@ namespace LogicalAccessMgmt.Controllers
             return Ok(designation);
         }
 
-        [HttpGet("line-manager/{cifNo}")]
+        [HttpGet("linemanager/{cifNo}")]
         public async Task<IActionResult> GetLineManagerInfo(string cifNo)
         {
             if (string.IsNullOrWhiteSpace(cifNo))
@@ -114,7 +114,7 @@ namespace LogicalAccessMgmt.Controllers
                 {
                     m.MemberName,
                     m.Designation,
-                    m.MobileNo
+                    MobileNo = m.MobileNo != null ? m.MobileNo : ""
                 })
                 .FirstOrDefaultAsync();
 

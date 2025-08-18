@@ -44,11 +44,8 @@ if (app.Environment.IsDevelopment())
         c.SwaggerEndpoint("/swagger/v1/swagger.json", "LogicalAccessMgmt API v1");
     });
 }
-
+app.UseCors("AllowFrontend"); 
 app.UseHttpsRedirection();
-
-app.UseCors("AllowFrontend"); //  Add this here
-
 app.UseAuthorization();
 
 app.MapControllers();

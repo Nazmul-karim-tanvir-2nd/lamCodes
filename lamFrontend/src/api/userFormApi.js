@@ -12,8 +12,8 @@ export const checkCIF = async (cifOrNid) => {
 
     return {
       name: employee.name ?? "",
-      mobile: employee.mobilePhone ?? "",
-      biometricStatus: "Verified",
+      mobile: employee.mobilePhone && employee.mobilePhone !== "NULL" ? employee.mobilePhone : "",
+      biometricStatus: data.biometricVerified ? "Verified" : "Pending",
     };
   } catch (error) {
     console.error("❌ Error checking CIF:", error);

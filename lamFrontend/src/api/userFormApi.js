@@ -1,9 +1,9 @@
-const BASE_EMPLOYEE_URL = "http://localhost:5162/api/Employee";
-const BASE_EXTERNAL_API_URL = "http://localhost:5162/api/ExternalApi";
+const BASE_EMPLOYEE_URL = "https://localhost:7162/api/Employee";
+//const BASE_EXTERNAL_API_URL = "http://localhost:5162/api/ExternalApi";
 
-export const checkCIF = async (cif) => {
+export const checkCIF = async (cifOrNid) => {
   try {
-    const response = await fetch(`${BASE_EXTERNAL_API_URL}/employee/${cif}`);
+    const response = await fetch(`${BASE_EMPLOYEE_URL}/search/${cifOrNid}`);
     if (!response.ok) throw new Error("CIF fetch failed");
 
     const data = await response.json();
@@ -20,6 +20,7 @@ export const checkCIF = async (cif) => {
     return null;
   }
 };
+
 
 export const fetchBranches = async () => {
   const res = await fetch(`${BASE_EMPLOYEE_URL}/branches/all`);

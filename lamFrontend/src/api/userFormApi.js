@@ -1,5 +1,5 @@
-const BASE_EMPLOYEE_URL = "http://localhost:5000/api/Employee";
-const BASE_EXTERNAL_API_URL = "http://localhost:5000/api/ExternalApi";
+const BASE_EMPLOYEE_URL = "http://localhost:5162/api/Employee";
+const BASE_EXTERNAL_API_URL = "http://localhost:5162/api/ExternalApi";
 
 export const checkCIF = async (cif) => {
   try {
@@ -67,19 +67,29 @@ export const fetchDepartments = async () => {
 
 export const fetchLineManagerByCIF = async (cif) => {
   if (!cif) return null;
+
   try {
     const res = await fetch(`${BASE_EMPLOYEE_URL}/line-manager/${cif}`);
-    if (!res.ok) throw new Error("Failed to fetch line manager");
+
+    if (res.status === 404) {
+      // Line manager not found for this CIF
+      return { error: "No line manager found for the given CIF." };
+    }
+
+    if (!res.ok) {
+      // Other errors (500, 503, etc.)
+      return { error: "Server error. Please try again later." };
+    }
 
     const data = await res.json();
-    // assume backend returns { name, mobile, designation }
     return {
       name: data.memberName ?? "",
       mobile: data.mobileNo ?? "",
       designation: data.designation ?? "",
     };
   } catch (err) {
-    console.error("❌ Error fetching line manager:", err);
-    return null;
+    // Network failure or fetch itself failed
+    console.error("❌ Network/API error:", err);
+    return { error: "Unable to connect to server. Check your network." };
   }
 };
